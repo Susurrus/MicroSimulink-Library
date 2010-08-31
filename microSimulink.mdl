@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "bwmairs"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Aug 30 13:54:14 2010"
-  RTWModifiedTimeStamp	  205077201
-  ModelVersionFormat	  "1.%<AutoIncrement:45>"
+  LastModifiedDate	  "Tue Aug 31 09:53:19 2010"
+  RTWModifiedTimeStamp	  205149198
+  ModelVersionFormat	  "1.%<AutoIncrement:47>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -886,7 +886,7 @@ Library {
 	  System {
 	    Name		    "uint16 to uchar"
 	    Location		    [347, 623, 820, 828]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -916,7 +916,7 @@ Library {
 	      OutScaling	      "2^0"
 	      OutDataTypeStr	      "uint16"
 	      ConvertRealWorld	      "Stored Integer (SI)"
-	      RndMeth		      "Floor"
+	      RndMeth		      "Simplest"
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
@@ -1042,7 +1042,7 @@ Library {
 	  System {
 	    Name		    "uint32 to uchar"
 	    Location		    [381, 437, 1065, 719]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1072,7 +1072,7 @@ Library {
 	      OutScaling	      "2^0"
 	      OutDataTypeStr	      "uint32"
 	      ConvertRealWorld	      "Stored Integer (SI)"
-	      RndMeth		      "Floor"
+	      RndMeth		      "Simplest"
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
