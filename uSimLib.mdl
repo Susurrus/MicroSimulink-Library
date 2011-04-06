@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant Mairs"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Feb 25 16:53:30 2011"
-  RTWModifiedTimeStamp	  220553609
-  ModelVersionFormat	  "1.%<AutoIncrement:56>"
+  LastModifiedDate	  "Wed Apr 06 14:21:42 2011"
+  RTWModifiedTimeStamp	  224000501
+  ModelVersionFormat	  "1.%<AutoIncrement:59>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -804,7 +804,7 @@ Library {
   }
   System {
     Name		    "uSimLib"
-    Location		    [73, 236, 604, 628]
+    Location		    [44, 291, 575, 683]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -818,7 +818,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    243
+    SIDHighWatermark	    247
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
@@ -841,8 +841,8 @@ Library {
       MaskIconUnits	      "normalized"
       System {
 	Name			"Conversions"
-	Location		[270, 598, 768, 898]
-	Open			off
+	Location		[1068, 619, 1566, 919]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -855,25 +855,105 @@ Library {
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
-	  BlockType		  Reference
-	  Name			  "Angle Conversion1"
-	  SID			  2
+	  BlockType		  SubSystem
+	  Name			  "Angle Conversion"
+	  SID			  244
 	  Ports			  [1, 1]
-	  Position		  [45, 39, 105, 61]
-	  ShowName		  off
-	  LibraryVersion	  "1.68"
-	  SourceBlock		  "aerolibconvert2/Angle Conversion"
-	  SourceType		  "Angle Conversion"
-	  ShowPortLabels	  "FromPortIcon"
-	  SystemSampleTime	  "-1"
+	  Position		  [50, 39, 110, 61]
+	  LibraryVersion	  "1.216"
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
-	  IU			  "deg"
-	  OU			  "rad"
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskType		  "Angle Conversion"
+	  MaskDescription	  "Convert units of rotation."
+	  MaskPromptString	  "Initial units:|Final units:"
+	  MaskStyleString	  "popup(deg|rad|rev),popup(deg|rad|rev)"
+	  MaskTunableValueString  "on,on"
+	  MaskCallbackString	  "|"
+	  MaskEnableString	  "on,on"
+	  MaskVisibilityString	  "on,on"
+	  MaskToolTipString	  "on,on"
+	  MaskVariables		  "iu=@1;ou=@2;"
+	  MaskInitialization	  "if iu == ou\n    slope = 1;\nelseif iu == 'deg'\n    if ou == 'rad'\n        slope = pi/180;\n"
+	  "    elseif ou = 'rev'\n        slope = 1/360;\n    end\nelseif iu == 'rad'\n    if ou == 'deg'\n        slope = 180"
+	  "/pi;\n    elseif ou == 'rev'\n        slope = 1/(2*pi);\n    end\nelseif iu == 'rev'\n    if ou == 'deg'\n        s"
+	  "lope = 360;\n    elseif ou == 'rad'\n        slope = 2*pi;\n    end\nend"
+	  MaskDisplay		  "port_label('input', 1, get_param(gcb, 'iu'));\nport_label('output', 1, get_param(gcb, 'ou'));"
+	  MaskSelfModifiable	  on
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "deg|rad"
+	  System {
+	    Name		    "Angle Conversion"
+	    Location		    [696, 558, 1194, 858]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    SIDHighWatermark	    247
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      245
+	      Position		      [155, 103, 185, 117]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain"
+	      SID		      247
+	      Position		      [225, 95, 255, 125]
+	      ShowName		      off
+	      Gain		      "slope"
+	      ParameterDataTypeMode   "Inherit via internal rule"
+	      ParameterDataType	      "fixdt(1, 16)"
+	      ParameterScaling	      "2^0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeMode	      "Inherit via internal rule"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      246
+	      Position		      [290, 103, 320, 117]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Line {
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Gain"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gain"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -881,7 +961,6 @@ Library {
 	  SID			  123
 	  Ports			  [1, 1]
 	  Position		  [180, 39, 240, 61]
-	  ShowName		  off
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
 	  RTWSystemCode		  "Auto"
@@ -1037,7 +1116,6 @@ Library {
 	  SID			  129
 	  Ports			  [1, 1]
 	  Position		  [310, 39, 370, 61]
-	  ShowName		  off
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
 	  RTWSystemCode		  "Auto"
@@ -1505,7 +1583,7 @@ Library {
 	      SourceType	      "Angle Conversion"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -1532,7 +1610,7 @@ Library {
 	      SourceType	      "Angle Conversion"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -5469,8 +5547,6 @@ Stateflow {
     viewObj		    2
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -5588,8 +5664,6 @@ Stateflow {
     viewObj		    9
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -5706,8 +5780,6 @@ Stateflow {
     viewObj		    16
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -5823,8 +5895,6 @@ Stateflow {
     viewObj		    23
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -5989,8 +6059,6 @@ Stateflow {
     firstJunction	    34
     viewObj		    32
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -6401,8 +6469,6 @@ Stateflow {
     viewObj		    41
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -6536,8 +6602,6 @@ Stateflow {
     viewObj		    48
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -6719,8 +6783,6 @@ Stateflow {
     viewObj		    55
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -6898,8 +6960,6 @@ Stateflow {
     viewObj		    64
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -7063,8 +7123,6 @@ Stateflow {
     viewObj		    73
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -7205,8 +7263,6 @@ Stateflow {
     viewObj		    81
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    9
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -7429,8 +7485,6 @@ Stateflow {
     viewObj		    92
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -7596,8 +7650,6 @@ Stateflow {
     viewObj		    101
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -7760,8 +7812,6 @@ Stateflow {
     viewObj		    110
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
