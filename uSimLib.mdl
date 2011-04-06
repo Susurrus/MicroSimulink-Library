@@ -15,7 +15,7 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant Mairs"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 06 14:21:42 2011"
+  LastModifiedDate	  "Wed Apr 06 14:29:56 2011"
   RTWModifiedTimeStamp	  224000501
   ModelVersionFormat	  "1.%<AutoIncrement:59>"
   ConfigurationManager	  "None"
@@ -842,7 +842,7 @@ Library {
       System {
 	Name			"Conversions"
 	Location		[1068, 619, 1566, 919]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
