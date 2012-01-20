@@ -1,13 +1,15 @@
 Library {
   Name			  "uSimLib"
-  Version		  7.5
+  Version		  7.8
   MdlSubVersion		  0
   SavedCharacterEncoding  "windows-1252"
   LibraryType		  "BlockLibrary"
   SaveDefaultBlockParams  on
+  LockLinksToLibrary	  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
+  FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
   Created		  "Thu Aug 26 13:10:35 2010"
   Creator		  "bwmairs"
@@ -15,9 +17,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri May 06 13:49:04 2011"
-  RTWModifiedTimeStamp	  226590540
-  ModelVersionFormat	  "1.%<AutoIncrement:63>"
+  LastModifiedDate	  "Fri Jan 20 15:35:07 2012"
+  RTWModifiedTimeStamp	  248974504
+  ModelVersionFormat	  "1.%<AutoIncrement:94>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -25,6 +27,7 @@ Library {
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
+  ShowDesignRanges	  off
   ShowLoopsOnError	  on
   IgnoreBidirectionalLines off
   ShowStorageClass	  off
@@ -38,9 +41,9 @@ Library {
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
   ToolBar		  on
-  StatusBar		  on
-  BrowserShowLibraryLinks off
-  BrowserLookUnderMasks	  off
+  StatusBar		  off
+  BrowserShowLibraryLinks on
+  BrowserLookUnderMasks	  on
   SimulationMode	  "normal"
   LinearizationMsg	  "none"
   Profile		  off
@@ -85,13 +88,13 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      1
-      Version		      "1.10.0"
+      Version		      "1.11.1"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
 	  $ObjectID		  2
-	  Version		  "1.10.0"
+	  Version		  "1.11.1"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
@@ -109,6 +112,7 @@ Library {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  SolverMode		  "Auto"
+	  ConcurrentTasks	  off
 	  Solver		  "ode45"
 	  SolverName		  "ode45"
 	  SolverJacobianMethodControl "auto"
@@ -124,7 +128,7 @@ Library {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  3
-	  Version		  "1.10.0"
+	  Version		  "1.11.1"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -136,6 +140,7 @@ Library {
 	  SaveFinalState	  off
 	  SaveCompleteFinalSimState off
 	  SaveFormat		  "Array"
+	  SignalLoggingSaveFormat "ModelDataLogs"
 	  SaveOutput		  on
 	  SaveState		  off
 	  SignalLogging		  on
@@ -155,7 +160,7 @@ Library {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  4
-	  Version		  "1.10.0"
+	  Version		  "1.11.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    7
@@ -173,12 +178,13 @@ Library {
 	  ConditionallyExecuteInputs on
 	  InlineParams		  off
 	  UseIntDivNetSlope	  off
+	  UseFloatMulNetSlope	  off
+	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  off
 	  OptimizeBlockIOStorage  on
 	  BufferReuse		  on
 	  EnhancedBackFolding	  off
 	  StrengthReduction	  off
-	  EnforceIntegerDowncast  on
 	  ExpressionFolding	  on
 	  BooleansAsBitfields	  off
 	  BitfieldContainerType	  "uint_T"
@@ -205,10 +211,11 @@ Library {
 	  BufferReusableBoundary  on
 	  SimCompilerOptimization "Off"
 	  AccelVerboseBuild	  off
+	  AccelParallelForEachSubsystem	on
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  5
-	  Version		  "1.10.0"
+	  Version		  "1.11.1"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -231,6 +238,8 @@ Library {
 	  MinStepSizeMsg	  "warning"
 	  TimeAdjustmentMsg	  "none"
 	  MaxConsecutiveZCsMsg	  "error"
+	  MaskedZcDiagnostic	  "warning"
+	  IgnoredZcDiagnostic	  "warning"
 	  SolverPrmCheckMsg	  "warning"
 	  InheritedTsInSrcMsg	  "warning"
 	  DiscreteInheritContinuousMsg "warning"
@@ -261,12 +270,14 @@ Library {
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
 	  SFcnCompatibilityMsg	  "none"
+	  FrameProcessingCompatibilityMsg "warning"
 	  UniqueDataStoreMsg	  "none"
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
 	  AssertControl		  "UseLocalSettings"
 	  EnableOverflowDetection off
 	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
 	  ModelReferenceVersionMismatchMessage "none"
 	  ModelReferenceIOMismatchMessage "none"
 	  ModelReferenceCSMismatchMessage "none"
@@ -276,19 +287,32 @@ Library {
 	  ModelReferenceExtraNoncontSigs "error"
 	  StateNameClashWarn	  "warning"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  SimStateOlderReleaseMsg "error"
+	  InitInArrayFormatMsg	  "warning"
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
 	  NonBusSignalsTreatedAsBus "none"
 	  LoggingUnavailableSignals "error"
 	  BlockIODiagnostic	  "none"
+	  SFUnusedDataAndEventsDiag "warning"
+	  SFUnexpectedBacktrackingDiag "warning"
+	  SFInvalidInputDataAccessInChartInitDiag "warning"
+	  SFNoUnconditionalDefaultTransitionDiag "warning"
+	  SFTransitionOutsideNaturalParentDiag "warning"
+	  SFUnconditionalTransitionShadowingDiag "warning"
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  6
-	  Version		  "1.10.0"
+	  Version		  "1.11.1"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
 	  ProdBitPerLong	  32
+	  ProdBitPerFloat	  32
+	  ProdBitPerDouble	  64
+	  ProdBitPerPointer	  32
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
 	  ProdIntDivRoundTo	  "Undefined"
 	  ProdEndianess		  "Unspecified"
 	  ProdWordSize		  32
@@ -298,6 +322,11 @@ Library {
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
 	  TargetBitPerLong	  32
+	  TargetBitPerFloat	  32
+	  TargetBitPerDouble	  64
+	  TargetBitPerPointer	  32
+	  TargetLargestAtomicInteger "Char"
+	  TargetLargestAtomicFloat "None"
 	  TargetShiftRightIntArith on
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
@@ -311,10 +340,11 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  7
-	  Version		  "1.10.0"
+	  Version		  "1.11.1"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceErrorOnInvalidPool on
 	  ParallelModelReferenceMATLABWorkerInit "None"
 	  ModelReferenceNumInstancesAllowed "Multi"
 	  PropagateVarSize	  "Infer from blocks in model"
@@ -325,7 +355,7 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  8
-	  Version		  "1.10.0"
+	  Version		  "1.11.1"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -334,12 +364,13 @@ Library {
 	  SimExtrinsic		  on
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
+	  SimParseCustomCode	  on
 	  SimBuildMode		  "sf_incremental_build"
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  9
-	  Version		  "1.10.0"
+	  Version		  "1.11.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    6
@@ -380,6 +411,8 @@ Library {
 	  GenerateTraceReportSf	  off
 	  GenerateTraceReportEml  off
 	  GenerateCodeInfo	  off
+	  GenerateSLWebview	  off
+	  GenerateCodeMetricsReport off
 	  RTWCompilerOptimization "Off"
 	  CheckMdlBeforeBuild	  "Off"
 	  CustomRebuildMode	  "OnUpdate"
@@ -388,7 +421,7 @@ Library {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      10
-	      Version		      "1.10.0"
+	      Version		      "1.11.1"
 	      Array {
 		Type			"Cell"
 		Dimension		19
@@ -425,6 +458,7 @@ Library {
 	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
+	      MATLABFcnDesc	      off
 	      IncDataTypeInIds	      off
 	      MangleLength	      1
 	      CustomSymbolStrGlobalVar "$R$N$M"
@@ -439,7 +473,9 @@ Library {
 	      ParamNamingRule	      "None"
 	      SignalNamingRule	      "None"
 	      InsertBlockDesc	      off
+	      InsertPolySpaceComments off
 	      SimulinkBlockComments   on
+	      MATLABSourceComments    off
 	      EnableCustomComments    off
 	      InlinedPrmAccess	      "Literals"
 	      ReqsInCode	      off
@@ -448,10 +484,10 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      11
-	      Version		      "1.10.0"
+	      Version		      "1.11.1"
 	      Array {
 		Type			"Cell"
-		Dimension		17
+		Dimension		16
 		Cell			"GeneratePreprocessorConditionals"
 		Cell			"IncludeMdlTerminateFcn"
 		Cell			"CombineOutputUpdateFcns"
@@ -463,12 +499,11 @@ Library {
 		Cell			"CPPClassGenCompliant"
 		Cell			"MultiInstanceERTCode"
 		Cell			"PurelyIntegerCode"
-		Cell			"SupportNonFinite"
+		Cell			"PortableWordSizes"
 		Cell			"SupportComplex"
 		Cell			"SupportAbsoluteTime"
 		Cell			"SupportContinuousTime"
 		Cell			"SupportNonInlinedSFcns"
-		Cell			"PortableWordSizes"
 		PropName		"DisabledProps"
 	      }
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
@@ -477,7 +512,7 @@ Library {
 	      TargetFunctionLibrary   "ANSI_C"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
-	      ERTCodeCoverageTool     "None"
+	      CodeExecutionProfiling  off
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
@@ -487,9 +522,11 @@ Library {
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant on
 	      CompOptLevelCompliant   on
+	      ConcurrentExecutionCompliant on
 	      IncludeMdlTerminateFcn  on
 	      GeneratePreprocessorConditionals "Disable all"
 	      CombineOutputUpdateFcns off
+	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
 	      ERTFirstTimeCompliant   off
 	      IncludeFileDelimiter    "Auto"
@@ -521,6 +558,7 @@ Library {
 	      RTWCAPISignals	      off
 	      RTWCAPIParams	      off
 	      RTWCAPIStates	      off
+	      RTWCAPIRootIO	      off
 	      GenerateASAP2	      off
 	    }
 	    PropName		    "Components"
@@ -530,7 +568,7 @@ Library {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    " [ 200, 197, 1080, 827 ] "
+      ConfigPrmDlgPosition     [ 200, 197, 1080, 827 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -567,6 +605,20 @@ Library {
   }
   BlockParameterDefaults {
     Block {
+      BlockType		      ActionPort
+      InitializeStates	      "held"
+      PropagateVarSize	      "Only when execution is resumed"
+      ActionType	      "unset"
+    }
+    Block {
+      BlockType		      Assignment
+      NumberOfDimensions      "1"
+      IndexMode		      "One-based"
+      OutputInitialize	      "Initialize using input port <Y0>"
+      DiagnosticForDimensions "None"
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Bias
       Bias		      "0"
       SaturateOnIntegerOverflow	on
@@ -575,8 +627,7 @@ Library {
       BlockType		      BusCreator
       Inputs		      "4"
       DisplayOption	      "none"
-      UseBusObject	      off
-      BusObject		      "BusObject"
+      OutDataTypeStr	      "Inherit: auto"
       NonVirtualBus	      off
     }
     Block {
@@ -590,10 +641,6 @@ Library {
       SamplingMode	      "Sample based"
       OutMin		      "[]"
       OutMax		      "[]"
-      OutDataTypeMode	      "Inherit from 'Constant value'"
-      OutDataType	      "fixdt(1,16,0)"
-      ConRadixGroup	      "Use specified scaling"
-      OutScaling	      "[]"
       OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
       LockScale		      off
       SampleTime	      "inf"
@@ -601,12 +648,43 @@ Library {
       PreserveConstantTs      off
     }
     Block {
+      BlockType		      DataStoreMemory
+      DataStoreName	      "A"
+      ReadBeforeWriteMsg      "none"
+      WriteAfterWriteMsg      "none"
+      WriteAfterReadMsg	      "none"
+      InitialValue	      "0"
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+      VectorParams1D	      on
+      ShowAdditionalParam     off
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      SignalType	      "auto"
+      Dimensions	      "-1"
+      DataLogging	      off
+      DataLoggingLimitDataPoints off
+      DataLoggingMaxPoints    "5000"
+      DataLoggingDecimateData off
+      DataLoggingDecimation   "2"
+      DataLoggingNameMode     "SignalName"
+    }
+    Block {
+      BlockType		      DataStoreRead
+      DataStoreName	      "A"
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      DataStoreWrite
+      DataStoreName	      "A"
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      DataTypeConversion
       OutMin		      "[]"
       OutMax		      "[]"
-      OutDataTypeMode	      "Inherit via back propagation"
-      OutDataType	      "fixdt(1,16,0)"
-      OutScaling	      "[]"
       OutDataTypeStr	      "Inherit: Inherit via back propagation"
       LockScale		      off
       ConvertRealWorld	      "Real World Value (RWV)"
@@ -626,16 +704,9 @@ Library {
       Multiplication	      "Element-wise(K.*u)"
       ParamMin		      "[]"
       ParamMax		      "[]"
-      ParameterDataTypeMode   "Same as input"
-      ParameterDataType	      "fixdt(1,16,0)"
-      ParameterScalingMode    "Best Precision: Matrix-wise"
-      ParameterScaling	      "[]"
       ParamDataTypeStr	      "Inherit: Same as input"
       OutMin		      "[]"
       OutMax		      "[]"
-      OutDataTypeMode	      "Same as input"
-      OutDataType	      "fixdt(1,16,0)"
-      OutScaling	      "[]"
       OutDataTypeStr	      "Inherit: Same as input"
       LockScale		      off
       RndMeth		      "Floor"
@@ -643,21 +714,25 @@ Library {
       SampleTime	      "-1"
     }
     Block {
+      BlockType		      If
+      NumInputs		      "1"
+      IfExpression	      "u1 > 0"
+      ShowElse		      on
+      ZeroCross		      on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Inport
       Port		      "1"
-      UseBusObject	      off
-      BusObject		      "BusObject"
+      OutputFunctionCall      off
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
       BusOutputAsStruct	      off
       PortDimensions	      "-1"
       VarSizeSig	      "Inherit"
       SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      DataType		      "auto"
-      OutDataType	      "fixdt(1,16,0)"
-      OutScaling	      "[]"
-      OutDataTypeStr	      "Inherit: auto"
-      LockScale		      off
       SignalType	      "auto"
       SamplingMode	      "auto"
       LatchByDelayingOutsideSignal off
@@ -671,9 +746,6 @@ Library {
       SampleTime	      "-1"
       OutMin		      "[]"
       OutMax		      "[]"
-      OutDataTypeMode	      "Same as first input"
-      OutDataType	      "fixdt(1,16,0)"
-      OutScaling	      "[]"
       OutDataTypeStr	      "Inherit: Same as first input"
       LockScale		      off
       RndMeth		      "Floor"
@@ -681,6 +753,13 @@ Library {
       IntermediateResultsDataTypeStr "Inherit: Inherit via internal rule"
       AlgorithmType	      "Newton-Raphson"
       Iterations	      "3"
+    }
+    Block {
+      BlockType		      Merge
+      Inputs		      "2"
+      InitialOutput	      "[]"
+      AllowUnequalInputPortWidths off
+      InputPortOffsets	      "[]"
     }
     Block {
       BlockType		      Mux
@@ -693,19 +772,14 @@ Library {
     Block {
       BlockType		      Outport
       Port		      "1"
-      UseBusObject	      off
-      BusObject		      "BusObject"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
       BusOutputAsStruct	      off
       PortDimensions	      "-1"
       VarSizeSig	      "Inherit"
       SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      DataType		      "auto"
-      OutDataType	      "fixdt(1,16,0)"
-      OutScaling	      "[]"
-      OutDataTypeStr	      "Inherit: auto"
-      LockScale		      off
       SignalType	      "auto"
       SamplingMode	      "auto"
       SourceOfInitialOutputValue "Dialog"
@@ -714,6 +788,7 @@ Library {
     }
     Block {
       BlockType		      Polyval
+      Coefs		      "[1,2]"
     }
     Block {
       BlockType		      Product
@@ -724,9 +799,6 @@ Library {
       InputSameDT	      on
       OutMin		      "[]"
       OutMax		      "[]"
-      OutDataTypeMode	      "Same as first input"
-      OutDataType	      "fixdt(1,16,0)"
-      OutScaling	      "[]"
       OutDataTypeStr	      "Inherit: Same as first input"
       LockScale		      off
       RndMeth		      "Zero"
@@ -734,7 +806,7 @@ Library {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      "S-Function"
+      BlockType		      S-Function
       FunctionName	      "system"
       SFunctionModules	      "''"
       PortCounts	      "[]"
@@ -764,7 +836,11 @@ Library {
       RTWMemSecDataParameters "Inherit from model"
       SimViewingDevice	      off
       DataTypeOverride	      "UseLocalSettings"
+      DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
+      SFBlockType	      "NONE"
+      Variant		      off
+      GeneratePreprocessorConditionals off
     }
     Block {
       BlockType		      Sum
@@ -776,9 +852,6 @@ Library {
       AccumDataTypeStr	      "Inherit: Inherit via internal rule"
       OutMin		      "[]"
       OutMax		      "[]"
-      OutDataTypeMode	      "Same as first input"
-      OutDataType	      "fixdt(1,16,0)"
-      OutScaling	      "[]"
       OutDataTypeStr	      "Inherit: Same as first input"
       LockScale		      off
       RndMeth		      "Floor"
@@ -801,12 +874,17 @@ Library {
       SampleTime	      "-1"
       SaturateOnIntegerOverflow	off
     }
+    Block {
+      BlockType		      Width
+      OutDataTypeMode	      "Choose intrinsic data type"
+      DataType		      "double"
+    }
   }
   System {
     Name		    "uSimLib"
-    Location		    [682, 275, 1213, 667]
+    Location		    [840, 204, 1481, 645]
     Open		    on
-    ModelBrowserVisibility  off
+    ModelBrowserVisibility  on
     ModelBrowserWidth	    200
     ScreenColor		    "white"
     PaperOrientation	    "landscape"
@@ -818,11 +896,11 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    248
+    SIDHighWatermark	    "487"
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
-      SID		      1
+      SID		      "1"
       Ports		      []
       Position		      [50, 93, 126, 161]
       LibraryVersion	      "1.216"
@@ -843,7 +921,7 @@ Library {
 	Name			"Conversions"
 	Location		[965, 288, 1463, 588]
 	Open			off
-	ModelBrowserVisibility	off
+	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -857,7 +935,7 @@ Library {
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Angle Conversion"
-	  SID			  248
+	  SID			  "248"
 	  Ports			  [1, 1]
 	  Position		  [50, 39, 110, 61]
 	  ShowName		  off
@@ -873,18 +951,18 @@ Library {
 	  MaskDescription	  "Convert units of rotation."
 	  MaskPromptString	  "Initial units:|Final units:"
 	  MaskStyleString	  "popup(deg|rad|rev),popup(deg|rad|rev)"
+	  MaskVariables		  "iu=&1;ou=&2;"
 	  MaskTunableValueString  "off,off"
 	  MaskCallbackString	  "|"
 	  MaskEnableString	  "on,on"
 	  MaskVisibilityString	  "on,on"
 	  MaskToolTipString	  "on,on"
-	  MaskVariables		  "iu=&1;ou=&2;"
 	  MaskInitialization	  "slope = 0;\nif iu == 'deg'\n    if ou == 'rad'\n        slope = pi/180;\n    elseif ou == 're"
 	  "v'\n        slope = 1/360;\n    end\nelseif iu == 'rad'\n    if ou == 'deg'\n        slope = 180/pi;\n    elseif ou"
 	  " == 'rev'\n        slope = 1/(2*pi);\n    end\nelseif iu == 'rev'\n    if ou == 'deg'\n        slope = 360;\n    el"
 	  "seif ou == 'rad'\n        slope = 2*pi;\n    end\nend"
-	  MaskDisplay		  "port_label('input', 1, get_param(gcb, 'iu'));\nport_label('output', 1, get_param(gcb, 'ou'));"
 	  MaskSelfModifiable	  on
+	  MaskDisplay		  "port_label('input', 1, get_param(gcb, 'iu'));\nport_label('output', 1, get_param(gcb, 'ou'));"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
 	  MaskIconRotate	  "none"
@@ -895,7 +973,7 @@ Library {
 	    Name		    "Angle Conversion"
 	    Location		    [265, 312, 872, 648]
 	    Open		    off
-	    ModelBrowserVisibility  off
+	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -906,42 +984,32 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    247
-	    SIDPrevWatermark	    247
+	    SIDHighWatermark	    "247"
+	    SIDPrevWatermark	    "247"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "In1"
-	      SID		      245
+	      SID		      "248:245"
 	      Position		      [155, 103, 185, 117]
 	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	    }
 	    Block {
 	      BlockType		      Gain
 	      Name		      "Gain"
-	      SID		      247
+	      SID		      "248:247"
 	      Position		      [225, 95, 255, 125]
 	      ShowName		      off
 	      Gain		      "slope"
-	      ParameterDataTypeMode   "Inherit via internal rule"
-	      ParameterDataType	      "fixdt(1, 16)"
-	      ParameterScaling	      "2^0"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-	      OutDataTypeMode	      "Inherit via internal rule"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "Out1"
-	      SID		      246
+	      SID		      "248:246"
 	      Position		      [290, 103, 320, 117]
 	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	    }
 	    Line {
 	      SrcBlock		      "Gain"
@@ -960,7 +1028,7 @@ Library {
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "uint16 to uchar"
-	  SID			  123
+	  SID			  "123"
 	  Ports			  [1, 1]
 	  Position		  [180, 39, 240, 61]
 	  MinAlgLoopOccurrences	  off
@@ -974,7 +1042,7 @@ Library {
 	    Name		    "uint16 to uchar"
 	    Location		    [347, 623, 820, 828]
 	    Open		    off
-	    ModelBrowserVisibility  off
+	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -988,19 +1056,16 @@ Library {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "ushort"
-	      SID		      124
+	      SID		      "124"
 	      Position		      [25, 48, 55, 62]
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      DataTypeConversion
 	      Name		      "Data Type Conversion"
-	      SID		      138
+	      SID		      "138"
 	      Position		      [75, 39, 135, 71]
 	      ShowName		      off
-	      OutDataTypeMode	      "uint16"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	      OutDataTypeStr	      "uint16"
 	      ConvertRealWorld	      "Stored Integer (SI)"
 	      RndMeth		      "Simplest"
@@ -1009,21 +1074,13 @@ Library {
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Extract Bits1"
-	      SID		      125
+	      SID		      "125"
 	      Ports		      [1, 1]
 	      Position		      [160, 27, 240, 53]
 	      ShowName		      off
-	      LibraryVersion	      "1.216"
+	      LibraryVersion	      "1.256"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Extract Bits"
 	      SourceType	      "Extract Bits"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      bitsToExtract	      "Lower half"
 	      numBits		      "8"
 	      bitIdxRange	      "[0 7]"
@@ -1032,21 +1089,13 @@ Library {
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Extract Bits2"
-	      SID		      126
+	      SID		      "126"
 	      Ports		      [1, 1]
 	      Position		      [160, 57, 240, 83]
 	      ShowName		      off
-	      LibraryVersion	      "1.216"
+	      LibraryVersion	      "1.256"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Extract Bits"
 	      SourceType	      "Extract Bits"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      bitsToExtract	      "Upper half"
 	      numBits		      "8"
 	      bitIdxRange	      "[0 7]"
@@ -1055,7 +1104,7 @@ Library {
 	    Block {
 	      BlockType		      Mux
 	      Name		      "Mux"
-	      SID		      127
+	      SID		      "127"
 	      Ports		      [2, 1]
 	      Position		      [270, 23, 275, 87]
 	      ShowName		      off
@@ -1065,11 +1114,9 @@ Library {
 	    Block {
 	      BlockType		      Outport
 	      Name		      "uchar"
-	      SID		      128
+	      SID		      "128"
 	      Position		      [305, 48, 335, 62]
 	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	    }
 	    Line {
 	      SrcBlock		      "Mux"
@@ -1115,7 +1162,7 @@ Library {
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "uint32 to uchar"
-	  SID			  129
+	  SID			  "129"
 	  Ports			  [1, 1]
 	  Position		  [310, 39, 370, 61]
 	  MinAlgLoopOccurrences	  off
@@ -1129,7 +1176,7 @@ Library {
 	    Name		    "uint32 to uchar"
 	    Location		    [158, 184, 842, 466]
 	    Open		    off
-	    ModelBrowserVisibility  off
+	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -1143,19 +1190,16 @@ Library {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "uint"
-	      SID		      130
+	      SID		      "130"
 	      Position		      [25, 78, 55, 92]
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      DataTypeConversion
 	      Name		      "Data Type Conversion"
-	      SID		      131
+	      SID		      "131"
 	      Position		      [80, 71, 140, 99]
 	      ShowName		      off
-	      OutDataTypeMode	      "uint32"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	      OutDataTypeStr	      "uint32"
 	      ConvertRealWorld	      "Stored Integer (SI)"
 	      RndMeth		      "Simplest"
@@ -1164,21 +1208,13 @@ Library {
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Extract Bits4"
-	      SID		      132
+	      SID		      "132"
 	      Ports		      [1, 1]
 	      Position		      [170, 117, 250, 143]
 	      ShowName		      off
-	      LibraryVersion	      "1.216"
+	      LibraryVersion	      "1.256"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Extract Bits"
 	      SourceType	      "Extract Bits"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      bitsToExtract	      "Range of bits"
 	      numBits		      "8"
 	      bitIdxRange	      "[24 31]"
@@ -1187,21 +1223,13 @@ Library {
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Extract Bits5"
-	      SID		      133
+	      SID		      "133"
 	      Ports		      [1, 1]
 	      Position		      [170, 87, 250, 113]
 	      ShowName		      off
-	      LibraryVersion	      "1.216"
+	      LibraryVersion	      "1.256"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Extract Bits"
 	      SourceType	      "Extract Bits"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      bitsToExtract	      "Range of bits"
 	      numBits		      "8"
 	      bitIdxRange	      "[16 23]"
@@ -1210,21 +1238,13 @@ Library {
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Extract Bits6"
-	      SID		      134
+	      SID		      "134"
 	      Ports		      [1, 1]
 	      Position		      [170, 57, 250, 83]
 	      ShowName		      off
-	      LibraryVersion	      "1.216"
+	      LibraryVersion	      "1.256"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Extract Bits"
 	      SourceType	      "Extract Bits"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      bitsToExtract	      "Range of bits"
 	      numBits		      "8"
 	      bitIdxRange	      "[8 15]"
@@ -1233,21 +1253,13 @@ Library {
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Extract Bits7"
-	      SID		      135
+	      SID		      "135"
 	      Ports		      [1, 1]
 	      Position		      [170, 27, 250, 53]
 	      ShowName		      off
-	      LibraryVersion	      "1.216"
+	      LibraryVersion	      "1.256"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Extract Bits"
 	      SourceType	      "Extract Bits"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      bitsToExtract	      "Range of bits"
 	      numBits		      "8"
 	      bitIdxRange	      "[0 7]"
@@ -1256,7 +1268,7 @@ Library {
 	    Block {
 	      BlockType		      Mux
 	      Name		      "Mux"
-	      SID		      136
+	      SID		      "136"
 	      Ports		      [4, 1]
 	      Position		      [285, 23, 290, 147]
 	      ShowName		      off
@@ -1265,11 +1277,9 @@ Library {
 	    Block {
 	      BlockType		      Outport
 	      Name		      "uchar"
-	      SID		      137
+	      SID		      "137"
 	      Position		      [340, 78, 370, 92]
 	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	    }
 	    Line {
 	      SrcBlock		      "Data Type Conversion"
@@ -1340,8 +1350,1472 @@ Library {
     }
     Block {
       BlockType		      SubSystem
+      Name		      "Mission Manager"
+      SID		      "308"
+      Ports		      []
+      Position		      [50, 203, 126, 271]
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskDisplay	      "fprintf('Missions');"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      System {
+	Name			"Mission Manager"
+	Location		[840, 204, 1481, 645]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	212
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "AppendMission"
+	  SID			  "420"
+	  Ports			  [1, 1]
+	  Position		  [65, 244, 165, 286]
+	  ZOrder		  -5
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Reusable function"
+	  RTWFcnNameOpts	  "User specified"
+	  RTWFcnName		  "AppendMission"
+	  RTWFileNameOpts	  "User specified"
+	  RTWFileName		  "MissionManager"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskPromptString	  "Sample time"
+	  MaskStyleString	  "edit"
+	  MaskVariables		  "sampleTime=@1;"
+	  MaskTunableValueString  "off"
+	  MaskEnableString	  "on"
+	  MaskVisibilityString	  "on"
+	  MaskToolTipString	  "on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "-1"
+	  System {
+	    Name		    "AppendMission"
+	    Location		    [297, 371, 1434, 770]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "125"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "mission"
+	      SID		      "421"
+	      Position		      [50, 98, 80, 112]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Mission"
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector"
+	      SID		      "422"
+	      Ports		      [1, 2]
+	      Position		      [140, 176, 145, 214]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "size,missions"
+	      Port {
+		PortNumber		1
+		Name			"<size>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<missions>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      DataStoreRead
+	      Name		      "Data Store\nRead"
+	      SID		      "423"
+	      Ports		      [0, 1]
+	      Position		      [50, 180, 80, 210]
+	      ZOrder		      -5
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      SampleTime	      "sampleTime"
+	    }
+	    Block {
+	      BlockType		      DataStoreWrite
+	      Name		      "Data Store\nWrite"
+	      SID		      "424"
+	      Ports		      [2]
+	      Position		      [615, 163, 720, 207]
+	      ZOrder		      -6
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      DataStoreElements	      "mList.size#mList.missions(:)"
+	    }
+	    Block {
+	      BlockType		      If
+	      Name		      "If"
+	      SID		      "425"
+	      Ports		      [2, 2]
+	      Position		      [275, 141, 375, 179]
+	      ZOrder		      -15
+	      ShowName		      off
+	      NumInputs		      "2"
+	      IfExpression	      "u1 < u2"
+	      ZeroCross		      off
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "If Action\nSubsystem"
+	      SID		      "426"
+	      Ports		      [1, 2, 0, 0, 0, 0, 0, 1]
+	      Position		      [405, 227, 475, 263]
+	      ZOrder		      -16
+	      ShowName		      off
+	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
+	      RequestExecContextInheritance off
+	      MaskHideContents	      off
+	      System {
+		Name			"If Action\nSubsystem"
+		Location		[297, 471, 795, 771]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "missions"
+		  SID			  "427"
+		  Position		  [75, 128, 105, 142]
+		  ZOrder		  -1
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  ActionPort
+		  Name			  "Action Port"
+		  SID			  "428"
+		  Position		  [170, 15, 229, 43]
+		  ZOrder		  -2
+		  ShowName		  off
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant"
+		  SID			  "429"
+		  Position		  [75, 70, 105, 100]
+		  ZOrder		  -5
+		  BackgroundColor	  "gray"
+		  ShowName		  off
+		  Value			  "0"
+		  OutDataTypeStr	  "uint8"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "rv_found"
+		  SID			  "430"
+		  Position		  [325, 78, 355, 92]
+		  ZOrder		  -3
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "rv_missions"
+		  SID			  "431"
+		  Position		  [325, 128, 355, 142]
+		  ZOrder		  -3
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  SrcBlock		  "Constant"
+		  SrcPort		  1
+		  DstBlock		  "rv_found"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "missions"
+		  SrcPort		  1
+		  DstBlock		  "rv_missions"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "If Action\nSubsystem1"
+	      SID		      "432"
+	      Ports		      [3, 2, 0, 0, 0, 0, 0, 1]
+	      Position		      [405, 87, 475, 123]
+	      ZOrder		      -16
+	      NamePlacement	      "alternate"
+	      ShowName		      off
+	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
+	      RequestExecContextInheritance off
+	      MaskHideContents	      off
+	      System {
+		Name			"If Action\nSubsystem1"
+		Location		[525, 147, 1023, 447]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "missions"
+		  SID			  "433"
+		  Position		  [75, 88, 105, 102]
+		  ZOrder		  -1
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "mission"
+		  SID			  "434"
+		  Position		  [75, 123, 105, 137]
+		  ZOrder		  -1
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "index"
+		  SID			  "435"
+		  Position		  [75, 168, 105, 182]
+		  ZOrder		  -1
+		  Port			  "3"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  ActionPort
+		  Name			  "Action Port"
+		  SID			  "436"
+		  Position		  [170, 15, 229, 43]
+		  ZOrder		  -2
+		  ShowName		  off
+		}
+		Block {
+		  BlockType		  Assignment
+		  Name			  "Assignment"
+		  SID			  "437"
+		  Ports			  [3, 1]
+		  Position		  [295, 112, 365, 148]
+		  ZOrder		  -4
+		  IndexMode		  "Zero-based"
+		  IndexOptions		  "Index vector (port)"
+		  Indices		  "1"
+		  OutputSizes		  "1"
+		}
+		Block {
+		  BlockType		  Bias
+		  Name			  "Bias"
+		  SID			  "438"
+		  Position		  [310, 175, 350, 205]
+		  ZOrder		  -5
+		  ShowName		  off
+		  Bias			  "1"
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "rv_s"
+		  SID			  "439"
+		  Position		  [400, 183, 430, 197]
+		  ZOrder		  -3
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "rv_m"
+		  SID			  "440"
+		  Position		  [400, 123, 430, 137]
+		  ZOrder		  -3
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  SrcBlock		  "missions"
+		  SrcPort		  1
+		  Points		  [125, 0; 0, 25]
+		  DstBlock		  "Assignment"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "mission"
+		  SrcPort		  1
+		  DstBlock		  "Assignment"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "index"
+		  SrcPort		  1
+		  Points		  [125, 0]
+		  Branch {
+		    Points		    [0, -35]
+		    DstBlock		    "Assignment"
+		    DstPort		    3
+		  }
+		  Branch {
+		    Points		    [0, 15]
+		    DstBlock		    "Bias"
+		    DstPort		    1
+		  }
+		}
+		Line {
+		  SrcBlock		  "Assignment"
+		  SrcPort		  1
+		  DstBlock		  "rv_m"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Bias"
+		  SrcPort		  1
+		  DstBlock		  "rv_s"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Merge
+	      Name		      "Merge1"
+	      SID		      "441"
+	      Ports		      [2, 1]
+	      Position		      [520, 100, 560, 140]
+	      ZOrder		      -14
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Merge
+	      Name		      "Merge2"
+	      SID		      "442"
+	      Ports		      [2, 1]
+	      Position		      [520, 175, 560, 215]
+	      ZOrder		      -14
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Width
+	      Name		      "Width"
+	      SID		      "443"
+	      Position		      [215, 155, 245, 185]
+	      ZOrder		      -14
+	      ShowName		      off
+	      OutDataTypeMode	      "Inherit via back propagation"
+	      DataType		      "uint8"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "newSize"
+	      SID		      "444"
+	      Position		      [650, 113, 680, 127]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "uint8"
+	      LockScale		      on
+	    }
+	    Line {
+	      SrcBlock		      "If Action\nSubsystem1"
+	      SrcPort		      1
+	      Points		      [20, 0; 0, 15]
+	      DstBlock		      "Merge1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "If Action\nSubsystem"
+	      SrcPort		      1
+	      Points		      [10, 0; 0, -105]
+	      DstBlock		      "Merge1"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Merge1"
+	      SrcPort		      1
+	      Points		      [20, 0]
+	      Branch {
+		DstBlock		"newSize"
+		DstPort			1
+	      }
+	      Branch {
+		Labels			[1, 0]
+		Points			[0, 55]
+		DstBlock		"Data Store\nWrite"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "If"
+	      SrcPort		      1
+	      Points		      [60, 0]
+	      DstBlock		      "If Action\nSubsystem1"
+	      DstPort		      ifaction
+	    }
+	    Line {
+	      Name		      "<missions>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      2
+	      Points		      [40, 0]
+	      Branch {
+		Points			[0, 40]
+		DstBlock		"If Action\nSubsystem"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -35]
+		Branch {
+		  DstBlock		  "Width"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, -75]
+		  DstBlock		  "If Action\nSubsystem1"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "If"
+	      SrcPort		      2
+	      Points		      [60, 0]
+	      DstBlock		      "If Action\nSubsystem"
+	      DstPort		      ifaction
+	    }
+	    Line {
+	      SrcBlock		      "Width"
+	      SrcPort		      1
+	      DstBlock		      "If"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Data Store\nRead"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "mission"
+	      SrcPort		      1
+	      DstBlock		      "If Action\nSubsystem1"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "If Action\nSubsystem1"
+	      SrcPort		      2
+	      Points		      [20, 0; 0, 70]
+	      DstBlock		      "Merge2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "If Action\nSubsystem"
+	      SrcPort		      2
+	      Points		      [25, 0]
+	      DstBlock		      "Merge2"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Merge2"
+	      SrcPort		      1
+	      DstBlock		      "Data Store\nWrite"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "<size>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      1
+	      Points		      [30, 0; 0, -35; 0, 0]
+	      Branch {
+		Points			[0, -35]
+		DstBlock		"If Action\nSubsystem1"
+		DstPort			3
+	      }
+	      Branch {
+		DstBlock		"If"
+		DstPort			1
+	      }
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "ClearMissionList"
+	  SID			  "445"
+	  Ports			  []
+	  Position		  [65, 69, 165, 111]
+	  ZOrder		  -5
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Reusable function"
+	  RTWFcnNameOpts	  "User specified"
+	  RTWFcnName		  "ClearMissionList"
+	  RTWFileNameOpts	  "User specified"
+	  RTWFileName		  "MissionManager"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskDisplay		  "disp('Mission:Clear()');"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "ClearMissionList"
+	    Location		    [834, 599, 1284, 800]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant"
+	      SID		      "446"
+	      Position		      [60, 25, 90, 55]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "0"
+	      OutDataTypeStr	      "uint8"
+	    }
+	    Block {
+	      BlockType		      DataStoreWrite
+	      Name		      "Data Store\nWrite"
+	      SID		      "447"
+	      Ports		      [1]
+	      Position		      [185, 28, 260, 52]
+	      ZOrder		      -6
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      DataStoreElements	      "mList.size"
+	    }
+	    Line {
+	      SrcBlock		      "Constant"
+	      SrcPort		      1
+	      DstBlock		      "Data Store\nWrite"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  DataStoreMemory
+	  Name			  "Data Store\nMemory"
+	  SID			  "448"
+	  Position		  [95, 25, 127, 55]
+	  ZOrder		  -4
+	  ShowName		  off
+	  DataStoreName		  "mList"
+	  ReadBeforeWriteMsg	  "warning"
+	  WriteAfterWriteMsg	  "warning"
+	  WriteAfterReadMsg	  "warning"
+	  RTWStateStorageClass	  "ExportedGlobal"
+	  OutDataTypeStr	  "Bus: MissionList"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "GetCurrentMission"
+	  SID			  "449"
+	  Ports			  [0, 1]
+	  Position		  [260, 239, 360, 281]
+	  ZOrder		  -5
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Reusable function"
+	  RTWFcnNameOpts	  "User specified"
+	  RTWFcnName		  "GetCurrentMission"
+	  RTWFileNameOpts	  "User specified"
+	  RTWFileName		  "MissionManager"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskPromptString	  "Sample time"
+	  MaskStyleString	  "edit"
+	  MaskVariables		  "sampleTime=@1;"
+	  MaskTunableValueString  "off"
+	  MaskEnableString	  "on"
+	  MaskVisibilityString	  "on"
+	  MaskToolTipString	  "on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "-1"
+	  System {
+	    Name		    "GetCurrentMission"
+	    Location		    [425, 254, 1047, 680]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    212
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      DataStoreRead
+	      Name		      "Data Store\nRead1"
+	      SID		      "450"
+	      Ports		      [0, 1]
+	      Position		      [45, 30, 120, 60]
+	      ZOrder		      -5
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      SampleTime	      "sampleTime"
+	      DataStoreElements	      "mList.currentIndex"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "index"
+	      SID		      "451"
+	      Position		      [180, 38, 210, 52]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "uint8"
+	    }
+	    Line {
+	      SrcBlock		      "Data Store\nRead1"
+	      SrcPort		      1
+	      DstBlock		      "index"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "GetMission"
+	  SID			  "452"
+	  Ports			  [1, 2]
+	  Position		  [260, 164, 360, 206]
+	  ZOrder		  -5
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Reusable function"
+	  RTWFcnNameOpts	  "User specified"
+	  RTWFcnName		  "GetMission"
+	  RTWFileNameOpts	  "User specified"
+	  RTWFileName		  "MissionManager"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskPromptString	  "Sample time"
+	  MaskStyleString	  "edit"
+	  MaskVariables		  "sampleTime=@1;"
+	  MaskTunableValueString  "off"
+	  MaskEnableString	  "on"
+	  MaskVisibilityString	  "on"
+	  MaskToolTipString	  "on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "-1"
+	  System {
+	    Name		    "GetMission"
+	    Location		    [453, 578, 1266, 821]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "index"
+	      SID		      "453"
+	      Position		      [30, 63, 60, 77]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "uint8"
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector"
+	      SID		      "454"
+	      Ports		      [1, 2]
+	      Position		      [120, 106, 125, 144]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "size,missions"
+	      Port {
+		PortNumber		1
+		Name			"<size>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		2
+		Name			"<missions>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      DataStoreRead
+	      Name		      "Data Store\nRead"
+	      SID		      "455"
+	      Ports		      [0, 1]
+	      Position		      [30, 110, 60, 140]
+	      ZOrder		      -5
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      SampleTime	      "sampleTime"
+	    }
+	    Block {
+	      BlockType		      If
+	      Name		      "If"
+	      SID		      "456"
+	      Ports		      [2, 2]
+	      Position		      [195, 71, 295, 109]
+	      ZOrder		      -15
+	      ShowName		      off
+	      NumInputs		      "2"
+	      IfExpression	      "u1 < u2"
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "If Action\nSubsystem"
+	      SID		      "457"
+	      Ports		      [1, 2, 0, 0, 0, 0, 0, 1]
+	      Position		      [380, 117, 450, 153]
+	      ZOrder		      -16
+	      ShowName		      off
+	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
+	      RequestExecContextInheritance off
+	      MaskHideContents	      off
+	      System {
+		Name			"If Action\nSubsystem"
+		Location		[336, 534, 834, 834]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "missions"
+		  SID			  "458"
+		  Position		  [75, 113, 105, 127]
+		  ZOrder		  -1
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  ActionPort
+		  Name			  "Action Port"
+		  SID			  "459"
+		  Position		  [170, 15, 229, 43]
+		  ZOrder		  -2
+		  ShowName		  off
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant"
+		  SID			  "460"
+		  Position		  [75, 70, 105, 100]
+		  ZOrder		  -5
+		  BackgroundColor	  "gray"
+		  ShowName		  off
+		  Value			  "false"
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant1"
+		  SID			  "461"
+		  Position		  [75, 145, 105, 175]
+		  ZOrder		  -5
+		  BackgroundColor	  "gray"
+		  ShowName		  off
+		  Value			  "0"
+		  OutDataTypeStr	  "uint8"
+		}
+		Block {
+		  BlockType		  Selector
+		  Name			  "Selector"
+		  SID			  "462"
+		  Ports			  [2, 1]
+		  Position		  [190, 121, 230, 159]
+		  ZOrder		  -17
+		  IndexMode		  "Zero-based"
+		  InputPortWidth	  "15"
+		  IndexOptions		  "Index vector (port)"
+		  Indices		  "[1 3]"
+		  OutputSizes		  "1"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "rv"
+		  SID			  "463"
+		  Position		  [325, 78, 355, 92]
+		  ZOrder		  -3
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "mission"
+		  SID			  "464"
+		  Position		  [325, 133, 355, 147]
+		  ZOrder		  -3
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  SrcBlock		  "Constant"
+		  SrcPort		  1
+		  DstBlock		  "rv"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Selector"
+		  SrcPort		  1
+		  DstBlock		  "mission"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Constant1"
+		  SrcPort		  1
+		  Points		  [45, 0; 0, -10]
+		  DstBlock		  "Selector"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "missions"
+		  SrcPort		  1
+		  Points		  [45, 0; 0, 10]
+		  DstBlock		  "Selector"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "If Action\nSubsystem1"
+	      SID		      "465"
+	      Ports		      [2, 2, 0, 0, 0, 0, 0, 1]
+	      Position		      [385, 17, 455, 53]
+	      ZOrder		      -16
+	      NamePlacement	      "alternate"
+	      ShowName		      off
+	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
+	      RequestExecContextInheritance off
+	      MaskHideContents	      off
+	      System {
+		Name			"If Action\nSubsystem1"
+		Location		[774, 357, 1272, 657]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "missions"
+		  SID			  "466"
+		  Position		  [75, 93, 105, 107]
+		  ZOrder		  -1
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "index"
+		  SID			  "467"
+		  Position		  [75, 123, 105, 137]
+		  ZOrder		  -1
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  ActionPort
+		  Name			  "Action Port"
+		  SID			  "468"
+		  Position		  [170, 15, 229, 43]
+		  ZOrder		  -2
+		  ShowName		  off
+		}
+		Block {
+		  BlockType		  Constant
+		  Name			  "Constant"
+		  SID			  "469"
+		  Position		  [265, 65, 295, 95]
+		  ZOrder		  -5
+		  BackgroundColor	  "gray"
+		  ShowName		  off
+		  Value			  "true"
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  Selector
+		  Name			  "Selector"
+		  SID			  "470"
+		  Ports			  [2, 1]
+		  Position		  [190, 96, 230, 134]
+		  ZOrder		  -17
+		  IndexMode		  "Zero-based"
+		  InputPortWidth	  "15"
+		  IndexOptions		  "Index vector (port)"
+		  Indices		  "[1 3]"
+		  OutputSizes		  "1"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "rv"
+		  SID			  "471"
+		  Position		  [325, 73, 355, 87]
+		  ZOrder		  -3
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "mission"
+		  SID			  "472"
+		  Position		  [325, 108, 355, 122]
+		  ZOrder		  -3
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  SrcBlock		  "Constant"
+		  SrcPort		  1
+		  DstBlock		  "rv"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Selector"
+		  SrcPort		  1
+		  DstBlock		  "mission"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "index"
+		  SrcPort		  1
+		  Points		  [45, 0; 0, -5]
+		  DstBlock		  "Selector"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "missions"
+		  SrcPort		  1
+		  Points		  [45, 0; 0, 5]
+		  DstBlock		  "Selector"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Merge
+	      Name		      "Merge"
+	      SID		      "473"
+	      Ports		      [2, 1]
+	      Position		      [575, 15, 615, 55]
+	      ZOrder		      -14
+	      ShowName		      off
+	      Port {
+		PortNumber		1
+		Name			"missions"
+		PropagatedSignals	"missions"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Merge
+	      Name		      "Merge1"
+	      SID		      "474"
+	      Ports		      [2, 1]
+	      Position		      [575, 95, 615, 135]
+	      ZOrder		      -14
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Mission"
+	      SID		      "475"
+	      Position		      [680, 28, 710, 42]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "Bus: Mission"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "found"
+	      SID		      "476"
+	      Position		      [680, 108, 710, 122]
+	      ZOrder		      -2
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Line {
+	      SrcBlock		      "Data Store\nRead"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<size>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      1
+	      Points		      [25, 0; 0, -15]
+	      DstBlock		      "If"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "index"
+	      SrcPort		      1
+	      Points		      [55, 0]
+	      Branch {
+		Points			[0, 10]
+		DstBlock		"If"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -25]
+		DstBlock		"If Action\nSubsystem1"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      Name		      "missions"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Merge"
+	      SrcPort		      1
+	      DstBlock		      "Mission"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "If"
+	      SrcPort		      2
+	      Points		      [115, 0]
+	      DstBlock		      "If Action\nSubsystem"
+	      DstPort		      ifaction
+	    }
+	    Line {
+	      Name		      "<missions>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector"
+	      SrcPort		      2
+	      Points		      [215, 0]
+	      Branch {
+		Points			[0, -110]
+		DstBlock		"If Action\nSubsystem1"
+		DstPort			1
+	      }
+	      Branch {
+		DstBlock		"If Action\nSubsystem"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "If"
+	      SrcPort		      1
+	      Points		      [120, 0]
+	      DstBlock		      "If Action\nSubsystem1"
+	      DstPort		      ifaction
+	    }
+	    Line {
+	      SrcBlock		      "Merge1"
+	      SrcPort		      1
+	      DstBlock		      "found"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "If Action\nSubsystem"
+	      SrcPort		      1
+	      DstBlock		      "Merge1"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "If Action\nSubsystem1"
+	      SrcPort		      1
+	      Points		      [50, 0; 0, 80]
+	      DstBlock		      "Merge1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "If Action\nSubsystem1"
+	      SrcPort		      2
+	      Points		      [80, 0; 0, -20]
+	      DstBlock		      "Merge"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "If Action\nSubsystem"
+	      SrcPort		      2
+	      Points		      [100, 0; 0, -100]
+	      DstBlock		      "Merge"
+	      DstPort		      2
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "GetMissionCount"
+	  SID			  "477"
+	  Ports			  [0, 1]
+	  Position		  [260, 309, 360, 351]
+	  ZOrder		  -5
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Reusable function"
+	  RTWFcnNameOpts	  "User specified"
+	  RTWFcnName		  "GetMissionCount"
+	  RTWFileNameOpts	  "User specified"
+	  RTWFileName		  "MissionManager"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskPromptString	  "Sample time"
+	  MaskStyleString	  "edit"
+	  MaskVariables		  "sampleTime=@1;"
+	  MaskTunableValueString  "off"
+	  MaskEnableString	  "on"
+	  MaskVisibilityString	  "on"
+	  MaskToolTipString	  "on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "-1"
+	  System {
+	    Name		    "GetMissionCount"
+	    Location		    [276, 599, 753, 701]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      DataStoreRead
+	      Name		      "Data Store\nRead"
+	      SID		      "478"
+	      Ports		      [0, 1]
+	      Position		      [95, 25, 170, 55]
+	      ZOrder		      -5
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      SampleTime	      "sampleTime"
+	      DataStoreElements	      "mList.size"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "size"
+	      SID		      "479"
+	      Position		      [205, 33, 235, 47]
+	      ZOrder		      -2
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "uint8"
+	    }
+	    Line {
+	      SrcBlock		      "Data Store\nRead"
+	      SrcPort		      1
+	      DstBlock		      "size"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "SetCurrentMission"
+	  SID			  "480"
+	  Ports			  [1]
+	  Position		  [65, 164, 165, 206]
+	  ZOrder		  -5
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Reusable function"
+	  RTWFcnNameOpts	  "User specified"
+	  RTWFcnName		  "SetCurrentMission"
+	  RTWFileNameOpts	  "User specified"
+	  RTWFileName		  "MissionManager"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskPromptString	  "Sample time"
+	  MaskStyleString	  "edit"
+	  MaskVariables		  "sampleTime=@1;"
+	  MaskTunableValueString  "off"
+	  MaskEnableString	  "on"
+	  MaskVisibilityString	  "on"
+	  MaskToolTipString	  "on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "-1"
+	  System {
+	    Name		    "SetCurrentMission"
+	    Location		    [585, 533, 1035, 734]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "index"
+	      SID		      "481"
+	      Position		      [45, 48, 75, 62]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "uint8"
+	    }
+	    Block {
+	      BlockType		      DataStoreRead
+	      Name		      "Data Store\nRead"
+	      SID		      "482"
+	      Ports		      [0, 1]
+	      Position		      [30, 91, 90, 119]
+	      ZOrder		      -5
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      SampleTime	      "sampleTime"
+	      DataStoreElements	      "mList.size"
+	    }
+	    Block {
+	      BlockType		      If
+	      Name		      "If"
+	      SID		      "483"
+	      Ports		      [2, 1]
+	      Position		      [160, 76, 260, 114]
+	      ZOrder		      -15
+	      ShowName		      off
+	      NumInputs		      "2"
+	      IfExpression	      "u1 < u2"
+	      ShowElse		      off
+	      ZeroCross		      off
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "If Action\nSubsystem"
+	      SID		      "484"
+	      Ports		      [1, 0, 0, 0, 0, 0, 0, 1]
+	      Position		      [295, 37, 365, 73]
+	      ZOrder		      -16
+	      NamePlacement	      "alternate"
+	      ShowName		      off
+	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
+	      RequestExecContextInheritance off
+	      MaskHideContents	      off
+	      System {
+		Name			"If Action\nSubsystem"
+		Location		[342, 471, 840, 771]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "In1"
+		  SID			  "485"
+		  Position		  [75, 78, 105, 92]
+		  ZOrder		  -1
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  ActionPort
+		  Name			  "Action Port"
+		  SID			  "486"
+		  Position		  [170, 15, 229, 43]
+		  ZOrder		  -2
+		  ActionType		  "then"
+		}
+		Block {
+		  BlockType		  DataStoreWrite
+		  Name			  "Data Store\nWrite"
+		  SID			  "487"
+		  Ports			  [1]
+		  Position		  [200, 73, 275, 97]
+		  ZOrder		  -6
+		  ShowName		  off
+		  DataStoreName		  "mList"
+		  DataStoreElements	  "mList.currentIndex"
+		}
+		Line {
+		  SrcBlock		  "In1"
+		  SrcPort		  1
+		  DstBlock		  "Data Store\nWrite"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "index"
+	      SrcPort		      1
+	      Points		      [65, 0]
+	      Branch {
+		DstBlock		"If"
+		DstPort			1
+	      }
+	      Branch {
+		DstBlock		"If Action\nSubsystem"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Data Store\nRead"
+	      SrcPort		      1
+	      DstBlock		      "If"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "If"
+	      SrcPort		      1
+	      Points		      [65, 0]
+	      DstBlock		      "If Action\nSubsystem"
+	      DstPort		      ifaction
+	    }
+	  }
+	}
+	Annotation {
+	  Name			  "Provides a global mission manager for autopilots. This code compiles down \ninto a similar C-API when use"
+	  "d with embedded coder. NOTE: This only occurs \nif the optimization settingsnare correct and all blocks (along with"
+	  " all outputs)\nare used within the model proper."
+	  Position		  [218, 80]
+	  HorizontalAlignment	  "left"
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
       Name		      "Solar Models"
-      SID		      139
+      SID		      "139"
       Ports		      []
       Position		      [170, 94, 285, 162]
       LibraryVersion	      "1.216"
@@ -1362,7 +2836,7 @@ Library {
 	Name			"Solar Models"
 	Location		[702, 403, 1200, 703]
 	Open			off
-	ModelBrowserVisibility	off
+	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -1376,10 +2850,11 @@ Library {
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Embedded\nMATLAB Function"
-	  SID			  142
+	  SID			  "142"
 	  Ports			  [2, 2]
 	  Position		  [300, 38, 410, 102]
 	  LibraryVersion	  "1.31"
+	  ErrorFcn		  "Stateflow.Translate.translate"
 	  PermitHierarchicalResolution "ExplicitOnly"
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
@@ -1389,20 +2864,22 @@ Library {
 	  Opaque		  off
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
+	  SFBlockType		  "MATLAB Function"
 	  MaskType		  "Stateflow"
 	  MaskDescription	  "Embedded MATLAB block"
-	  MaskDisplay		  "disp('sun_position');"
 	  MaskSelfModifiable	  on
+	  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private/"
+	  "eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'sun_position']);"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  off
 	  MaskIconRotate	  "none"
 	  MaskPortRotate	  "default"
-	  MaskIconUnits		  "autoscale"
+	  MaskIconUnits		  "normalized"
 	  System {
 	    Name		    "Embedded\nMATLAB Function"
 	    Location		    [257, 457, 812, 717]
 	    Open		    off
-	    ModelBrowserVisibility  off
+	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -1413,21 +2890,19 @@ Library {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    19
-	    SIDPrevWatermark	    19
+	    SIDHighWatermark	    "23"
+	    SIDPrevWatermark	    "19"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "time_vec"
-	      SID		      1
+	      SID		      "142::1"
 	      Position		      [20, 101, 40, 119]
 	      IconDisplay	      "Port number"
-	      OutDataType	      "sfix(16)"
-	      OutScaling	      "2^0"
 	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "location_vec"
-	      SID		      18
+	      SID		      "142::18"
 	      Position		      [20, 136, 40, 154]
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -1435,21 +2910,21 @@ Library {
 	    Block {
 	      BlockType		      Demux
 	      Name		      " Demux "
-	      SID		      15
+	      SID		      "142::21"
 	      Ports		      [1, 1]
 	      Position		      [270, 180, 320, 220]
 	      Outputs		      "1"
 	    }
 	    Block {
-	      BlockType		      "S-Function"
+	      BlockType		      S-Function
 	      Name		      " SFunction "
-	      SID		      14
+	      SID		      "142::20"
 	      Tag		      "Stateflow S-Function uSimLib 10"
 	      Ports		      [2, 3]
 	      Position		      [180, 100, 230, 180]
 	      FunctionName	      "sf_sfun"
 	      PortCounts	      "[2 3]"
-	      EnableBusSupport	      on
+	      EnableBusSupport	      off
 	      Port {
 		PortNumber		2
 		Name			"azimuth"
@@ -1466,31 +2941,23 @@ Library {
 	    Block {
 	      BlockType		      Terminator
 	      Name		      " Terminator "
-	      SID		      17
+	      SID		      "142::23"
 	      Position		      [460, 191, 480, 209]
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "azimuth"
-	      SID		      5
+	      SID		      "142::5"
 	      Position		      [460, 101, 480, 119]
 	      IconDisplay	      "Port number"
-	      OutDataType	      "sfix(16)"
-	      OutScaling	      "2^0"
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "zenith"
-	      SID		      19
+	      SID		      "142::19"
 	      Position		      [460, 136, 480, 154]
 	      Port		      "2"
 	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      SrcBlock		      " SFunction "
-	      SrcPort		      1
-	      DstBlock		      " Demux "
-	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "time_vec"
@@ -1526,12 +2993,18 @@ Library {
 	      DstBlock		      " Terminator "
 	      DstPort		      1
 	    }
+	    Line {
+	      SrcBlock		      " SFunction "
+	      SrcPort		      1
+	      DstBlock		      " Demux "
+	      DstPort		      1
+	    }
 	  }
 	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Solar Position\n(in translation)"
-	  SID			  143
+	  SID			  "143"
 	  Ports			  [2, 1]
 	  Position		  [55, 33, 205, 102]
 	  MinAlgLoopOccurrences	  off
@@ -1545,7 +3018,7 @@ Library {
 	    Name		    "Solar Position\n(in translation)"
 	    Location		    [202, 82, 1253, 961]
 	    Open		    off
-	    ModelBrowserVisibility  off
+	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -1559,7 +3032,7 @@ Library {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "time"
-	      SID		      144
+	      SID		      "144"
 	      Position		      [25, 48, 55, 62]
 	      BackgroundColor	      "darkGreen"
 	      IconDisplay	      "Port number"
@@ -1567,7 +3040,7 @@ Library {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "location"
-	      SID		      145
+	      SID		      "145"
 	      Position		      [130, 808, 160, 822]
 	      BackgroundColor	      "darkGreen"
 	      Port		      "2"
@@ -1576,21 +3049,13 @@ Library {
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Angle Conversion"
-	      SID		      146
+	      SID		      "146"
 	      Ports		      [1, 1]
 	      Position		      [215, 778, 285, 802]
 	      ShowName		      off
-	      LibraryVersion	      "1.68"
+	      LibraryVersion	      "1.71"
 	      SourceBlock	      "aerolibconvert2/Angle Conversion"
 	      SourceType	      "Angle Conversion"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      IU		      "rad"
 	      OU		      "deg"
 	      Port {
@@ -1603,21 +3068,13 @@ Library {
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Angle Conversion1"
-	      SID		      147
+	      SID		      "147"
 	      Ports		      [1, 1]
 	      Position		      [215, 803, 285, 827]
 	      ShowName		      off
-	      LibraryVersion	      "1.68"
+	      LibraryVersion	      "1.71"
 	      SourceBlock	      "aerolibconvert2/Angle Conversion"
 	      SourceType	      "Angle Conversion"
-	      ShowPortLabels	      "FromPortIcon"
-	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
-	      RTWMemSecFuncInitTerm   "Inherit from model"
-	      RTWMemSecFuncExecute    "Inherit from model"
-	      RTWMemSecDataConstants  "Inherit from model"
-	      RTWMemSecDataInternal   "Inherit from model"
-	      RTWMemSecDataParameters "Inherit from model"
 	      IU		      "rad"
 	      OU		      "deg"
 	      Port {
@@ -1630,7 +3087,7 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Apparent stime\nin Greenwich"
-	      SID		      148
+	      SID		      "148"
 	      Ports		      [3, 1]
 	      Position		      [750, 179, 850, 221]
 	      LibraryVersion	      "1.216"
@@ -1645,7 +3102,7 @@ Library {
 		Name			"Apparent stime\nin Greenwich"
 		Location		[27, 151, 928, 451]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -1659,60 +3116,46 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "julian"
-		  SID			  149
+		  SID			  "149"
 		  Position		  [95, 103, 125, 117]
 		  BackgroundColor	  "darkGreen"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "nutation"
-		  SID			  150
+		  SID			  "150"
 		  Position		  [345, 108, 375, 122]
 		  BackgroundColor	  "darkGreen"
 		  Port			  "2"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "true_obliquity"
-		  SID			  151
+		  SID			  "151"
 		  Position		  [335, 153, 365, 167]
 		  BackgroundColor	  "darkGreen"
 		  Port			  "3"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Reference
 		  Name			  "Angle Conversion1"
-		  SID			  152
+		  SID			  "152"
 		  Ports			  [1, 1]
 		  Position		  [400, 149, 460, 171]
 		  ShowName		  off
-		  LibraryVersion	  "1.68"
+		  LibraryVersion	  "1.71"
 		  SourceBlock		  "aerolibconvert2/Angle Conversion"
 		  SourceType		  "Angle Conversion"
-		  ShowPortLabels	  "FromPortIcon"
-		  SystemSampleTime	  "-1"
-		  FunctionWithSeparateData off
-		  RTWMemSecFuncInitTerm	  "Inherit from model"
-		  RTWMemSecFuncExecute	  "Inherit from model"
-		  RTWMemSecDataConstants  "Inherit from model"
-		  RTWMemSecDataInternal	  "Inherit from model"
-		  RTWMemSecDataParameters "Inherit from model"
 		  IU			  "deg"
 		  OU			  "rad"
 		}
 		Block {
 		  BlockType		  Bias
 		  Name			  "Bias"
-		  SID			  153
+		  SID			  "153"
 		  Position		  [175, 75, 215, 105]
 		  ShowName		  off
 		  Bias			  "-2451545"
@@ -1721,7 +3164,7 @@ Library {
 		Block {
 		  BlockType		  BusSelector
 		  Name			  "Bus\nSelector"
-		  SID			  154
+		  SID			  "154"
 		  Ports			  [1, 2]
 		  Position		  [150, 91, 155, 129]
 		  ShowName		  off
@@ -1730,7 +3173,7 @@ Library {
 		Block {
 		  BlockType		  BusSelector
 		  Name			  "Bus\nSelector1"
-		  SID			  155
+		  SID			  "155"
 		  Ports			  [1, 1]
 		  Position		  [395, 96, 400, 134]
 		  ShowName		  off
@@ -1745,61 +3188,50 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant"
-		  SID			  156
+		  SID			  "156"
 		  Position		  [110, 45, 200, 65]
 		  BackgroundColor	  "gray"
 		  ShowName		  off
 		  Value			  "280.46061837"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant1"
-		  SID			  157
+		  SID			  "157"
 		  Position		  [165, 120, 200, 140]
 		  BackgroundColor	  "gray"
 		  ShowName		  off
 		  Value			  "2"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant2"
-		  SID			  158
+		  SID			  "158"
 		  Position		  [165, 155, 200, 175]
 		  BackgroundColor	  "gray"
 		  ShowName		  off
 		  Value			  "3"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Gain
 		  Name			  "Gain"
-		  SID			  159
+		  SID			  "159"
 		  Position		  [245, 75, 275, 105]
 		  ShowName		  off
 		  Gain			  "360.98564736629"
-		  ParameterDataTypeMode	  "Inherit via internal rule"
-		  ParameterDataType	  "fixdt(1, 16)"
-		  ParameterScaling	  "2^0"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  SubSystem
 		  Name			  "Limit to 0..360\nrange1"
-		  SID			  160
+		  SID			  "160"
 		  Ports			  [1, 1]
 		  Position		  [395, 74, 465, 96]
 		  NamePlacement		  "alternate"
 		  LibraryVersion	  "1.30"
+		  ErrorFcn		  "Stateflow.Translate.translate"
 		  PermitHierarchicalResolution "ExplicitOnly"
 		  TreatAsAtomicUnit	  on
 		  MinAlgLoopOccurrences	  off
@@ -1809,20 +3241,22 @@ Library {
 		  Opaque		  off
 		  RequestExecContextInheritance	off
 		  MaskHideContents	  off
+		  SFBlockType		  "MATLAB Function"
 		  MaskType		  "Stateflow"
 		  MaskDescription	  "Embedded MATLAB block"
-		  MaskDisplay		  "disp('limit');"
 		  MaskSelfModifiable	  on
+		  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private"
+		  "/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'limit']);"
 		  MaskIconFrame		  on
 		  MaskIconOpaque	  off
 		  MaskIconRotate	  "none"
 		  MaskPortRotate	  "default"
-		  MaskIconUnits		  "autoscale"
+		  MaskIconUnits		  "normalized"
 		  System {
 		    Name		    "Limit to 0..360\nrange1"
 		    Location		    [257, 457, 812, 717]
 		    Open		    off
-		    ModelBrowserVisibility  off
+		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -1833,28 +3267,26 @@ Library {
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
 		    ZoomFactor		    "100"
-		    SIDHighWatermark	    25
+		    SIDHighWatermark	    "29"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "u"
-		    SID			    1
+		    SID			    "160::1"
 		    Position		    [20, 101, 40, 119]
 		    IconDisplay		    "Port number"
-		    OutDataType		    "sfix(16)"
-		    OutScaling		    "2^0"
 		    }
 		    Block {
 		    BlockType		    Demux
 		    Name		    " Demux "
-		    SID			    23
+		    SID			    "160::27"
 		    Ports		    [1, 1]
 		    Position		    [270, 160, 320, 200]
 		    Outputs		    "1"
 		    }
 		    Block {
-		    BlockType		    "S-Function"
+		    BlockType		    S-Function
 		    Name		    " SFunction "
-		    SID			    22
+		    SID			    "160::26"
 		    Tag			    "Stateflow S-Function uSimLib 3"
 		    Ports		    [1, 2]
 		    Position		    [180, 100, 230, 160]
@@ -1871,23 +3303,15 @@ Library {
 		    Block {
 		    BlockType		    Terminator
 		    Name		    " Terminator "
-		    SID			    25
+		    SID			    "160::29"
 		    Position		    [460, 171, 480, 189]
 		    }
 		    Block {
 		    BlockType		    Outport
 		    Name		    "y"
-		    SID			    5
+		    SID			    "160::5"
 		    Position		    [460, 101, 480, 119]
 		    IconDisplay		    "Port number"
-		    OutDataType		    "sfix(16)"
-		    OutScaling		    "2^0"
-		    }
-		    Line {
-		    SrcBlock		    " SFunction "
-		    SrcPort		    1
-		    DstBlock		    " Demux "
-		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "u"
@@ -1909,56 +3333,52 @@ Library {
 		    DstBlock		    " Terminator "
 		    DstPort		    1
 		    }
+		    Line {
+		    SrcBlock		    " SFunction "
+		    SrcPort		    1
+		    DstBlock		    " Demux "
+		    DstPort		    1
+		    }
 		  }
 		}
 		Block {
 		  BlockType		  Math
 		  Name			  "Math\nFunction"
-		  SID			  161
+		  SID			  "161"
 		  Ports			  [2, 1]
 		  Position		  [220, 107, 250, 138]
 		  ShowName		  off
 		  Operator		  "pow"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Math
 		  Name			  "Math\nFunction1"
-		  SID			  162
+		  SID			  "162"
 		  Ports			  [2, 1]
 		  Position		  [220, 142, 250, 173]
 		  ShowName		  off
 		  Operator		  "pow"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Product
 		  Name			  "Product"
-		  SID			  163
+		  SID			  "163"
 		  Ports			  [2, 1]
 		  Position		  [575, 112, 605, 143]
 		  ShowName		  off
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Sum
 		  Name			  "Sum"
-		  SID			  164
+		  SID			  "164"
 		  Ports			  [4, 1]
 		  Position		  [305, 41, 325, 129]
 		  ShowName		  off
 		  Inputs		  "++++"
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		  Port {
@@ -1971,21 +3391,18 @@ Library {
 		Block {
 		  BlockType		  Sum
 		  Name			  "Sum1"
-		  SID			  165
+		  SID			  "165"
 		  Ports			  [2, 1]
 		  Position		  [660, 93, 690, 122]
 		  ShowName		  off
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Trigonometry
 		  Name			  "Trigonometric\nFunction"
-		  SID			  166
+		  SID			  "166"
 		  Ports			  [1, 1]
 		  Position		  [475, 130, 505, 160]
 		  ShowName		  off
@@ -1994,12 +3411,10 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "stime"
-		  SID			  167
+		  SID			  "167"
 		  Position		  [715, 103, 745, 117]
 		  BackgroundColor	  "yellow"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
 		  SrcBlock		  "julian"
@@ -2145,20 +3560,19 @@ Library {
 	    Block {
 	      BlockType		      BusCreator
 	      Name		      "Bus\nCreator"
-	      SID		      168
+	      SID		      "168"
 	      Ports		      [3, 1]
 	      Position		      [345, 777, 350, 853]
 	      ShowName		      off
 	      Inputs		      "3"
 	      DisplayOption	      "bar"
-	      UseBusObject	      on
-	      BusObject		      "Location"
+	      OutDataTypeStr	      "Bus: Location"
 	      NonVirtualBus	      on
 	    }
 	    Block {
 	      BlockType		      BusSelector
 	      Name		      "Bus\nSelector"
-	      SID		      169
+	      SID		      "169"
 	      Ports		      [1, 3]
 	      Position		      [185, 776, 190, 854]
 	      ShowName		      off
@@ -2185,7 +3599,7 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Calculate\nnutation"
-	      SID		      170
+	      SID		      "170"
 	      Ports		      [1, 1]
 	      Position		      [265, 214, 365, 256]
 	      LibraryVersion	      "1.216"
@@ -2200,7 +3614,7 @@ Library {
 		Name			"Calculate\nnutation"
 		Location		[50, 438, 947, 826]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -2214,66 +3628,50 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "julian"
-		  SID			  171
+		  SID			  "171"
 		  Position		  [30, 113, 60, 127]
 		  BackgroundColor	  "darkGreen"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Sum
 		  Name			  "Add2"
-		  SID			  172
+		  SID			  "172"
 		  Ports			  [2, 1]
 		  Position		  [405, 317, 435, 348]
 		  ShowName		  off
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^-10"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Sum
 		  Name			  "Add3"
-		  SID			  173
+		  SID			  "173"
 		  Ports			  [2, 1]
 		  Position		  [405, 402, 435, 433]
 		  ShowName		  off
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^-10"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Reference
 		  Name			  "Angle Conversion1"
-		  SID			  174
+		  SID			  "174"
 		  Ports			  [1, 1]
 		  Position		  [405, 114, 465, 136]
 		  ShowName		  off
-		  LibraryVersion	  "1.68"
+		  LibraryVersion	  "1.71"
 		  SourceBlock		  "aerolibconvert2/Angle Conversion"
 		  SourceType		  "Angle Conversion"
-		  ShowPortLabels	  "FromPortIcon"
-		  SystemSampleTime	  "-1"
-		  FunctionWithSeparateData off
-		  RTWMemSecFuncInitTerm	  "Inherit from model"
-		  RTWMemSecFuncExecute	  "Inherit from model"
-		  RTWMemSecDataConstants  "Inherit from model"
-		  RTWMemSecDataInternal	  "Inherit from model"
-		  RTWMemSecDataParameters "Inherit from model"
 		  IU			  "deg"
 		  OU			  "rad"
 		}
 		Block {
 		  BlockType		  BusCreator
 		  Name			  "Bus\nCreator"
-		  SID			  175
+		  SID			  "175"
 		  Ports			  [2, 1]
 		  Position		  [815, 346, 820, 384]
 		  ShowName		  off
@@ -2283,7 +3681,7 @@ Library {
 		Block {
 		  BlockType		  BusSelector
 		  Name			  "Bus\nSelector"
-		  SID			  176
+		  SID			  "176"
 		  Ports			  [1, 1]
 		  Position		  [90, 101, 95, 139]
 		  ShowName		  off
@@ -2298,17 +3696,11 @@ Library {
 		Block {
 		  BlockType		  Gain
 		  Name			  "Gain"
-		  SID			  177
+		  SID			  "177"
 		  Position		  [720, 315, 750, 345]
 		  ShowName		  off
 		  Gain			  "36000000"
-		  ParameterDataTypeMode	  "Inherit via internal rule"
-		  ParameterDataType	  "fixdt(1, 16)"
-		  ParameterScaling	  "2^0"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		  Port {
@@ -2321,17 +3713,11 @@ Library {
 		Block {
 		  BlockType		  Gain
 		  Name			  "Gain1"
-		  SID			  178
+		  SID			  "178"
 		  Position		  [720, 380, 750, 410]
 		  ShowName		  off
 		  Gain			  "36000000"
-		  ParameterDataTypeMode	  "Inherit via internal rule"
-		  ParameterDataType	  "fixdt(1, 16)"
-		  ParameterScaling	  "2^0"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		  Port {
@@ -2344,7 +3730,7 @@ Library {
 		Block {
 		  BlockType		  Mux
 		  Name			  "Mux"
-		  SID			  179
+		  SID			  "179"
 		  Ports			  [5, 1]
 		  Position		  [260, 126, 265, 244]
 		  ShowName		  off
@@ -2354,7 +3740,7 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Nutation terms"
-		  SID			  180
+		  SID			  "180"
 		  Position		  [180, 350, 210, 380]
 		  BackgroundColor	  "gray"
 		  Value			  "[ -171996 -174.2 92025 8.9  \n -13187 -1.6 5736 -3.1  \n -2274 -0.2 977 -0.5  \n 2062 0.2 -895 0.5  \n "
@@ -2366,13 +3752,11 @@ Library {
 		  " 0 -3 0  \n 6 0 -3 0  \n -6 0 3 0  \n -6 0 3 0  \n 5 0 0 0  \n -5 0 3 0  \n -5 0 3 0  \n -5 0 3 0  \n 4 0 0 0  \n "
 		  "4 0 0 0  \n 4 0 0 0  \n -4 0 0 0  \n -4 0 0 0  \n -4 0 0 0  \n 3 0 0 0  \n -3 0 0 0  \n -3 0 0 0  \n -3 0 0 0  \n "
 		  "-3 0 0 0  \n -3 0 0 0  \n -3 0 0 0  \n -3 0 0 0]"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Polyval
 		  Name			  "Polynomial"
-		  SID			  181
+		  SID			  "181"
 		  Position		  [165, 95, 225, 125]
 		  ShowName		  off
 		  Coefs			  "[(1/189474) -0.0019142 445267.11148 297.85036]"
@@ -2380,7 +3764,7 @@ Library {
 		Block {
 		  BlockType		  Polyval
 		  Name			  "Polynomial1"
-		  SID			  182
+		  SID			  "182"
 		  Position		  [165, 130, 225, 160]
 		  ShowName		  off
 		  Coefs			  "[-(1/300000) -0.0001603 35999.05034 357.52772]"
@@ -2388,7 +3772,7 @@ Library {
 		Block {
 		  BlockType		  Polyval
 		  Name			  "Polynomial2"
-		  SID			  183
+		  SID			  "183"
 		  Position		  [165, 170, 225, 200]
 		  ShowName		  off
 		  Coefs			  "[(1/56250) 0.0086972 477198.867398 134.96298]"
@@ -2396,7 +3780,7 @@ Library {
 		Block {
 		  BlockType		  Polyval
 		  Name			  "Polynomial3"
-		  SID			  184
+		  SID			  "184"
 		  Position		  [165, 210, 225, 240]
 		  ShowName		  off
 		  Coefs			  "[(1/327270) -0.0036825 483202.017538 93.27191]"
@@ -2404,7 +3788,7 @@ Library {
 		Block {
 		  BlockType		  Polyval
 		  Name			  "Polynomial4"
-		  SID			  185
+		  SID			  "185"
 		  Position		  [165, 250, 225, 280]
 		  ShowName		  off
 		  Coefs			  "[(1/450000) 0.0020708 -1934.136261 125.04452]"
@@ -2412,76 +3796,61 @@ Library {
 		Block {
 		  BlockType		  Product
 		  Name			  "Product"
-		  SID			  186
+		  SID			  "186"
 		  Ports			  [2, 1]
 		  Position		  [345, 107, 375, 138]
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Product
 		  Name			  "Product1"
-		  SID			  187
+		  SID			  "187"
 		  Ports			  [2, 1]
 		  Position		  [590, 312, 620, 343]
 		  ShowName		  off
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Product
 		  Name			  "Product2"
-		  SID			  188
+		  SID			  "188"
 		  Ports			  [2, 1]
 		  Position		  [590, 377, 620, 408]
 		  ShowName		  off
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Product
 		  Name			  "Product3"
-		  SID			  189
+		  SID			  "189"
 		  Ports			  [2, 1]
 		  Position		  [345, 342, 375, 373]
 		  ShowName		  off
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Product
 		  Name			  "Product4"
-		  SID			  190
+		  SID			  "190"
 		  Ports			  [2, 1]
 		  Position		  [345, 442, 375, 473]
 		  ShowName		  off
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Selector
 		  Name			  "Selector4"
-		  SID			  191
+		  SID			  "191"
 		  Ports			  [1, 1]
 		  Position		  [280, 296, 320, 334]
 		  ShowName		  off
@@ -2494,7 +3863,7 @@ Library {
 		Block {
 		  BlockType		  Selector
 		  Name			  "Selector5"
-		  SID			  192
+		  SID			  "192"
 		  Ports			  [1, 1]
 		  Position		  [280, 346, 320, 384]
 		  ShowName		  off
@@ -2507,7 +3876,7 @@ Library {
 		Block {
 		  BlockType		  Selector
 		  Name			  "Selector6"
-		  SID			  193
+		  SID			  "193"
 		  Ports			  [1, 1]
 		  Position		  [280, 391, 320, 429]
 		  ShowName		  off
@@ -2520,7 +3889,7 @@ Library {
 		Block {
 		  BlockType		  Selector
 		  Name			  "Selector7"
-		  SID			  194
+		  SID			  "194"
 		  Ports			  [1, 1]
 		  Position		  [280, 446, 320, 484]
 		  ShowName		  off
@@ -2533,37 +3902,31 @@ Library {
 		Block {
 		  BlockType		  Sum
 		  Name			  "Sum of\nElements"
-		  SID			  195
+		  SID			  "195"
 		  Ports			  [1, 1]
 		  Position		  [655, 315, 685, 345]
 		  ShowName		  off
 		  Inputs		  "+"
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^-10"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Sum
 		  Name			  "Sum of\nElements1"
-		  SID			  196
+		  SID			  "196"
 		  Ports			  [1, 1]
 		  Position		  [655, 380, 685, 410]
 		  ShowName		  off
 		  Inputs		  "+"
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^-10"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Trigonometry
 		  Name			  "Trigonometric\nFunction"
-		  SID			  197
+		  SID			  "197"
 		  Ports			  [1, 1]
 		  Position		  [525, 300, 555, 330]
 		  ShowName		  off
@@ -2571,7 +3934,7 @@ Library {
 		Block {
 		  BlockType		  Trigonometry
 		  Name			  "Trigonometric\nFunction1"
-		  SID			  198
+		  SID			  "198"
 		  Ports			  [1, 1]
 		  Position		  [525, 365, 555, 395]
 		  ShowName		  off
@@ -2580,7 +3943,7 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Y terms"
-		  SID			  199
+		  SID			  "199"
 		  Position		  [260, 60, 290, 90]
 		  BackgroundColor	  "gray"
 		  Value			  "[0 0 0 0 1  \n -2 0 0 2 2  \n 0 0 0 2 2  \n 0 0 0 0 2  \n 0 1 0 0 0  \n 0 0 1 0 0  \n -2 1 0 2 2  \n 0 "
@@ -2592,18 +3955,14 @@ Library {
 		  " -1 0 2 1  \n -2 0 0 0 1  \n 0 0 2 2 1  \n -2 0 2 0 1  \n -2 1 0 2 1  \n 0 0 1 -2 0  \n -1 0 1 0 0  \n -2 1 0 0 0 "
 		  " \n 1 0 0 0 0  \n 0 0 1 2 0  \n 0 0 -2 2 2  \n -1 -1 1 0 0  \n 0 1 1 0 0  \n 0 -1 1 2 2  \n 2 -1 -1 2 2  \n 0 0 3 "
 		  "2 2  \n 2 -1 0 2 2]"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "nutation"
-		  SID			  200
+		  SID			  "200"
 		  Position		  [845, 358, 875, 372]
 		  BackgroundColor	  "yellow"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
 		  SrcBlock		  "julian"
@@ -2882,7 +4241,7 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Calculate abberation\ncorrection"
-	      SID		      201
+	      SID		      "201"
 	      Ports		      [1, 1]
 	      Position		      [700, 348, 905, 392]
 	      LibraryVersion	      "1.216"
@@ -2897,7 +4256,7 @@ Library {
 		Name			"Calculate abberation\ncorrection"
 		Location		[34, 638, 532, 938]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -2911,17 +4270,15 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "earth heliocentric\nposition"
-		  SID			  202
+		  SID			  "202"
 		  Position		  [110, 103, 140, 117]
 		  BackgroundColor	  "darkGreen"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  BusSelector
 		  Name			  "Bus\nSelector"
-		  SID			  203
+		  SID			  "203"
 		  Ports			  [1, 1]
 		  Position		  [185, 91, 190, 129]
 		  ShowName		  off
@@ -2936,25 +4293,20 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant1"
-		  SID			  204
+		  SID			  "204"
 		  Position		  [110, 56, 190, 84]
 		  BackgroundColor	  "gray"
 		  ShowName		  off
 		  Value			  "-20.4898/3600"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Product
 		  Name			  "Divide"
-		  SID			  205
+		  SID			  "205"
 		  Ports			  [2, 1]
 		  Position		  [235, 67, 265, 98]
 		  Inputs		  "*/"
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^-10"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  RndMeth		  "Floor"
 		  SaturateOnIntegerOverflow off
@@ -2962,12 +4314,10 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "abberation correction"
-		  SID			  206
+		  SID			  "206"
 		  Position		  [345, 78, 375, 92]
 		  BackgroundColor	  "yellow"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
 		  SrcBlock		  "Constant1"
@@ -3006,7 +4356,7 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Calculate geocentric\nsolar position"
-	      SID		      207
+	      SID		      "207"
 	      Ports		      [1, 1]
 	      Position		      [140, 447, 365, 523]
 	      LibraryVersion	      "1.216"
@@ -3021,7 +4371,7 @@ Library {
 		Name			"Calculate geocentric\nsolar position"
 		Location		[85, 543, 736, 898]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -3035,16 +4385,14 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "earth heliocentric\nposition"
-		  SID			  208
+		  SID			  "208"
 		  Position		  [45, 103, 75, 117]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Bias
 		  Name			  "Bias"
-		  SID			  209
+		  SID			  "209"
 		  Position		  [140, 90, 180, 110]
 		  ShowName		  off
 		  Bias			  "180"
@@ -3053,7 +4401,7 @@ Library {
 		Block {
 		  BlockType		  BusCreator
 		  Name			  "Bus\nCreator"
-		  SID			  210
+		  SID			  "210"
 		  Ports			  [2, 1]
 		  Position		  [335, 40, 340, 180]
 		  ShowName		  off
@@ -3063,7 +4411,7 @@ Library {
 		Block {
 		  BlockType		  BusSelector
 		  Name			  "Bus\nSelector"
-		  SID			  211
+		  SID			  "211"
 		  Ports			  [1, 2]
 		  Position		  [115, 91, 120, 129]
 		  ShowName		  off
@@ -3072,10 +4420,11 @@ Library {
 		Block {
 		  BlockType		  SubSystem
 		  Name			  "Limit to 0..360\nrange"
-		  SID			  212
+		  SID			  "212"
 		  Ports			  [1, 1]
 		  Position		  [205, 134, 275, 156]
 		  LibraryVersion	  "1.31"
+		  ErrorFcn		  "Stateflow.Translate.translate"
 		  PermitHierarchicalResolution "ExplicitOnly"
 		  TreatAsAtomicUnit	  on
 		  MinAlgLoopOccurrences	  off
@@ -3085,15 +4434,17 @@ Library {
 		  Opaque		  off
 		  RequestExecContextInheritance	off
 		  MaskHideContents	  off
+		  SFBlockType		  "MATLAB Function"
 		  MaskType		  "Stateflow"
 		  MaskDescription	  "Embedded MATLAB block"
-		  MaskDisplay		  "disp('limit');"
 		  MaskSelfModifiable	  on
+		  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private"
+		  "/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'limit']);"
 		  MaskIconFrame		  on
 		  MaskIconOpaque	  off
 		  MaskIconRotate	  "none"
 		  MaskPortRotate	  "default"
-		  MaskIconUnits		  "autoscale"
+		  MaskIconUnits		  "normalized"
 		  Port {
 		    PortNumber		    1
 		    Name		    "latitude"
@@ -3105,7 +4456,7 @@ Library {
 		    Name		    "Limit to 0..360\nrange"
 		    Location		    [257, 457, 812, 717]
 		    Open		    off
-		    ModelBrowserVisibility  off
+		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -3116,28 +4467,26 @@ Library {
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
 		    ZoomFactor		    "100"
-		    SIDHighWatermark	    17
+		    SIDHighWatermark	    "21"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "u"
-		    SID			    1
+		    SID			    "212::1"
 		    Position		    [20, 101, 40, 119]
 		    IconDisplay		    "Port number"
-		    OutDataType		    "sfix(16)"
-		    OutScaling		    "2^0"
 		    }
 		    Block {
 		    BlockType		    Demux
 		    Name		    " Demux "
-		    SID			    15
+		    SID			    "212::19"
 		    Ports		    [1, 1]
 		    Position		    [270, 160, 320, 200]
 		    Outputs		    "1"
 		    }
 		    Block {
-		    BlockType		    "S-Function"
+		    BlockType		    S-Function
 		    Name		    " SFunction "
-		    SID			    14
+		    SID			    "212::18"
 		    Tag			    "Stateflow S-Function uSimLib 2"
 		    Ports		    [1, 2]
 		    Position		    [180, 100, 230, 160]
@@ -3154,23 +4503,15 @@ Library {
 		    Block {
 		    BlockType		    Terminator
 		    Name		    " Terminator "
-		    SID			    17
+		    SID			    "212::21"
 		    Position		    [460, 171, 480, 189]
 		    }
 		    Block {
 		    BlockType		    Outport
 		    Name		    "y"
-		    SID			    5
+		    SID			    "212::5"
 		    Position		    [460, 101, 480, 119]
 		    IconDisplay		    "Port number"
-		    OutDataType		    "sfix(16)"
-		    OutScaling		    "2^0"
-		    }
-		    Line {
-		    SrcBlock		    " SFunction "
-		    SrcPort		    1
-		    DstBlock		    " Demux "
-		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "u"
@@ -3192,15 +4533,22 @@ Library {
 		    DstBlock		    " Terminator "
 		    DstPort		    1
 		    }
+		    Line {
+		    SrcBlock		    " SFunction "
+		    SrcPort		    1
+		    DstBlock		    " Demux "
+		    DstPort		    1
+		    }
 		  }
 		}
 		Block {
 		  BlockType		  SubSystem
 		  Name			  "Limit to 0..360\nrange1"
-		  SID			  213
+		  SID			  "213"
 		  Ports			  [1, 1]
 		  Position		  [205, 64, 275, 86]
 		  LibraryVersion	  "1.24"
+		  ErrorFcn		  "Stateflow.Translate.translate"
 		  PermitHierarchicalResolution "ExplicitOnly"
 		  TreatAsAtomicUnit	  on
 		  MinAlgLoopOccurrences	  off
@@ -3210,15 +4558,17 @@ Library {
 		  Opaque		  off
 		  RequestExecContextInheritance	off
 		  MaskHideContents	  off
+		  SFBlockType		  "MATLAB Function"
 		  MaskType		  "Stateflow"
 		  MaskDescription	  "Embedded MATLAB block"
-		  MaskDisplay		  "disp('limit');"
 		  MaskSelfModifiable	  on
+		  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private"
+		  "/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'limit']);"
 		  MaskIconFrame		  on
 		  MaskIconOpaque	  off
 		  MaskIconRotate	  "none"
 		  MaskPortRotate	  "default"
-		  MaskIconUnits		  "autoscale"
+		  MaskIconUnits		  "normalized"
 		  Port {
 		    PortNumber		    1
 		    Name		    "longitude"
@@ -3230,7 +4580,7 @@ Library {
 		    Name		    "Limit to 0..360\nrange1"
 		    Location		    [257, 457, 812, 717]
 		    Open		    off
-		    ModelBrowserVisibility  off
+		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
 		    ScreenColor		    "white"
 		    PaperOrientation	    "landscape"
@@ -3241,28 +4591,26 @@ Library {
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
 		    ZoomFactor		    "100"
-		    SIDHighWatermark	    21
+		    SIDHighWatermark	    "25"
 		    Block {
 		    BlockType		    Inport
 		    Name		    "u"
-		    SID			    1
+		    SID			    "213::1"
 		    Position		    [20, 101, 40, 119]
 		    IconDisplay		    "Port number"
-		    OutDataType		    "sfix(16)"
-		    OutScaling		    "2^0"
 		    }
 		    Block {
 		    BlockType		    Demux
 		    Name		    " Demux "
-		    SID			    19
+		    SID			    "213::23"
 		    Ports		    [1, 1]
 		    Position		    [270, 160, 320, 200]
 		    Outputs		    "1"
 		    }
 		    Block {
-		    BlockType		    "S-Function"
+		    BlockType		    S-Function
 		    Name		    " SFunction "
-		    SID			    18
+		    SID			    "213::22"
 		    Tag			    "Stateflow S-Function uSimLib 1"
 		    Ports		    [1, 2]
 		    Position		    [180, 100, 230, 160]
@@ -3279,23 +4627,15 @@ Library {
 		    Block {
 		    BlockType		    Terminator
 		    Name		    " Terminator "
-		    SID			    21
+		    SID			    "213::25"
 		    Position		    [460, 171, 480, 189]
 		    }
 		    Block {
 		    BlockType		    Outport
 		    Name		    "y"
-		    SID			    5
+		    SID			    "213::5"
 		    Position		    [460, 101, 480, 119]
 		    IconDisplay		    "Port number"
-		    OutDataType		    "sfix(16)"
-		    OutScaling		    "2^0"
-		    }
-		    Line {
-		    SrcBlock		    " SFunction "
-		    SrcPort		    1
-		    DstBlock		    " Demux "
-		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "u"
@@ -3317,23 +4657,27 @@ Library {
 		    DstBlock		    " Terminator "
 		    DstPort		    1
 		    }
+		    Line {
+		    SrcBlock		    " SFunction "
+		    SrcPort		    1
+		    DstBlock		    " Demux "
+		    DstPort		    1
+		    }
 		  }
 		}
 		Block {
 		  BlockType		  UnaryMinus
 		  Name			  "Unary Minus"
-		  SID			  214
+		  SID			  "214"
 		  Position		  [140, 111, 180, 129]
 		  ShowName		  off
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "sun geocentric position"
-		  SID			  215
+		  SID			  "215"
 		  Position		  [405, 108, 435, 122]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
 		  SrcBlock		  "earth heliocentric\nposition"
@@ -3399,7 +4743,7 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Calculate true\nobliquity"
-	      SID		      216
+	      SID		      "216"
 	      Ports		      [2, 1]
 	      Position		      [345, 34, 445, 76]
 	      LibraryVersion	      "1.216"
@@ -3414,7 +4758,7 @@ Library {
 		Name			"Calculate true\nobliquity"
 		Location		[730, 398, 1223, 595]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -3428,28 +4772,24 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "julian"
-		  SID			  217
+		  SID			  "217"
 		  Position		  [20, 73, 50, 87]
 		  BackgroundColor	  "darkGreen"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "nutation"
-		  SID			  218
+		  SID			  "218"
 		  Position		  [20, 143, 50, 157]
 		  BackgroundColor	  "darkGreen"
 		  Port			  "2"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  BusSelector
 		  Name			  "Bus\nSelector"
-		  SID			  219
+		  SID			  "219"
 		  Ports			  [1, 1]
 		  Position		  [100, 61, 105, 99]
 		  ShowName		  off
@@ -3464,7 +4804,7 @@ Library {
 		Block {
 		  BlockType		  BusSelector
 		  Name			  "Bus\nSelector1"
-		  SID			  220
+		  SID			  "220"
 		  Ports			  [1, 1]
 		  Position		  [100, 131, 105, 169]
 		  ShowName		  off
@@ -3473,41 +4813,29 @@ Library {
 		Block {
 		  BlockType		  Gain
 		  Name			  "Gain"
-		  SID			  221
+		  SID			  "221"
 		  Position		  [280, 65, 310, 95]
 		  ShowName		  off
 		  Gain			  "1/3600"
-		  ParameterDataTypeMode	  "Inherit via internal rule"
-		  ParameterDataType	  "fixdt(1, 16)"
-		  ParameterScaling	  "2^0"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Gain
 		  Name			  "Gain1"
-		  SID			  222
+		  SID			  "222"
 		  Position		  [145, 65, 170, 95]
 		  ShowName		  off
 		  Gain			  ".1"
-		  ParameterDataTypeMode	  "Inherit via internal rule"
-		  ParameterDataType	  "fixdt(1, 16)"
-		  ParameterScaling	  "2^0"
 		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Polyval
 		  Name			  "Polynomial"
-		  SID			  223
+		  SID			  "223"
 		  Position		  [190, 65, 250, 95]
 		  ShowName		  off
 		  Coefs			  "[2.45 5.79 27.87 7.12 -39.05 -249.67 -51.38 1999.25 -1.55 -4680.93 84381.448]"
@@ -3515,26 +4843,21 @@ Library {
 		Block {
 		  BlockType		  Sum
 		  Name			  "Sum"
-		  SID			  224
+		  SID			  "224"
 		  Ports			  [2, 1]
 		  Position		  [345, 93, 375, 122]
 		  ShowName		  off
 		  InputSameDT		  off
-		  OutDataTypeMode	  "Inherit via internal rule"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 		  SaturateOnIntegerOverflow off
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "obliquity"
-		  SID			  225
+		  SID			  "225"
 		  Position		  [400, 103, 430, 117]
 		  BackgroundColor	  "yellow"
 		  IconDisplay		  "Port number"
-		  OutDataType		  "fixdt(1, 16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
 		  SrcBlock		  "julian"
@@ -3599,10 +4922,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function1"
-	      SID		      226
+	      SID		      "226"
 	      Ports		      [1, 1]
 	      Position		      [85, 23, 230, 87]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -3612,20 +4936,23 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('julian_calculation');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'julian_calculation'])"
+	      ";"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function1"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -3636,34 +4963,32 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	17
+		SIDHighWatermark	"21"
 		Block {
 		  BlockType		  Inport
 		  Name			  "time"
-		  SID			  1
+		  SID			  "226::1"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "226::19"
 		  Ports			  [1, 1]
 		  Position		  [270, 160, 320, 200]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "226::18"
 		  Tag			  "Stateflow S-Function uSimLib 12"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[1 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "julian"
@@ -3674,22 +4999,20 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "226::21"
 		  Position		  [460, 171, 480, 189]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "julian"
-		  SID			  5
+		  SID			  "226::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
-		  SrcBlock		  " Demux "
+		  SrcBlock		  "time"
 		  SrcPort		  1
-		  DstBlock		  " Terminator "
+		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
@@ -3701,9 +5024,9 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "time"
+		  SrcBlock		  " Demux "
 		  SrcPort		  1
-		  DstBlock		  " SFunction "
+		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
@@ -3717,10 +5040,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function12"
-	      SID		      227
+	      SID		      "227"
 	      Ports		      [3, 1]
 	      Position		      [610, 465, 1085, 575]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -3730,20 +5054,23 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('apparent_sun_longitude_calculation');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'apparent_sun_longitud"
+	      "e_calculation']);"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function12"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -3754,20 +5081,18 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	19
+		SIDHighWatermark	"23"
 		Block {
 		  BlockType		  Inport
 		  Name			  "sun_geocentric_position"
-		  SID			  1
+		  SID			  "227::1"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "nutation"
-		  SID			  18
+		  SID			  "227::18"
 		  Position		  [20, 136, 40, 154]
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -3775,7 +5100,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "aberration_correction"
-		  SID			  19
+		  SID			  "227::19"
 		  Position		  [20, 171, 40, 189]
 		  Port			  "3"
 		  IconDisplay		  "Port number"
@@ -3783,21 +5108,21 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "227::21"
 		  Ports			  [1, 1]
 		  Position		  [270, 180, 320, 220]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "227::20"
 		  Tag			  "Stateflow S-Function uSimLib 24"
 		  Ports			  [3, 2]
 		  Position		  [180, 100, 230, 180]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "apparent_sun_longitude"
@@ -3808,23 +5133,33 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "227::23"
 		  Position		  [460, 191, 480, 209]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "apparent_sun_longitude"
-		  SID			  5
+		  SID			  "227::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
-		  SrcBlock		  " Demux "
+		  SrcBlock		  "sun_geocentric_position"
 		  SrcPort		  1
-		  DstBlock		  " Terminator "
+		  DstBlock		  " SFunction "
 		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "nutation"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "aberration_correction"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  3
 		}
 		Line {
 		  Name			  "apparent_sun_longitude"
@@ -3835,21 +5170,9 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "aberration_correction"
+		  SrcBlock		  " Demux "
 		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  3
-		}
-		Line {
-		  SrcBlock		  "nutation"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  2
-		}
-		Line {
-		  SrcBlock		  "sun_geocentric_position"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
+		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
@@ -3863,10 +5186,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function2"
-	      SID		      228
+	      SID		      "228"
 	      Ports		      [1, 1]
 	      Position		      [75, 338, 505, 392]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -3876,20 +5200,23 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('earth_heliocentric_position_calculation');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'earth_heliocentric_po"
+	      "sition_calculation']);"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function2"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -3900,34 +5227,32 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	17
+		SIDHighWatermark	"21"
 		Block {
 		  BlockType		  Inport
 		  Name			  "julian"
-		  SID			  1
+		  SID			  "228::1"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "228::19"
 		  Ports			  [1, 1]
 		  Position		  [270, 160, 320, 200]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "228::18"
 		  Tag			  "Stateflow S-Function uSimLib 14"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[1 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "earth_heliocentric_position"
@@ -3938,22 +5263,20 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "228::21"
 		  Position		  [460, 171, 480, 189]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "earth_heliocentric_position"
-		  SID			  5
+		  SID			  "228::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
-		  SrcBlock		  " Demux "
+		  SrcBlock		  "julian"
 		  SrcPort		  1
-		  DstBlock		  " Terminator "
+		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
@@ -3965,9 +5288,9 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "julian"
+		  SrcBlock		  " Demux "
 		  SrcPort		  1
-		  DstBlock		  " SFunction "
+		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
@@ -3981,10 +5304,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function4"
-	      SID		      229
+	      SID		      "229"
 	      Ports		      [3, 1]
 	      Position		      [1110, 978, 1475, 1052]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -3994,20 +5318,23 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('sun_topocentric_zenith_angle_calculate');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'sun_topocentric_zenit"
+	      "h_angle_calculate']);"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function4"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -4018,20 +5345,18 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	19
+		SIDHighWatermark	"23"
 		Block {
 		  BlockType		  Inport
 		  Name			  "location"
-		  SID			  1
+		  SID			  "229::1"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "topocentric_sun_position"
-		  SID			  18
+		  SID			  "229::18"
 		  Position		  [20, 136, 40, 154]
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4039,7 +5364,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "topocentric_local_hour"
-		  SID			  19
+		  SID			  "229::19"
 		  Position		  [20, 171, 40, 189]
 		  Port			  "3"
 		  IconDisplay		  "Port number"
@@ -4047,21 +5372,21 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "229::21"
 		  Ports			  [1, 1]
 		  Position		  [270, 180, 320, 220]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "229::20"
 		  Tag			  "Stateflow S-Function uSimLib 16"
 		  Ports			  [3, 2]
 		  Position		  [180, 100, 230, 180]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "sun"
@@ -4072,23 +5397,33 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "229::23"
 		  Position		  [460, 191, 480, 209]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "sun"
-		  SID			  5
+		  SID			  "229::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
-		  SrcBlock		  " Demux "
+		  SrcBlock		  "location"
 		  SrcPort		  1
-		  DstBlock		  " Terminator "
+		  DstBlock		  " SFunction "
 		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "topocentric_sun_position"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "topocentric_local_hour"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  3
 		}
 		Line {
 		  Name			  "sun"
@@ -4099,21 +5434,9 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "topocentric_local_hour"
+		  SrcBlock		  " Demux "
 		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  3
-		}
-		Line {
-		  SrcBlock		  "topocentric_sun_position"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  2
-		}
-		Line {
-		  SrcBlock		  "location"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
+		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
@@ -4127,10 +5450,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function5"
-	      SID		      230
+	      SID		      "230"
 	      Ports		      [3, 1]
 	      Position		      [285, 611, 585, 739]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -4140,20 +5464,23 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('sun_geocentric_declination_calculation');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'sun_geocentric_declin"
+	      "ation_calculation']);"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function5"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -4164,20 +5491,18 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	19
+		SIDHighWatermark	"23"
 		Block {
 		  BlockType		  Inport
 		  Name			  "apparent_sun_longitude"
-		  SID			  1
+		  SID			  "230::1"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "true_obliquity"
-		  SID			  18
+		  SID			  "230::18"
 		  Position		  [20, 136, 40, 154]
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4185,7 +5510,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "sun_geocentric_position"
-		  SID			  19
+		  SID			  "230::19"
 		  Position		  [20, 171, 40, 189]
 		  Port			  "3"
 		  IconDisplay		  "Port number"
@@ -4193,21 +5518,21 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "230::21"
 		  Ports			  [1, 1]
 		  Position		  [270, 180, 320, 220]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "230::20"
 		  Tag			  "Stateflow S-Function uSimLib 17"
 		  Ports			  [3, 2]
 		  Position		  [180, 100, 230, 180]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "sun_geocentric_declination"
@@ -4218,23 +5543,33 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "230::23"
 		  Position		  [460, 191, 480, 209]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "sun_geocentric_declination"
-		  SID			  5
+		  SID			  "230::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
-		  SrcBlock		  " Demux "
+		  SrcBlock		  "apparent_sun_longitude"
 		  SrcPort		  1
-		  DstBlock		  " Terminator "
+		  DstBlock		  " SFunction "
 		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "true_obliquity"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "sun_geocentric_position"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  3
 		}
 		Line {
 		  Name			  "sun_geocentric_declination"
@@ -4245,21 +5580,9 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "sun_geocentric_position"
+		  SrcBlock		  " Demux "
 		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  3
-		}
-		Line {
-		  SrcBlock		  "true_obliquity"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  2
-		}
-		Line {
-		  SrcBlock		  "apparent_sun_longitude"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
+		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
@@ -4273,10 +5596,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function6"
-	      SID		      231
+	      SID		      "231"
 	      Ports		      [2, 1]
 	      Position		      [1170, 828, 1490, 917]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -4286,20 +5610,23 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('topocentric_local_hour_calculate');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'topocentric_local_hou"
+	      "r_calculate']);"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function6"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -4310,20 +5637,18 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	18
+		SIDHighWatermark	"22"
 		Block {
 		  BlockType		  Inport
 		  Name			  "observer_local_hour"
-		  SID			  1
+		  SID			  "231::1"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "topocentric_sun_position"
-		  SID			  18
+		  SID			  "231::18"
 		  Position		  [20, 136, 40, 154]
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4331,21 +5656,21 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "231::20"
 		  Ports			  [1, 1]
 		  Position		  [270, 160, 320, 200]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "231::19"
 		  Tag			  "Stateflow S-Function uSimLib 18"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "topocentric_local_hour"
@@ -4356,23 +5681,27 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "231::22"
 		  Position		  [460, 171, 480, 189]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "topocentric_local_hour"
-		  SID			  5
+		  SID			  "231::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
-		  SrcBlock		  " Demux "
+		  SrcBlock		  "observer_local_hour"
 		  SrcPort		  1
-		  DstBlock		  " Terminator "
+		  DstBlock		  " SFunction "
 		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "topocentric_sun_position"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  2
 		}
 		Line {
 		  Name			  "topocentric_local_hour"
@@ -4383,15 +5712,9 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "topocentric_sun_position"
+		  SrcBlock		  " Demux "
 		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  2
-		}
-		Line {
-		  SrcBlock		  "observer_local_hour"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
+		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
@@ -4405,10 +5728,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function7"
-	      SID		      232
+	      SID		      "232"
 	      Ports		      [5, 1]
 	      Position		      [675, 831, 1015, 959]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -4418,20 +5742,23 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('topocentric_sun_position_calculate');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'topocentric_sun_posit"
+	      "ion_calculate']);"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function7"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -4442,20 +5769,18 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	21
+		SIDHighWatermark	"25"
 		Block {
 		  BlockType		  Inport
 		  Name			  "earth_heliocentric_position"
-		  SID			  1
+		  SID			  "232::1"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "location"
-		  SID			  18
+		  SID			  "232::18"
 		  Position		  [20, 136, 40, 154]
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4463,7 +5788,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "observer_local_hour"
-		  SID			  19
+		  SID			  "232::19"
 		  Position		  [20, 171, 40, 189]
 		  Port			  "3"
 		  IconDisplay		  "Port number"
@@ -4471,7 +5796,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "sun_rigth_ascension"
-		  SID			  20
+		  SID			  "232::20"
 		  Position		  [20, 206, 40, 224]
 		  Port			  "4"
 		  IconDisplay		  "Port number"
@@ -4479,7 +5804,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "sun_geocentric_declination"
-		  SID			  21
+		  SID			  "232::21"
 		  Position		  [20, 246, 40, 264]
 		  Port			  "5"
 		  IconDisplay		  "Port number"
@@ -4487,21 +5812,21 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "232::23"
 		  Ports			  [1, 1]
 		  Position		  [270, 220, 320, 260]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "232::22"
 		  Tag			  "Stateflow S-Function uSimLib 19"
 		  Ports			  [5, 2]
 		  Position		  [180, 100, 230, 220]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[5 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "topocentric_sun_position"
@@ -4512,23 +5837,45 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "232::25"
 		  Position		  [460, 231, 480, 249]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "topocentric_sun_position"
-		  SID			  5
+		  SID			  "232::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
-		  SrcBlock		  " Demux "
+		  SrcBlock		  "earth_heliocentric_position"
 		  SrcPort		  1
-		  DstBlock		  " Terminator "
+		  DstBlock		  " SFunction "
 		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "location"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "observer_local_hour"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  3
+		}
+		Line {
+		  SrcBlock		  "sun_rigth_ascension"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  4
+		}
+		Line {
+		  SrcBlock		  "sun_geocentric_declination"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  5
 		}
 		Line {
 		  Name			  "topocentric_sun_position"
@@ -4539,33 +5886,9 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "sun_geocentric_declination"
+		  SrcBlock		  " Demux "
 		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  5
-		}
-		Line {
-		  SrcBlock		  "sun_rigth_ascension"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  4
-		}
-		Line {
-		  SrcBlock		  "observer_local_hour"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  3
-		}
-		Line {
-		  SrcBlock		  "location"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  2
-		}
-		Line {
-		  SrcBlock		  "earth_heliocentric_position"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
+		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
@@ -4579,10 +5902,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function8"
-	      SID		      233
+	      SID		      "233"
 	      Ports		      [3, 1]
 	      Position		      [1190, 518, 1475, 592]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -4592,20 +5916,23 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('sun_rigth_ascension_calculation');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'sun_rigth_ascension_c"
+	      "alculation']);"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function8"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -4616,20 +5943,18 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	19
+		SIDHighWatermark	"23"
 		Block {
 		  BlockType		  Inport
 		  Name			  "apparent_sun_longitude"
-		  SID			  1
+		  SID			  "233::1"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "true_obliquity"
-		  SID			  18
+		  SID			  "233::18"
 		  Position		  [20, 136, 40, 154]
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4637,7 +5962,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "sun_geocentric_position"
-		  SID			  19
+		  SID			  "233::19"
 		  Position		  [20, 171, 40, 189]
 		  Port			  "3"
 		  IconDisplay		  "Port number"
@@ -4645,21 +5970,21 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "233::21"
 		  Ports			  [1, 1]
 		  Position		  [270, 180, 320, 220]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "233::20"
 		  Tag			  "Stateflow S-Function uSimLib 20"
 		  Ports			  [3, 2]
 		  Position		  [180, 100, 230, 180]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "sun_rigth_ascension"
@@ -4670,23 +5995,33 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "233::23"
 		  Position		  [460, 191, 480, 209]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "sun_rigth_ascension"
-		  SID			  5
+		  SID			  "233::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
-		  SrcBlock		  " Demux "
+		  SrcBlock		  "apparent_sun_longitude"
 		  SrcPort		  1
-		  DstBlock		  " Terminator "
+		  DstBlock		  " SFunction "
 		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "true_obliquity"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "sun_geocentric_position"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  3
 		}
 		Line {
 		  Name			  "sun_rigth_ascension"
@@ -4697,21 +6032,9 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "sun_geocentric_position"
+		  SrcBlock		  " Demux "
 		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  3
-		}
-		Line {
-		  SrcBlock		  "true_obliquity"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  2
-		}
-		Line {
-		  SrcBlock		  "apparent_sun_longitude"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
+		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
@@ -4725,10 +6048,11 @@ Library {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function9"
-	      SID		      234
+	      SID		      "234"
 	      Ports		      [3, 1]
 	      Position		      [690, 669, 950, 741]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -4738,20 +6062,23 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('observer_local_hour_calculation');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'observer_local_hour_c"
+	      "alculation']);"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function9"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -4762,20 +6089,18 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	19
+		SIDHighWatermark	"23"
 		Block {
 		  BlockType		  Inport
 		  Name			  "apparent_stime_at_greenwich"
-		  SID			  1
+		  SID			  "234::1"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "location"
-		  SID			  18
+		  SID			  "234::18"
 		  Position		  [20, 136, 40, 154]
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -4783,7 +6108,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "sun_rigth_ascension"
-		  SID			  19
+		  SID			  "234::19"
 		  Position		  [20, 171, 40, 189]
 		  Port			  "3"
 		  IconDisplay		  "Port number"
@@ -4791,21 +6116,21 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "234::21"
 		  Ports			  [1, 1]
 		  Position		  [270, 180, 320, 220]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "234::20"
 		  Tag			  "Stateflow S-Function uSimLib 21"
 		  Ports			  [3, 2]
 		  Position		  [180, 100, 230, 180]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "observer_local_hour"
@@ -4816,23 +6141,33 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "234::23"
 		  Position		  [460, 191, 480, 209]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "observer_local_hour"
-		  SID			  5
+		  SID			  "234::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
 		}
 		Line {
-		  SrcBlock		  " Demux "
+		  SrcBlock		  "apparent_stime_at_greenwich"
 		  SrcPort		  1
-		  DstBlock		  " Terminator "
+		  DstBlock		  " SFunction "
 		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "location"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "sun_rigth_ascension"
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  3
 		}
 		Line {
 		  Name			  "observer_local_hour"
@@ -4843,21 +6178,9 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "sun_rigth_ascension"
+		  SrcBlock		  " Demux "
 		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  3
-		}
-		Line {
-		  SrcBlock		  "location"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
-		  DstPort		  2
-		}
-		Line {
-		  SrcBlock		  "apparent_stime_at_greenwich"
-		  SrcPort		  1
-		  DstBlock		  " SFunction "
+		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
@@ -4871,7 +6194,7 @@ Library {
 	    Block {
 	      BlockType		      Outport
 	      Name		      "sun"
-	      SID		      235
+	      SID		      "235"
 	      Position		      [1560, 1008, 1590, 1022]
 	      BackgroundColor	      "yellow"
 	      IconDisplay	      "Port number"
@@ -5211,7 +6534,7 @@ Library {
     Block {
       BlockType		      SubSystem
       Name		      "Sources"
-      SID		      242
+      SID		      "242"
       Ports		      []
       Position		      [320, 100, 386, 160]
       MinAlgLoopOccurrences   off
@@ -5231,7 +6554,7 @@ Library {
 	Name			"Sources"
 	Location		[971, 370, 1171, 510]
 	Open			off
-	ModelBrowserVisibility	off
+	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
@@ -5245,7 +6568,7 @@ Library {
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Discrete step"
-	  SID			  236
+	  SID			  "236"
 	  Ports			  [0, 1]
 	  Position		  [25, 25, 60, 55]
 	  LibraryVersion	  "1.216"
@@ -5261,12 +6584,12 @@ Library {
 	  " this block should change its output value in the \nunits of the base timestep."
 	  MaskPromptString	  "Initial value|Final value|Transition time"
 	  MaskStyleString	  "edit,edit,edit"
+	  MaskVariables		  "start_value=@1;end_value=@2;transition_time=@3;"
 	  MaskTunableValueString  "off,off,off"
 	  MaskCallbackString	  "||"
 	  MaskEnableString	  "on,on,on"
 	  MaskVisibilityString	  "on,on,on"
 	  MaskToolTipString	  "on,on,on"
-	  MaskVariables		  "start_value=@1;end_value=@2;transition_time=@3;"
 	  MaskDisplay		  "X = [0 0.5 0.5 1];\n\nif (start_value < end_value)\n    Y = [0 0 1 1];\nelse\n    Y = [1 1 0 0];\ne"
 	  "nd\n    \nplot(X,Y)"
 	  MaskIconFrame		  on
@@ -5279,7 +6602,7 @@ Library {
 	    Name		    "Discrete step"
 	    Location		    [713, 601, 1461, 901]
 	    Open		    off
-	    ModelBrowserVisibility  off
+	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
@@ -5293,46 +6616,38 @@ Library {
 	    Block {
 	      BlockType		      Constant
 	      Name		      "Constant"
-	      SID		      237
+	      SID		      "237"
 	      Position		      [90, 109, 155, 131]
 	      ShowName		      off
 	      Value		      "start_value"
-	      OutDataTypeMode	      "uint8"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	      OutDataTypeStr	      "uint8"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "Constant1"
-	      SID		      238
+	      SID		      "238"
 	      Position		      [90, 134, 155, 156]
 	      ShowName		      off
 	      Value		      "end_value"
-	      OutDataTypeMode	      "uint8"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	      OutDataTypeStr	      "uint8"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "Constant2"
-	      SID		      239
+	      SID		      "239"
 	      Position		      [55, 158, 155, 182]
 	      ShowName		      off
 	      Value		      "transition_time"
-	      OutDataTypeMode	      "uint16"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	      OutDataTypeStr	      "uint16"
 	    }
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Embedded\nMATLAB Function"
-	      SID		      240
+	      SID		      "240"
 	      Ports		      [3, 1]
 	      Position		      [225, 118, 335, 172]
 	      LibraryVersion	      "1.31"
+	      ErrorFcn		      "Stateflow.Translate.translate"
 	      PermitHierarchicalResolution "ExplicitOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
@@ -5342,20 +6657,22 @@ Library {
 	      Opaque		      off
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
-	      MaskDisplay	      "disp('time');"
 	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'time']);"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      off
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
-	      MaskIconUnits	      "autoscale"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Embedded\nMATLAB Function"
 		Location		[257, 457, 812, 717]
 		Open			off
-		ModelBrowserVisibility	off
+		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
 		PaperOrientation	"landscape"
@@ -5366,18 +6683,18 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	23
+		SIDHighWatermark	"27"
 		Block {
 		  BlockType		  Inport
 		  Name			  "start_value"
-		  SID			  21
+		  SID			  "240::21"
 		  Position		  [20, 101, 40, 119]
 		  IconDisplay		  "Port number"
 		}
 		Block {
 		  BlockType		  Inport
 		  Name			  "end_value"
-		  SID			  22
+		  SID			  "240::22"
 		  Position		  [20, 136, 40, 154]
 		  Port			  "2"
 		  IconDisplay		  "Port number"
@@ -5385,7 +6702,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "transition_time"
-		  SID			  23
+		  SID			  "240::23"
 		  Position		  [20, 171, 40, 189]
 		  Port			  "3"
 		  IconDisplay		  "Port number"
@@ -5393,21 +6710,21 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  15
+		  SID			  "240::25"
 		  Ports			  [1, 1]
 		  Position		  [270, 180, 320, 220]
 		  Outputs		  "1"
 		}
 		Block {
-		  BlockType		  "S-Function"
+		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  14
+		  SID			  "240::24"
 		  Tag			  "Stateflow S-Function uSimLib 4"
 		  Ports			  [3, 2]
 		  Position		  [180, 100, 230, 180]
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[3 2]"
-		  EnableBusSupport	  on
+		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
 		    Name		    "y"
@@ -5418,23 +6735,15 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  17
+		  SID			  "240::27"
 		  Position		  [460, 191, 480, 209]
 		}
 		Block {
 		  BlockType		  Outport
 		  Name			  "y"
-		  SID			  5
+		  SID			  "240::5"
 		  Position		  [460, 101, 480, 119]
 		  IconDisplay		  "Port number"
-		  OutDataType		  "sfix(16)"
-		  OutScaling		  "2^0"
-		}
-		Line {
-		  SrcBlock		  " SFunction "
-		  SrcPort		  1
-		  DstBlock		  " Demux "
-		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "start_value"
@@ -5468,16 +6777,20 @@ Library {
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
+		Line {
+		  SrcBlock		  " SFunction "
+		  SrcPort		  1
+		  DstBlock		  " Demux "
+		  DstPort		  1
+		}
 	      }
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "Out1"
-	      SID		      241
+	      SID		      "241"
 	      Position		      [410, 138, 440, 152]
 	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
 	    }
 	    Line {
 	      SrcBlock		      "Embedded\nMATLAB Function"
@@ -5524,7 +6837,7 @@ Library {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.5 (R2010a) dated Jan 19 2010, 18:40:00
+#    Stateflow Version 7.6 (R2011b) dated Aug  6 2011, 13:17:15
 #
 #
 
@@ -5536,7 +6849,7 @@ Stateflow {
     created		    "26-Aug-2010 13:58:30"
     isLibrary		    1
     firstTarget		    119
-    sfVersion		    75014000
+    sfVersion		    76014001.0002
   }
   chart {
     id			    2
@@ -5923,9 +7236,9 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = time(start_value, end_value, transition_time)\n%#eml\n\npersistent timer;\n\nif isem"
-      "pty(timer)\n    timer = uint32(0);\nend\n\nif timer < transition_time\n    y = start_value;\n    timer = timer +"
-      " uint32(1);\nelse\n    y = end_value;\nend"
+      script		      "function y = time(start_value, end_value, transition_time)\n%#codegen\n\npersistent timer;\n\nif "
+      "isempty(timer)\n    timer = uint32(0);\nend\n\nif timer < transition_time\n    y = start_value;\n    timer = tim"
+      "er + uint32(1);\nelse\n    y = end_value;\nend"
       editorLayout	      "100 M4x1[486 207 1080 733]"
     }
   }
@@ -6556,7 +7869,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -6576,7 +7889,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -6737,7 +8050,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -6757,7 +8070,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -6889,7 +8202,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -6910,7 +8223,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -7095,7 +8408,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -7235,7 +8548,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -7350,7 +8663,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -7370,7 +8683,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -7391,7 +8704,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -7622,7 +8935,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -7762,7 +9075,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -7885,7 +9198,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
@@ -7925,7 +9238,7 @@ Stateflow {
     machine		    1
     props {
       array {
-	size			"-1"
+	size			"1"
       }
       type {
 	method			SF_SIMULINK_OBJECT_TYPE
