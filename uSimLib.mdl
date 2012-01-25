@@ -17,9 +17,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jan 24 19:54:43 2012"
-  RTWModifiedTimeStamp	  249335465
-  ModelVersionFormat	  "1.%<AutoIncrement:110>"
+  LastModifiedDate	  "Wed Jan 25 11:09:44 2012"
+  RTWModifiedTimeStamp	  249385366
+  ModelVersionFormat	  "1.%<AutoIncrement:113>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -872,7 +872,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "302"
+    SIDHighWatermark	    "415"
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
@@ -1344,10 +1344,10 @@ Library {
       MaskIconUnits	      "normalized"
       System {
 	Name			"Mission Manager"
-	Location		[894, 189, 1535, 735]
-	Open			off
+	Location		[877, 280, 1534, 802]
+	Open			on
 	ModelBrowserVisibility	on
-	ModelBrowserWidth	212
+	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
@@ -2615,32 +2615,25 @@ Library {
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "MissionInit"
-	  SID			  "88"
+	  Name			  "Mission Init"
+	  SID			  "415"
 	  Ports			  []
-	  Position		  [205, 284, 305, 326]
-	  ZOrder		  -19
-	  InitFcn		  "mList = Simulink.Signal;                      \nmList.RTWInfo.StorageClass = 'ExportedGlobal';\nmList.R"
-	  "TWInfo.Alias = '';                     \nmList.RTWInfo.Alignment = -1;                 \nmList.RTWInfo.CustomStorag"
-	  "eClass = 'Default'; \nmList.Description = '';                       \nmList.DataType = 'Bus: MissionList';         "
-	  " \nmList.Min = [];                               \nmList.Max = [];                               \nmList.DocUnits ="
-	  " '';                          \nmList.Dimensions = 1;                         \nmList.DimensionsMode = 'auto';     "
-	  "           \nmList.Complexity = 'real';                    \nmList.SampleTime = -1;                        \nmList."
-	  "SamplingMode = 'Sample based';          \nmList.InitialValue = '';                      \nassignin('base', 'mList',"
-	  " mList);             "
+	  Position		  [225, 279, 325, 321]
+	  ZOrder		  -4
+	  InitFcn		  "mList = Simulink.Signal;\nmList.RTWInfo.StorageClass = 'ExportedGlobal';\nmList.RTWInfo.Alias = '';\nmL"
+	  "ist.RTWInfo.Alignment = -1;\nmList.RTWInfo.CustomStorageClass = 'Default';\nmList.Description = '';\nmList.DataType"
+	  " = 'Bus: MissionList';\nmList.Min = [];\nmList.Max = [];\nmList.DocUnits = '';\nmList.Dimensions = 1;\nmList.Dimens"
+	  "ionsMode = 'Fixed';\nmList.Complexity = 'real';\nmList.SampleTime = -1;\nmList.SamplingMode = 'Sample based';\nmLis"
+	  "t.InitialValue = '';\nassignin('base', 'mList', mList);"
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
-	  RTWSystemCode		  "Reusable function"
-	  RTWFcnNameOpts	  "User specified"
-	  RTWFcnName		  "MissionInit"
-	  RTWFileNameOpts	  "User specified"
-	  RTWFileName		  "MissionManager"
+	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
-	  MaskDescription	  "Initialization block for the Mission Manager."
+	  MaskDescription	  "Initializes the global data store for the mission manager."
 	  MaskDisplay		  "disp('Mission: Init()');"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
@@ -2648,8 +2641,8 @@ Library {
 	  MaskPortRotate	  "default"
 	  MaskIconUnits		  "autoscale"
 	  System {
-	    Name		    "MissionInit"
-	    Location		    [433, 397, 931, 697]
+	    Name		    "Mission Init"
+	    Location		    [108, 374, 606, 674]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2850,7 +2843,7 @@ Library {
 	}
 	Annotation {
 	  Name			  "Requirements for compiling:\nConfiguration Parameters->Optimization->Signals and Parameters\n - Enable In"
-	  "line parameters\n - Set 'Pass reusable subsystem outputs as \"Indicidual arguments\""
+	  "line parameters\n - Set 'Pass reusable subsystem outputs as \"Individual arguments\""
 	  Position		  [201, 106]
 	  HorizontalAlignment	  "left"
 	}
