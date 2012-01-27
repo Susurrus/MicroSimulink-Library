@@ -17,9 +17,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jan 25 11:09:44 2012"
-  RTWModifiedTimeStamp	  249385366
-  ModelVersionFormat	  "1.%<AutoIncrement:113>"
+  LastModifiedDate	  "Thu Jan 26 15:49:51 2012"
+  RTWModifiedTimeStamp	  249493786
+  ModelVersionFormat	  "1.%<AutoIncrement:114>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -796,6 +796,21 @@ Library {
       SampleTime	      "-1"
     }
     Block {
+      BlockType		      Sqrt
+      Operator		      "sqrt"
+      OutputSignalType	      "auto"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      IntermediateResultsDataTypeStr "Inherit: Inherit via internal rule"
+      AlgorithmType	      "Exact"
+      Iterations	      "3"
+    }
+    Block {
       BlockType		      SubSystem
       ShowPortLabels	      "FromPortIcon"
       Permissions	      "ReadWrite"
@@ -858,7 +873,7 @@ Library {
   }
   System {
     Name		    "uSimLib"
-    Location		    [894, 189, 1535, 735]
+    Location		    [925, 517, 1423, 817]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -872,7 +887,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "415"
+    SIDHighWatermark	    "534"
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
@@ -1325,6 +1340,149 @@ Library {
     }
     Block {
       BlockType		      SubSystem
+      Name		      "Math"
+      SID		      "531"
+      Ports		      []
+      Position		      [180, 201, 273, 270]
+      ZOrder		      -19
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      MaskDisplay	      "disp('Math');"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"Math"
+	Location		[925, 517, 1423, 817]
+	Open			off
+	ModelBrowserVisibility	on
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Euclidean\nnorm"
+	  SID			  "525"
+	  Ports			  [1, 1]
+	  Position		  [85, 26, 145, 54]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskDisplay		  "disp('norm_E', 'texmode', 'on');"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "Euclidean\nnorm"
+	    Location		    [891, 647, 1262, 739]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "526"
+	      Position		      [25, 33, 55, 47]
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Math
+	      Name		      "Math\nFunction1"
+	      SID		      "527"
+	      Ports		      [1, 1]
+	      Position		      [80, 25, 110, 55]
+	      ZOrder		      -13
+	      ShowName		      off
+	      Operator		      "square"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sqrt
+	      Name		      "Sqrt"
+	      SID		      "528"
+	      Position		      [220, 25, 250, 55]
+	      ZOrder		      -29
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum of\nElements"
+	      SID		      "529"
+	      Ports		      [1, 1]
+	      Position		      [155, 25, 185, 55]
+	      ZOrder		      -33
+	      ShowName		      off
+	      Inputs		      "+"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "530"
+	      Position		      [275, 33, 305, 47]
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "Math\nFunction1"
+	      SrcPort		      1
+	      DstBlock		      "Sum of\nElements"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Sum of\nElements"
+	      SrcPort		      1
+	      DstBlock		      "Sqrt"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Math\nFunction1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Sqrt"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
       Name		      "Mission Manager"
       SID		      "19"
       Ports		      []
@@ -1345,7 +1503,7 @@ Library {
       System {
 	Name			"Mission Manager"
 	Location		[877, 280, 1534, 802]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
