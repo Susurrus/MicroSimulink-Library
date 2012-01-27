@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jan 27 10:16:16 2012"
+  LastModifiedDate	  "Fri Jan 27 11:48:35 2012"
   RTWModifiedTimeStamp	  249560172
-  ModelVersionFormat	  "1.%<AutoIncrement:121>"
+  ModelVersionFormat	  "1.%<AutoIncrement:122>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -610,6 +610,15 @@ Library {
       ActionType	      "unset"
     }
     Block {
+      BlockType		      ArithShift
+      BitShiftNumberSource    "Dialog"
+      BitShiftNumber	      "0"
+      BinPtShiftNumber	      "0"
+      BitShiftDirection	      "Bidirectional"
+      DiagnosticForOORShift   "None"
+      CheckOORBitShift	      off
+    }
+    Block {
       BlockType		      Assignment
       NumberOfDimensions      "1"
       IndexMode		      "One-based"
@@ -872,7 +881,7 @@ Library {
   }
   System {
     Name		    "uSimLib"
-    Location		    [842, 179, 1464, 605]
+    Location		    [965, 288, 1463, 588]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -886,7 +895,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "685"
+    SIDHighWatermark	    "711"
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
@@ -928,7 +937,6 @@ Library {
 	  SID			  "2"
 	  Ports			  [1, 1]
 	  Position		  [50, 39, 110, 61]
-	  ShowName		  off
 	  LibraryVersion	  "1.60"
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -1010,6 +1018,425 @@ Library {
 	      SrcBlock		      "In1"
 	      SrcPort		      1
 	      DstBlock		      "Gain"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Bitwise-combine"
+	  SID			  "686"
+	  Ports			  [8, 1]
+	  Position		  [50, 107, 115, 263]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Bitwise-combine"
+	    Location		    [267, 500, 699, 771]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "bit0"
+	      SID		      "687"
+	      Position		      [25, 38, 55, 52]
+	      BackgroundColor	      "darkGreen"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "bit1"
+	      SID		      "688"
+	      Position		      [25, 58, 55, 72]
+	      BackgroundColor	      "darkGreen"
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "bit2"
+	      SID		      "689"
+	      Position		      [25, 78, 55, 92]
+	      BackgroundColor	      "darkGreen"
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "bit3"
+	      SID		      "690"
+	      Position		      [25, 98, 55, 112]
+	      BackgroundColor	      "darkGreen"
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "bit4"
+	      SID		      "691"
+	      Position		      [25, 118, 55, 132]
+	      BackgroundColor	      "darkGreen"
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "bit5"
+	      SID		      "692"
+	      Position		      [25, 138, 55, 152]
+	      BackgroundColor	      "darkGreen"
+	      Port		      "6"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "bit6"
+	      SID		      "693"
+	      Position		      [25, 158, 55, 172]
+	      BackgroundColor	      "darkGreen"
+	      Port		      "7"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "bit7"
+	      SID		      "694"
+	      Position		      [25, 178, 55, 192]
+	      BackgroundColor	      "darkGreen"
+	      Port		      "8"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Bitwise\nOperator"
+	      SID		      "695"
+	      Ports		      [8, 1]
+	      Position		      [245, 25, 290, 205]
+	      ShowName		      off
+	      LibraryVersion	      "1.256"
+	      SourceBlock	      "simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	      SourceType	      "Bitwise Operator"
+	      logicop		      "OR"
+	      UseBitMask	      off
+	      NumInputPorts	      "8"
+	      BitMask		      "bin2dec('11011001')"
+	      BitMaskRealWorld	      "Stored Integer"
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion"
+	      SID		      "696"
+	      Position		      [80, 37, 120, 53]
+	      ShowName		      off
+	      OutDataTypeStr	      "uint8"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion1"
+	      SID		      "697"
+	      Position		      [80, 57, 120, 73]
+	      ShowName		      off
+	      OutDataTypeStr	      "uint8"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion2"
+	      SID		      "698"
+	      Position		      [80, 77, 120, 93]
+	      ShowName		      off
+	      OutDataTypeStr	      "uint8"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion3"
+	      SID		      "699"
+	      Position		      [80, 97, 120, 113]
+	      ShowName		      off
+	      OutDataTypeStr	      "uint8"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion4"
+	      SID		      "700"
+	      Position		      [80, 117, 120, 133]
+	      ShowName		      off
+	      OutDataTypeStr	      "uint8"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion5"
+	      SID		      "701"
+	      Position		      [80, 137, 120, 153]
+	      ShowName		      off
+	      OutDataTypeStr	      "uint8"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion6"
+	      SID		      "702"
+	      Position		      [80, 157, 120, 173]
+	      ShowName		      off
+	      OutDataTypeStr	      "uint8"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion7"
+	      SID		      "703"
+	      Position		      [80, 177, 120, 193]
+	      ShowName		      off
+	      OutDataTypeStr	      "uint8"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      ArithShift
+	      Name		      "Shift\nArithmetic"
+	      SID		      "704"
+	      Ports		      [1, 1]
+	      Position		      [145, 55, 225, 75]
+	      ShowName		      off
+	      InputPortMap	      "u0"
+	      BitShiftNumber	      "-1"
+	    }
+	    Block {
+	      BlockType		      ArithShift
+	      Name		      "Shift\nArithmetic1"
+	      SID		      "705"
+	      Ports		      [1, 1]
+	      Position		      [145, 76, 225, 94]
+	      ShowName		      off
+	      InputPortMap	      "u0"
+	      BitShiftNumber	      "-2"
+	    }
+	    Block {
+	      BlockType		      ArithShift
+	      Name		      "Shift\nArithmetic2"
+	      SID		      "706"
+	      Ports		      [1, 1]
+	      Position		      [145, 96, 225, 114]
+	      ShowName		      off
+	      InputPortMap	      "u0"
+	      BitShiftNumber	      "-3"
+	    }
+	    Block {
+	      BlockType		      ArithShift
+	      Name		      "Shift\nArithmetic3"
+	      SID		      "707"
+	      Ports		      [1, 1]
+	      Position		      [145, 116, 225, 134]
+	      ShowName		      off
+	      InputPortMap	      "u0"
+	      BitShiftNumber	      "-4"
+	    }
+	    Block {
+	      BlockType		      ArithShift
+	      Name		      "Shift\nArithmetic4"
+	      SID		      "708"
+	      Ports		      [1, 1]
+	      Position		      [145, 136, 225, 154]
+	      ShowName		      off
+	      InputPortMap	      "u0"
+	      BitShiftNumber	      "-5"
+	    }
+	    Block {
+	      BlockType		      ArithShift
+	      Name		      "Shift\nArithmetic5"
+	      SID		      "709"
+	      Ports		      [1, 1]
+	      Position		      [145, 156, 225, 174]
+	      ShowName		      off
+	      InputPortMap	      "u0"
+	      BitShiftNumber	      "-6"
+	    }
+	    Block {
+	      BlockType		      ArithShift
+	      Name		      "Shift\nArithmetic6"
+	      SID		      "710"
+	      Ports		      [1, 1]
+	      Position		      [145, 176, 225, 194]
+	      ShowName		      off
+	      InputPortMap	      "u0"
+	      BitShiftNumber	      "-7"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "byte"
+	      SID		      "711"
+	      Position		      [315, 108, 345, 122]
+	      BackgroundColor	      "yellow"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "Shift\nArithmetic"
+	      SrcPort		      1
+	      DstBlock		      "Bitwise\nOperator"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Shift\nArithmetic1"
+	      SrcPort		      1
+	      DstBlock		      "Bitwise\nOperator"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "Shift\nArithmetic2"
+	      SrcPort		      1
+	      DstBlock		      "Bitwise\nOperator"
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion"
+	      SrcPort		      1
+	      DstBlock		      "Bitwise\nOperator"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion1"
+	      SrcPort		      1
+	      DstBlock		      "Shift\nArithmetic"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion2"
+	      SrcPort		      1
+	      DstBlock		      "Shift\nArithmetic1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion3"
+	      SrcPort		      1
+	      DstBlock		      "Shift\nArithmetic2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion4"
+	      SrcPort		      1
+	      DstBlock		      "Shift\nArithmetic3"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Shift\nArithmetic3"
+	      SrcPort		      1
+	      DstBlock		      "Bitwise\nOperator"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion5"
+	      SrcPort		      1
+	      DstBlock		      "Shift\nArithmetic4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion6"
+	      SrcPort		      1
+	      DstBlock		      "Shift\nArithmetic5"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Shift\nArithmetic4"
+	      SrcPort		      1
+	      DstBlock		      "Bitwise\nOperator"
+	      DstPort		      6
+	    }
+	    Line {
+	      SrcBlock		      "Shift\nArithmetic5"
+	      SrcPort		      1
+	      DstBlock		      "Bitwise\nOperator"
+	      DstPort		      7
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion7"
+	      SrcPort		      1
+	      DstBlock		      "Shift\nArithmetic6"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Shift\nArithmetic6"
+	      SrcPort		      1
+	      DstBlock		      "Bitwise\nOperator"
+	      DstPort		      8
+	    }
+	    Line {
+	      SrcBlock		      "bit0"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "bit1"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "bit2"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "bit3"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion3"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Bitwise\nOperator"
+	      SrcPort		      1
+	      DstBlock		      "byte"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "bit4"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "bit5"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion5"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "bit6"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion6"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "bit7"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion7"
 	      DstPort		      1
 	    }
 	  }
