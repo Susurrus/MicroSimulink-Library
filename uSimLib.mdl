@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jan 27 18:12:01 2012"
-  RTWModifiedTimeStamp	  249583881
-  ModelVersionFormat	  "1.%<AutoIncrement:135>"
+  LastModifiedDate	  "Wed Feb 13 15:57:07 2013"
+  RTWModifiedTimeStamp	  282671819
+  ModelVersionFormat	  "1.%<AutoIncrement:137>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -876,7 +876,7 @@ Library {
   }
   System {
     Name		    "uSimLib"
-    Location		    [202, 74, 1598, 858]
+    Location		    [2170, 227, 3566, 1011]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -890,7 +890,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "868"
+    SIDHighWatermark	    "1166"
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
@@ -1923,7 +1923,7 @@ Library {
       MaskIconUnits	      "normalized"
       System {
 	Name			"Mission Manager"
-	Location		[202, 74, 1598, 858]
+	Location		[913, 200, 1855, 823]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1970,7 +1970,7 @@ Library {
 	  MaskValueString	  "-1"
 	  System {
 	    Name		    "AppendMission"
-	    Location		    [258, 311, 1464, 800]
+	    Location		    [554, 352, 1760, 841]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2627,6 +2627,9 @@ Library {
 	  Ports			  []
 	  Position		  [55, 69, 155, 111]
 	  ZOrder		  -5
+	  ForegroundColor	  "cyan"
+	  Priority		  "1"
+	  LibraryVersion	  "*1.135"
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -2674,11 +2677,11 @@ Library {
 	      BlockType		      BusCreator
 	      Name		      "Bus\nCreator"
 	      SID		      "547"
-	      Ports		      [5, 1]
-	      Position		      [180, 70, 185, 160]
+	      Ports		      [6, 1]
+	      Position		      [180, 70, 185, 200]
 	      ZOrder		      -2
 	      ShowName		      off
-	      Inputs		      "'coordinates','refFrame','action','parameters','autocontinue'"
+	      Inputs		      "6"
 	      DisplayOption	      "bar"
 	      OutDataTypeStr	      "Bus: Mission"
 	      NonVirtualBus	      on
@@ -2698,7 +2701,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant1"
 	      SID		      "865"
-	      Position		      [55, 175, 85, 205]
+	      Position		      [55, 220, 85, 250]
 	      ZOrder		      -5
 	      BackgroundColor	      "gray"
 	      ShowName		      off
@@ -2709,7 +2712,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant2"
 	      SID		      "548"
-	      Position		      [40, 66, 110, 84]
+	      Position		      [40, 71, 110, 89]
 	      ZOrder		      -5
 	      BackgroundColor	      "gray"
 	      ShowName		      off
@@ -2726,7 +2729,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant3"
 	      SID		      "549"
-	      Position		      [45, 87, 105, 103]
+	      Position		      [45, 117, 105, 133]
 	      ZOrder		      -5
 	      BackgroundColor	      "gray"
 	      ShowName		      off
@@ -2743,7 +2746,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant4"
 	      SID		      "550"
-	      Position		      [45, 107, 105, 123]
+	      Position		      [45, 137, 105, 153]
 	      ZOrder		      -5
 	      BackgroundColor	      "gray"
 	      ShowName		      off
@@ -2760,7 +2763,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant5"
 	      SID		      "551"
-	      Position		      [40, 126, 110, 144]
+	      Position		      [40, 156, 110, 174]
 	      ZOrder		      -5
 	      BackgroundColor	      "gray"
 	      ShowName		      off
@@ -2777,7 +2780,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant6"
 	      SID		      "552"
-	      Position		      [50, 146, 95, 164]
+	      Position		      [50, 176, 95, 194]
 	      ZOrder		      -5
 	      BackgroundColor	      "gray"
 	      ShowName		      off
@@ -2786,6 +2789,23 @@ Library {
 	      Port {
 		PortNumber		1
 		Name			"autocontinue"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant7"
+	      SID		      "1017"
+	      Position		      [40, 96, 110, 114]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "[0 0 0]"
+	      OutDataTypeStr	      "single"
+	      Port {
+		PortNumber		1
+		Name			"otherCoordinates"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
@@ -2807,7 +2827,7 @@ Library {
 	      Name		      "Data Store\nWrite1"
 	      SID		      "866"
 	      Ports		      [1]
-	      Position		      [230, 178, 325, 202]
+	      Position		      [230, 223, 325, 247]
 	      ZOrder		      -6
 	      ShowName		      off
 	      DataStoreName	      "mList"
@@ -2819,12 +2839,20 @@ Library {
 	      Name		      "SetStartingPoint"
 	      SID		      "546"
 	      Ports		      [1]
-	      Position		      [225, 94, 325, 136]
+	      Position		      [225, 114, 325, 156]
 	      ZOrder		      -4
-	      LibraryVersion	      "1.128"
+	      LibraryVersion	      "1.136"
 	      SourceBlock	      "uSimLib/Mission Manager/SetStartingPoint"
 	      SourceType	      ""
 	      sampleTime	      "-1"
+	    }
+	    Line {
+	      Name		      "otherCoordinates"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Constant7"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      2
 	    }
 	    Line {
 	      SrcBlock		      "Constant"
@@ -2843,6 +2871,7 @@ Library {
 	      Labels		      [0, 0]
 	      SrcBlock		      "Constant2"
 	      SrcPort		      1
+	      Points		      [50, 0]
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      1
 	    }
@@ -2852,7 +2881,7 @@ Library {
 	      SrcBlock		      "Constant3"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
-	      DstPort		      2
+	      DstPort		      3
 	    }
 	    Line {
 	      Name		      "action"
@@ -2860,7 +2889,7 @@ Library {
 	      SrcBlock		      "Constant4"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
-	      DstPort		      3
+	      DstPort		      4
 	    }
 	    Line {
 	      Name		      "parameters"
@@ -2868,7 +2897,7 @@ Library {
 	      SrcBlock		      "Constant5"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
-	      DstPort		      4
+	      DstPort		      5
 	    }
 	    Line {
 	      Name		      "autocontinue"
@@ -2876,7 +2905,7 @@ Library {
 	      SrcBlock		      "Constant6"
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
-	      DstPort		      5
+	      DstPort		      6
 	    }
 	    Line {
 	      SrcBlock		      "Constant1"
@@ -3190,6 +3219,9 @@ Library {
 	  Ports			  [1, 2]
 	  Position		  [530, 534, 630, 576]
 	  ZOrder		  -5
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "cyan"
+	  LibraryVersion	  "1.136"
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -3317,7 +3349,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "missions"
-		  SID			  "58"
+		  SID			  "52:58"
 		  Position		  [75, 113, 105, 127]
 		  ZOrder		  -1
 		  IconDisplay		  "Port number"
@@ -3325,7 +3357,7 @@ Library {
 		Block {
 		  BlockType		  ActionPort
 		  Name			  "Action Port"
-		  SID			  "59"
+		  SID			  "52:59"
 		  Position		  [170, 15, 229, 43]
 		  ZOrder		  -2
 		  ShowName		  off
@@ -3333,7 +3365,7 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant"
-		  SID			  "60"
+		  SID			  "52:60"
 		  Position		  [75, 70, 105, 100]
 		  ZOrder		  -5
 		  BackgroundColor	  "gray"
@@ -3344,7 +3376,7 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant1"
-		  SID			  "61"
+		  SID			  "52:61"
 		  Position		  [75, 145, 105, 175]
 		  ZOrder		  -5
 		  BackgroundColor	  "gray"
@@ -3355,7 +3387,7 @@ Library {
 		Block {
 		  BlockType		  Selector
 		  Name			  "Selector"
-		  SID			  "62"
+		  SID			  "52:62"
 		  Ports			  [2, 1]
 		  Position		  [190, 121, 230, 159]
 		  ZOrder		  -17
@@ -3367,7 +3399,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "rv"
-		  SID			  "63"
+		  SID			  "52:63"
 		  Position		  [325, 78, 355, 92]
 		  ZOrder		  -3
 		  IconDisplay		  "Port number"
@@ -3375,7 +3407,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "mission"
-		  SID			  "64"
+		  SID			  "52:64"
 		  Position		  [325, 133, 355, 147]
 		  ZOrder		  -3
 		  Port			  "2"
@@ -3444,7 +3476,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "missions"
-		  SID			  "66"
+		  SID			  "52:66"
 		  Position		  [75, 93, 105, 107]
 		  ZOrder		  -1
 		  IconDisplay		  "Port number"
@@ -3452,7 +3484,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "index"
-		  SID			  "67"
+		  SID			  "52:67"
 		  Position		  [75, 123, 105, 137]
 		  ZOrder		  -1
 		  Port			  "2"
@@ -3461,7 +3493,7 @@ Library {
 		Block {
 		  BlockType		  ActionPort
 		  Name			  "Action Port"
-		  SID			  "68"
+		  SID			  "52:68"
 		  Position		  [170, 15, 229, 43]
 		  ZOrder		  -2
 		  ShowName		  off
@@ -3469,7 +3501,7 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant"
-		  SID			  "69"
+		  SID			  "52:69"
 		  Position		  [265, 65, 295, 95]
 		  ZOrder		  -5
 		  BackgroundColor	  "gray"
@@ -3480,7 +3512,7 @@ Library {
 		Block {
 		  BlockType		  Selector
 		  Name			  "Selector"
-		  SID			  "70"
+		  SID			  "52:70"
 		  Ports			  [2, 1]
 		  Position		  [190, 96, 230, 134]
 		  ZOrder		  -17
@@ -3492,7 +3524,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "rv"
-		  SID			  "71"
+		  SID			  "52:71"
 		  Position		  [325, 73, 355, 87]
 		  ZOrder		  -3
 		  IconDisplay		  "Port number"
@@ -3500,7 +3532,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "mission"
-		  SID			  "72"
+		  SID			  "52:72"
 		  Position		  [325, 108, 355, 122]
 		  ZOrder		  -3
 		  Port			  "2"
@@ -3764,6 +3796,9 @@ Library {
 	  Ports			  [0, 1]
 	  Position		  [530, 354, 630, 396]
 	  ZOrder		  -4
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "cyan"
+	  LibraryVersion	  "1.136"
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -3839,6 +3874,10 @@ Library {
 	  Ports			  []
 	  Position		  [55, 159, 155, 201]
 	  ZOrder		  -4
+	  ForegroundColor	  "blue"
+	  BackgroundColor	  "cyan"
+	  Priority		  "0"
+	  LibraryVersion	  "1.136"
 	  InitFcn		  "mList = Simulink.Signal;\nmList.RTWInfo.StorageClass = 'ExportedGlobal';\nmList.RTWInfo.Alias = '';\nmL"
 	  "ist.RTWInfo.Alignment = -1;\nmList.RTWInfo.CustomStorageClass = 'Default';\nmList.Description = '';\nmList.DataType"
 	  " = 'Bus: MissionList';\nmList.Min = [];\nmList.Max = [];\nmList.DocUnits = '';\nmList.Dimensions = 1;\nmList.Dimens"
@@ -3876,8 +3915,8 @@ Library {
 	  MaskValueString	  "16|-1"
 	  System {
 	    Name		    "Mission Init"
-	    Location		    [216, 371, 714, 671]
-	    Open		    off
+	    Location		    [238, 273, 736, 573]
+	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
