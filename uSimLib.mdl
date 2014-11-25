@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Feb 13 15:57:07 2013"
-  RTWModifiedTimeStamp	  282671819
-  ModelVersionFormat	  "1.%<AutoIncrement:137>"
+  LastModifiedDate	  "Mon Nov 24 22:03:20 2014"
+  RTWModifiedTimeStamp	  338767388
+  ModelVersionFormat	  "1.%<AutoIncrement:140>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -632,6 +632,10 @@ Library {
       SaturateOnIntegerOverflow	on
     }
     Block {
+      BlockType		      BusAssignment
+      AssignedSignals	      "signal1"
+    }
+    Block {
       BlockType		      BusCreator
       Inputs		      "4"
       DisplayOption	      "none"
@@ -683,6 +687,16 @@ Library {
       BusSelectionMode	      off
     }
     Block {
+      BlockType		      ForIterator
+      ResetStates	      "held"
+      IterationSource	      "internal"
+      IterationLimit	      "5"
+      ExternalIncrement	      off
+      ShowIterationPort	      on
+      IndexMode		      "One-based"
+      IterationVariableDataType	"int32"
+    }
+    Block {
       BlockType		      Gain
       Gain		      "1"
       Multiplication	      "Element-wise(K.*u)"
@@ -696,6 +710,9 @@ Library {
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	on
       SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Ground
     }
     Block {
       BlockType		      If
@@ -873,11 +890,16 @@ Library {
       SampleTime	      "-1"
       SaturateOnIntegerOverflow	off
     }
+    Block {
+      BlockType		      Width
+      OutDataTypeMode	      "Choose intrinsic data type"
+      DataType		      "double"
+    }
   }
   System {
     Name		    "uSimLib"
-    Location		    [2170, 227, 3566, 1011]
-    Open		    on
+    Location		    [913, 200, 1855, 823]
+    Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -890,7 +912,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1166"
+    SIDHighWatermark	    "1657"
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
@@ -1923,8 +1945,8 @@ Library {
       MaskIconUnits	      "normalized"
       System {
 	Name			"Mission Manager"
-	Location		[913, 200, 1855, 823]
-	Open			off
+	Location		[913, 200, 1838, 823]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1941,7 +1963,7 @@ Library {
 	  Name			  "AppendMission"
 	  SID			  "20"
 	  Ports			  [1, 1]
-	  Position		  [55, 414, 155, 456]
+	  Position		  [60, 449, 160, 491]
 	  ZOrder		  -5
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
@@ -2843,7 +2865,7 @@ Library {
 	      ZOrder		      -4
 	      LibraryVersion	      "1.136"
 	      SourceBlock	      "uSimLib/Mission Manager/SetStartingPoint"
-	      SourceType	      ""
+	      SourceType	      "Unknown"
 	      sampleTime	      "-1"
 	    }
 	    Line {
@@ -2935,7 +2957,7 @@ Library {
 	  Name			  "GetCurrentMission"
 	  SID			  "49"
 	  Ports			  [0, 1]
-	  Position		  [530, 294, 630, 336]
+	  Position		  [525, 334, 625, 376]
 	  ZOrder		  -5
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
@@ -3217,7 +3239,7 @@ Library {
 	  Name			  "GetMission"
 	  SID			  "52"
 	  Ports			  [1, 2]
-	  Position		  [530, 534, 630, 576]
+	  Position		  [525, 574, 625, 616]
 	  ZOrder		  -5
 	  ForegroundColor	  "blue"
 	  BackgroundColor	  "cyan"
@@ -3349,7 +3371,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "missions"
-		  SID			  "52:58"
+		  SID			  "58"
 		  Position		  [75, 113, 105, 127]
 		  ZOrder		  -1
 		  IconDisplay		  "Port number"
@@ -3357,7 +3379,7 @@ Library {
 		Block {
 		  BlockType		  ActionPort
 		  Name			  "Action Port"
-		  SID			  "52:59"
+		  SID			  "59"
 		  Position		  [170, 15, 229, 43]
 		  ZOrder		  -2
 		  ShowName		  off
@@ -3365,7 +3387,7 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant"
-		  SID			  "52:60"
+		  SID			  "60"
 		  Position		  [75, 70, 105, 100]
 		  ZOrder		  -5
 		  BackgroundColor	  "gray"
@@ -3376,7 +3398,7 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant1"
-		  SID			  "52:61"
+		  SID			  "61"
 		  Position		  [75, 145, 105, 175]
 		  ZOrder		  -5
 		  BackgroundColor	  "gray"
@@ -3387,7 +3409,7 @@ Library {
 		Block {
 		  BlockType		  Selector
 		  Name			  "Selector"
-		  SID			  "52:62"
+		  SID			  "62"
 		  Ports			  [2, 1]
 		  Position		  [190, 121, 230, 159]
 		  ZOrder		  -17
@@ -3399,7 +3421,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "rv"
-		  SID			  "52:63"
+		  SID			  "63"
 		  Position		  [325, 78, 355, 92]
 		  ZOrder		  -3
 		  IconDisplay		  "Port number"
@@ -3407,7 +3429,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "mission"
-		  SID			  "52:64"
+		  SID			  "64"
 		  Position		  [325, 133, 355, 147]
 		  ZOrder		  -3
 		  Port			  "2"
@@ -3476,7 +3498,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "missions"
-		  SID			  "52:66"
+		  SID			  "66"
 		  Position		  [75, 93, 105, 107]
 		  ZOrder		  -1
 		  IconDisplay		  "Port number"
@@ -3484,7 +3506,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "index"
-		  SID			  "52:67"
+		  SID			  "67"
 		  Position		  [75, 123, 105, 137]
 		  ZOrder		  -1
 		  Port			  "2"
@@ -3493,7 +3515,7 @@ Library {
 		Block {
 		  BlockType		  ActionPort
 		  Name			  "Action Port"
-		  SID			  "52:68"
+		  SID			  "68"
 		  Position		  [170, 15, 229, 43]
 		  ZOrder		  -2
 		  ShowName		  off
@@ -3501,7 +3523,7 @@ Library {
 		Block {
 		  BlockType		  Constant
 		  Name			  "Constant"
-		  SID			  "52:69"
+		  SID			  "69"
 		  Position		  [265, 65, 295, 95]
 		  ZOrder		  -5
 		  BackgroundColor	  "gray"
@@ -3512,7 +3534,7 @@ Library {
 		Block {
 		  BlockType		  Selector
 		  Name			  "Selector"
-		  SID			  "52:70"
+		  SID			  "70"
 		  Ports			  [2, 1]
 		  Position		  [190, 96, 230, 134]
 		  ZOrder		  -17
@@ -3524,7 +3546,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "rv"
-		  SID			  "52:71"
+		  SID			  "71"
 		  Position		  [325, 73, 355, 87]
 		  ZOrder		  -3
 		  IconDisplay		  "Port number"
@@ -3532,7 +3554,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "mission"
-		  SID			  "52:72"
+		  SID			  "72"
 		  Position		  [325, 108, 355, 122]
 		  ZOrder		  -3
 		  Port			  "2"
@@ -3718,7 +3740,7 @@ Library {
 	  Name			  "GetMissionCount"
 	  SID			  "77"
 	  Ports			  [0, 1]
-	  Position		  [530, 474, 630, 516]
+	  Position		  [525, 514, 625, 556]
 	  ZOrder		  -5
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
@@ -3794,7 +3816,7 @@ Library {
 	  Name			  "GetStartingPoint"
 	  SID			  "538"
 	  Ports			  [0, 1]
-	  Position		  [530, 354, 630, 396]
+	  Position		  [525, 394, 625, 436]
 	  ZOrder		  -4
 	  ForegroundColor	  "blue"
 	  BackgroundColor	  "cyan"
@@ -3916,7 +3938,7 @@ Library {
 	  System {
 	    Name		    "Mission Init"
 	    Location		    [238, 273, 736, 573]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3961,10 +3983,1219 @@ Library {
 	}
 	Block {
 	  BlockType		  SubSystem
+	  Name			  "Mission InitAll"
+	  SID			  "1358"
+	  Ports			  []
+	  Position		  [55, 224, 156, 267]
+	  ZOrder		  -10
+	  Priority		  "2"
+	  LibraryVersion	  "*1.139"
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskPromptString	  "Sample time|Missions variable"
+	  MaskStyleString	  "edit,edit"
+	  MaskVariables		  "sampleTime=@1;missionsVar=@2;"
+	  MaskTunableValueString  "off,off"
+	  MaskCallbackString	  "|"
+	  MaskEnableString	  "on,on"
+	  MaskVisibilityString	  "on,on"
+	  MaskToolTipString	  "on,on"
+	  MaskDisplay		  "disp('Missions:InitAll()');"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "normalized"
+	  MaskValueString	  "-1|test_waypoints"
+	  System {
+	    Name		    "Mission InitAll"
+	    Location		    [728, 129, 1820, 984]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Assignment
+	      Name		      "Assignment"
+	      SID		      "1359"
+	      Ports		      [3, 1]
+	      Position		      [620, 321, 695, 389]
+	      ZOrder		      -4
+	      IndexOptions	      "Index vector (port)"
+	      Indices		      "1"
+	      OutputSizes	      "1"
+	    }
+	    Block {
+	      BlockType		      BusCreator
+	      Name		      "Bus\nCreator"
+	      SID		      "1360"
+	      Ports		      [6, 1]
+	      Position		      [280, 45, 285, 175]
+	      ZOrder		      -2
+	      ShowName		      off
+	      Inputs		      "6"
+	      DisplayOption	      "bar"
+	      OutDataTypeStr	      "Bus: Mission"
+	      NonVirtualBus	      on
+	    }
+	    Block {
+	      BlockType		      BusSelector
+	      Name		      "Bus\nSelector1"
+	      SID		      "1361"
+	      Ports		      [1, 1]
+	      Position		      [565, 267, 570, 313]
+	      ZOrder		      -3
+	      ShowName		      off
+	      OutputSignals	      "missions"
+	      Port {
+		PortNumber		1
+		Name			"<missions>"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant"
+	      SID		      "1362"
+	      Position		      [505, 45, 535, 75]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "maxMissions"
+	      OutDataTypeStr	      "uint8"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant1"
+	      SID		      "1363"
+	      Position		      [300, 556, 430, 584]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "0"
+	      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant2"
+	      SID		      "1364"
+	      Position		      [140, 46, 210, 64]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "[0 0 0]"
+	      OutDataTypeStr	      "single"
+	      Port {
+		PortNumber		1
+		Name			"coordinates"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant3"
+	      SID		      "1365"
+	      Position		      [145, 92, 205, 108]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "0"
+	      OutDataTypeStr	      "uint8"
+	      Port {
+		PortNumber		1
+		Name			"refFrame"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant4"
+	      SID		      "1366"
+	      Position		      [145, 112, 205, 128]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "0"
+	      OutDataTypeStr	      "uint8"
+	      Port {
+		PortNumber		1
+		Name			"action"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant5"
+	      SID		      "1367"
+	      Position		      [140, 131, 210, 149]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "[0 0 0 0]"
+	      OutDataTypeStr	      "single"
+	      Port {
+		PortNumber		1
+		Name			"parameters"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant6"
+	      SID		      "1368"
+	      Position		      [150, 151, 195, 169]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "true"
+	      OutDataTypeStr	      "boolean"
+	      Port {
+		PortNumber		1
+		Name			"autocontinue"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant7"
+	      SID		      "1369"
+	      Position		      [140, 71, 210, 89]
+	      ZOrder		      -5
+	      BackgroundColor	      "gray"
+	      ShowName		      off
+	      Value		      "[0 0 0]"
+	      OutDataTypeStr	      "single"
+	      Port {
+		PortNumber		1
+		Name			"otherCoordinates"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      DataStoreRead
+	      Name		      "Data Store\nRead"
+	      SID		      "1370"
+	      Ports		      [0, 1]
+	      Position		      [440, 275, 510, 305]
+	      ZOrder		      -5
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      SampleTime	      "sampleTime"
+	    }
+	    Block {
+	      BlockType		      DataStoreWrite
+	      Name		      "Data Store\nWrite"
+	      SID		      "1371"
+	      Ports		      [1]
+	      Position		      [590, 48, 665, 72]
+	      ZOrder		      -6
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      SampleTime	      "sampleTime"
+	      DataStoreElements	      "mList.maxSize"
+	    }
+	    Block {
+	      BlockType		      DataStoreWrite
+	      Name		      "Data Store\nWrite1"
+	      SID		      "1372"
+	      Ports		      [1]
+	      Position		      [385, 428, 490, 472]
+	      ZOrder		      -6
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      DataStoreElements	      "mList.size"
+	    }
+	    Block {
+	      BlockType		      DataStoreWrite
+	      Name		      "Data Store\nWrite3"
+	      SID		      "1373"
+	      Ports		      [1]
+	      Position		      [765, 333, 870, 377]
+	      ZOrder		      -6
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      DataStoreElements	      "mList.missions(:)"
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion"
+	      SID		      "1374"
+	      Position		      [285, 440, 325, 460]
+	      ZOrder		      -7
+	      ShowName		      off
+	      OutDataTypeStr	      "uint8"
+	      RndMeth		      "Simplest"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      ForIterator
+	      Name		      "For Iterator"
+	      SID		      "1375"
+	      Ports		      [1, 1]
+	      Position		      [285, 390, 330, 420]
+	      ZOrder		      -2
+	      IterationSource	      "external"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector"
+	      SID		      "1376"
+	      Ports		      [2, 1]
+	      Position		      [375, 336, 415, 374]
+	      ZOrder		      -17
+	      IndexOptions	      "Index vector (port)"
+	      Indices		      "[1]"
+	      OutputSizes	      "1"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "SetCurrentMission"
+	      SID		      "1377"
+	      Ports		      [1]
+	      Position		      [465, 549, 565, 591]
+	      ZOrder		      -5
+	      ForegroundColor	      "cyan"
+	      Priority		      "3"
+	      LibraryVersion	      "1.139"
+	      SourceBlock	      "uSimLib/Mission Manager/SetCurrentMission"
+	      SourceType	      ""
+	      sampleTime	      "-1"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "SetStartingPoint"
+	      SID		      "1378"
+	      Ports		      [1]
+	      Position		      [325, 89, 425, 131]
+	      ZOrder		      -4
+	      LibraryVersion	      "1.139"
+	      SourceBlock	      "uSimLib/Mission Manager/SetStartingPoint"
+	      SourceType	      ""
+	      sampleTime	      "-1"
+	    }
+	    Block {
+	      BlockType		      Width
+	      Name		      "Width"
+	      SID		      "1379"
+	      Position		      [195, 390, 225, 420]
+	      ZOrder		      -14
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "lla2ltp1"
+	      SID		      "1380"
+	      Ports		      [1, 1]
+	      Position		      [440, 335, 505, 375]
+	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Reusable function"
+	      RTWFcnName	      "add_local_coords"
+	      RTWFileNameOpts	      "User specified"
+	      RTWFileName	      "add_local_coords"
+	      FunctionWithSeparateData off
+	      Opaque		      off
+	      RequestExecContextInheritance off
+	      MaskHideContents	      off
+	      System {
+		Name			"lla2ltp1"
+		Location		[406, 397, 1229, 697]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "In1"
+		  SID			  "1358:1381"
+		  Position		  [25, 113, 55, 127]
+		  BackgroundColor	  "darkGreen"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  BusSelector
+		  Name			  "Bus\nSelector"
+		  SID			  "1358:1382"
+		  Ports			  [1, 1]
+		  Position		  [135, 101, 140, 139]
+		  ZOrder		  -3
+		  ShowName		  off
+		  OutputSignals		  "refFrame"
+		  Port {
+		    PortNumber		    1
+		    Name		    "<refFrame>"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "Convert global coordinates\nto local as well"
+		  SID			  "1358:1383"
+		  Ports			  [1, 1, 0, 0, 0, 0, 0, 1]
+		  Position		  [360, 37, 430, 73]
+		  ZOrder		  -16
+		  NamePlacement		  "alternate"
+		  TreatAsAtomicUnit	  on
+		  MinAlgLoopOccurrences	  off
+		  PropExecContextOutsideSubsystem off
+		  RTWSystemCode		  "Auto"
+		  FunctionWithSeparateData off
+		  Opaque		  off
+		  RequestExecContextInheritance	off
+		  MaskHideContents	  off
+		  System {
+		    Name		    "Convert global coordinates\nto local as well"
+		    Location		    [1247, 588, 1697, 871]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "100"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "1358:1384"
+		    Position		    [15, 78, 45, 92]
+		    ZOrder		    -1
+		    BackgroundColor	    "darkGreen"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    ActionPort
+		    Name		    "Action Port"
+		    SID			    "1358:1385"
+		    Position		    [170, 15, 229, 43]
+		    ZOrder		    -2
+		    }
+		    Block {
+		    BlockType		    BusAssignment
+		    Name		    "Bus\nAssignment"
+		    SID			    "1358:1386"
+		    Ports		    [4, 1]
+		    Position		    [410, 97, 535, 213]
+		    ZOrder		    -1
+		    ShowName		    off
+		    AssignedSignals	    "otherCoordinates,coordinates,refFrame"
+		    }
+		    Block {
+		    BlockType		    BusSelector
+		    Name		    "Bus\nSelector"
+		    SID			    "1358:1387"
+		    Ports		    [1, 1]
+		    Position		    [85, 151, 90, 189]
+		    ZOrder		    -3
+		    ShowName		    off
+		    OutputSignals	    "coordinates"
+		    Port {
+		    PortNumber		    1
+		    Name		    "<coordinates>"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		    }
+		    }
+		    Block {
+		    BlockType		    Constant
+		    Name		    "Constant"
+		    SID			    "1358:1388"
+		    Position		    [180, 249, 210, 271]
+		    ZOrder		    -5
+		    BackgroundColor	    "gray"
+		    ShowName		    off
+		    OutDataTypeStr	    "Inherit: Inherit via back propagation"
+		    }
+		    Block {
+		    BlockType		    Demux
+		    Name		    "Demux"
+		    SID			    "1358:1389"
+		    Ports		    [1, 3]
+		    Position		    [135, 134, 140, 206]
+		    ZOrder		    -7
+		    ShowName		    off
+		    Outputs		    "3"
+		    DisplayOption	    "bar"
+		    }
+		    Block {
+		    BlockType		    Gain
+		    Name		    "Gain"
+		    SID			    "1358:1390"
+		    Position		    [170, 130, 200, 160]
+		    ZOrder		    -11
+		    ShowName		    off
+		    Gain		    "1e7"
+		    ParamDataTypeStr	    "Inherit: Inherit via internal rule"
+		    OutDataTypeStr	    "int32"
+		    RndMeth		    "Simplest"
+		    SaturateOnIntegerOverflow off
+		    }
+		    Block {
+		    BlockType		    Gain
+		    Name		    "Gain1"
+		    SID			    "1358:1391"
+		    Position		    [170, 155, 200, 185]
+		    ZOrder		    -11
+		    ShowName		    off
+		    Gain		    "1e7"
+		    ParamDataTypeStr	    "Inherit: Inherit via internal rule"
+		    OutDataTypeStr	    "int32"
+		    RndMeth		    "Simplest"
+		    SaturateOnIntegerOverflow off
+		    }
+		    Block {
+		    BlockType		    Gain
+		    Name		    "Gain2"
+		    SID			    "1358:1392"
+		    Position		    [170, 180, 200, 210]
+		    ZOrder		    -11
+		    ShowName		    off
+		    Gain		    "1e7"
+		    ParamDataTypeStr	    "Inherit: Inherit via internal rule"
+		    OutDataTypeStr	    "int32"
+		    RndMeth		    "Simplest"
+		    SaturateOnIntegerOverflow off
+		    }
+		    Block {
+		    BlockType		    SubSystem
+		    Name		    "LLA2LTP"
+		    SID			    "1358:1393"
+		    Ports		    [1, 1]
+		    Position		    [250, 149, 350, 191]
+		    ZOrder		    -5
+		    TreatAsAtomicUnit	    on
+		    MinAlgLoopOccurrences   off
+		    PropExecContextOutsideSubsystem off
+		    RTWSystemCode	    "Reusable function"
+		    RTWFcnNameOpts	    "User specified"
+		    RTWFcnName		    "lla2ltp"
+		    FunctionWithSeparateData off
+		    Opaque		    off
+		    RequestExecContextInheritance off
+		    MaskHideContents	    off
+		    System {
+		    Name		    "LLA2LTP"
+		    Location		    [382, 249, 1390, 650]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "100"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "LLA"
+		    SID			    "1358:1394"
+		    Position		    [65, 158, 95, 172]
+		    ZOrder		    -1
+		    BackgroundColor	    "darkGreen"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    Sum
+		    Name		    "Add"
+		    SID			    "1358:1395"
+		    Ports		    [2, 1]
+		    Position		    [175, 172, 205, 203]
+		    ZOrder		    -2
+		    ShowName		    off
+		    Inputs		    "+-"
+		    AccumDataTypeStr	    "Inherit: Same as first input"
+		    OutDataTypeStr	    "single"
+		    RndMeth		    "Simplest"
+		    SaturateOnIntegerOverflow off
+		    }
+		    Block {
+		    BlockType		    Constant
+		    Name		    "Constant"
+		    SID			    "1358:1396"
+		    Position		    [30, 195, 130, 225]
+		    ZOrder		    -5
+		    BackgroundColor	    "gray"
+		    ShowName		    off
+		    Value		    "gpsOrigin"
+		    OutDataTypeStr	    "int32"
+		    }
+		    Block {
+		    BlockType		    Constant
+		    Name		    "Constant1"
+		    SID			    "1358:1397"
+		    Position		    [30, 235, 130, 265]
+		    ZOrder		    -5
+		    BackgroundColor	    "gray"
+		    ShowName		    off
+		    Value		    "lla_ltp_gain"
+		    OutDataTypeStr	    "single"
+		    }
+		    Block {
+		    BlockType		    Product
+		    Name		    "Product"
+		    SID			    "1358:1398"
+		    Ports		    [2, 1]
+		    Position		    [375, 202, 405, 233]
+		    ZOrder		    -19
+		    ShowName		    off
+		    InputSameDT		    off
+		    OutDataTypeStr	    "single"
+		    LockScale		    on
+		    RndMeth		    "Simplest"
+		    SaturateOnIntegerOverflow off
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "LTP"
+		    SID			    "1358:1399"
+		    Position		    [450, 213, 480, 227]
+		    ZOrder		    -2
+		    BackgroundColor	    "yellow"
+		    IconDisplay		    "Port number"
+		    OutDataTypeStr	    "single"
+		    InitialOutput	    "[0, 0, 0]"
+		    }
+		    Line {
+		    SrcBlock		    "Add"
+		    SrcPort		    1
+		    Points		    [125, 0; 0, 20]
+		    DstBlock		    "Product"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "Constant1"
+		    SrcPort		    1
+		    Points		    [200, 0; 0, -25]
+		    DstBlock		    "Product"
+		    DstPort		    2
+		    }
+		    Line {
+		    SrcBlock		    "Product"
+		    SrcPort		    1
+		    DstBlock		    "LTP"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "Constant"
+		    SrcPort		    1
+		    Points		    [10, 0; 0, -15]
+		    DstBlock		    "Add"
+		    DstPort		    2
+		    }
+		    Line {
+		    SrcBlock		    "LLA"
+		    SrcPort		    1
+		    Points		    [45, 0; 0, 15]
+		    DstBlock		    "Add"
+		    DstPort		    1
+		    }
+		    }
+		    }
+		    Block {
+		    BlockType		    Mux
+		    Name		    "Mux"
+		    SID			    "1358:1400"
+		    Ports		    [3, 1]
+		    Position		    [225, 132, 230, 208]
+		    ZOrder		    -16
+		    ShowName		    off
+		    Inputs		    "3"
+		    DisplayOption	    "bar"
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "1358:1401"
+		    Position		    [585, 148, 615, 162]
+		    ZOrder		    -3
+		    BackgroundColor	    "yellow"
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    SrcBlock		    "Constant"
+		    SrcPort		    1
+		    Points		    [165, 0; 0, -60]
+		    DstBlock		    "Bus\nAssignment"
+		    DstPort		    4
+		    }
+		    Line {
+		    SrcBlock		    "Gain2"
+		    SrcPort		    1
+		    DstBlock		    "Mux"
+		    DstPort		    3
+		    }
+		    Line {
+		    SrcBlock		    "Gain1"
+		    SrcPort		    1
+		    DstBlock		    "Mux"
+		    DstPort		    2
+		    }
+		    Line {
+		    SrcBlock		    "Mux"
+		    SrcPort		    1
+		    DstBlock		    "LLA2LTP"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "Gain"
+		    SrcPort		    1
+		    DstBlock		    "Mux"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "Demux"
+		    SrcPort		    3
+		    DstBlock		    "Gain2"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "Demux"
+		    SrcPort		    2
+		    DstBlock		    "Gain1"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "Demux"
+		    SrcPort		    1
+		    DstBlock		    "Gain"
+		    DstPort		    1
+		    }
+		    Line {
+		    Name		    "<coordinates>"
+		    Labels		    [0, 0]
+		    SrcBlock		    "Bus\nSelector"
+		    SrcPort		    1
+		    Points		    [15, 0]
+		    Branch {
+		    Points		    [0, -60; 230, 0; 0, 30]
+		    DstBlock		    "Bus\nAssignment"
+		    DstPort		    2
+		    }
+		    Branch {
+		    DstBlock		    "Demux"
+		    DstPort		    1
+		    }
+		    }
+		    Line {
+		    SrcBlock		    "LLA2LTP"
+		    SrcPort		    1
+		    DstBlock		    "Bus\nAssignment"
+		    DstPort		    3
+		    }
+		    Line {
+		    SrcBlock		    "Bus\nAssignment"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		    Line {
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    Points		    [15, 0]
+		    Branch {
+		    Points		    [0, 85]
+		    DstBlock		    "Bus\nSelector"
+		    DstPort		    1
+		    }
+		    Branch {
+		    Points		    [330, 0]
+		    DstBlock		    "Bus\nAssignment"
+		    DstPort		    1
+		    }
+		    }
+		    Annotation {
+		    Name		    "Store old global coordinates in otherCoordinates"
+		    Position		    [227, 100]
+		    }
+		    Annotation {
+		    Name		    "Convert to local NED coordinates"
+		    Position		    [222, 123]
+		    }
+		    Annotation {
+		    Name		    "Set reference frame to LOCAL_NED"
+		    Position		    [203, 237]
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  If
+		  Name			  "If"
+		  SID			  "1358:1402"
+		  Ports			  [1, 2]
+		  Position		  [215, 101, 315, 139]
+		  ZOrder		  -15
+		  IfExpression		  "u1 == 0 | u1 == 3"
+		  ElseIfExpressions	  "u1 == 1 | u1 == 4"
+		  ShowElse		  off
+		}
+		Block {
+		  BlockType		  Merge
+		  Name			  "Merge"
+		  SID			  "1358:1403"
+		  Ports			  [2, 1]
+		  Position		  [480, 100, 520, 140]
+		  ZOrder		  -14
+		  InitialOutput		  "emptyMission"
+		}
+		Block {
+		  BlockType		  SubSystem
+		  Name			  "Pass through local\ncoordinates"
+		  SID			  "1358:1404"
+		  Ports			  [1, 1, 0, 0, 0, 0, 0, 1]
+		  Position		  [360, 167, 430, 203]
+		  ZOrder		  -16
+		  TreatAsAtomicUnit	  on
+		  MinAlgLoopOccurrences	  off
+		  PropExecContextOutsideSubsystem off
+		  RTWSystemCode		  "Auto"
+		  FunctionWithSeparateData off
+		  Opaque		  off
+		  RequestExecContextInheritance	off
+		  MaskHideContents	  off
+		  System {
+		    Name		    "Pass through local\ncoordinates"
+		    Location		    [342, 471, 840, 771]
+		    Open		    off
+		    ModelBrowserVisibility  on
+		    ModelBrowserWidth	    200
+		    ScreenColor		    "white"
+		    PaperOrientation	    "landscape"
+		    PaperPositionMode	    "auto"
+		    PaperType		    "usletter"
+		    PaperUnits		    "inches"
+		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+		    TiledPageScale	    1
+		    ShowPageBoundaries	    off
+		    ZoomFactor		    "100"
+		    Block {
+		    BlockType		    Inport
+		    Name		    "In1"
+		    SID			    "1358:1405"
+		    Position		    [75, 78, 105, 92]
+		    ZOrder		    -1
+		    BackgroundColor	    "darkGreen"
+		    IconDisplay		    "Port number"
+		    }
+		    Block {
+		    BlockType		    ActionPort
+		    Name		    "Action Port"
+		    SID			    "1358:1406"
+		    Position		    [170, 15, 229, 43]
+		    ZOrder		    -2
+		    }
+		    Block {
+		    BlockType		    Outport
+		    Name		    "Out1"
+		    SID			    "1358:1407"
+		    Position		    [325, 78, 355, 92]
+		    ZOrder		    -3
+		    BackgroundColor	    "yellow"
+		    IconDisplay		    "Port number"
+		    }
+		    Line {
+		    SrcBlock		    "In1"
+		    SrcPort		    1
+		    DstBlock		    "Out1"
+		    DstPort		    1
+		    }
+		  }
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "Out1"
+		  SID			  "1358:1408"
+		  Position		  [600, 113, 630, 127]
+		  BackgroundColor	  "yellow"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  SrcBlock		  "In1"
+		  SrcPort		  1
+		  Points		  [45, 0]
+		  Branch {
+		    Points		    [0, -65]
+		    DstBlock		    "Convert global coordinates\nto local as well"
+		    DstPort		    1
+		  }
+		  Branch {
+		    Points		    [0, 65]
+		    DstBlock		    "Pass through local\ncoordinates"
+		    DstPort		    1
+		  }
+		  Branch {
+		    DstBlock		    "Bus\nSelector"
+		    DstPort		    1
+		  }
+		}
+		Line {
+		  SrcBlock		  "Pass through local\ncoordinates"
+		  SrcPort		  1
+		  Points		  [15, 0; 0, -55]
+		  DstBlock		  "Merge"
+		  DstPort		  2
+		}
+		Line {
+		  SrcBlock		  "Merge"
+		  SrcPort		  1
+		  DstBlock		  "Out1"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "Convert global coordinates\nto local as well"
+		  SrcPort		  1
+		  Points		  [15, 0; 0, 55]
+		  DstBlock		  "Merge"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  "If"
+		  SrcPort		  1
+		  Points		  [75, 0]
+		  DstBlock		  "Convert global coordinates\nto local as well"
+		  DstPort		  ifaction
+		}
+		Line {
+		  SrcBlock		  "If"
+		  SrcPort		  2
+		  Points		  [75, 0]
+		  DstBlock		  "Pass through local\ncoordinates"
+		  DstPort		  ifaction
+		}
+		Line {
+		  Name			  "<refFrame>"
+		  Labels		  [0, 0]
+		  SrcBlock		  "Bus\nSelector"
+		  SrcPort		  1
+		  DstBlock		  "If"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "test_waypoints\ngetter"
+	      SID		      "1409"
+	      Ports		      [0, 1]
+	      Position		      [55, 322, 125, 368]
+	      ZOrder		      -4
+	      LibraryVersion	      "1.32"
+	      ErrorFcn		      "Stateflow.Translate.translate"
+	      PermitHierarchicalResolution "ExplicitOnly"
+	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
+	      RequestExecContextInheritance off
+	      MaskHideContents	      off
+	      SFBlockType	      "MATLAB Function"
+	      MaskType		      "Stateflow"
+	      MaskDescription	      "Embedded MATLAB block"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'get']);"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      off
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
+	      System {
+		Name			"test_waypoints\ngetter"
+		Location		[257, 457, 812, 717]
+		Open			off
+		ModelBrowserVisibility	on
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		SIDHighWatermark	"5"
+		Block {
+		  BlockType		  Demux
+		  Name			  " Demux "
+		  SID			  "1409::2"
+		  Ports			  [1, 1]
+		  Position		  [270, 160, 320, 200]
+		  Outputs		  "1"
+		}
+		Block {
+		  BlockType		  Ground
+		  Name			  " Ground "
+		  SID			  "1409::3"
+		  Position		  [20, 121, 40, 139]
+		}
+		Block {
+		  BlockType		  S-Function
+		  Name			  " SFunction "
+		  SID			  "1409::1"
+		  Tag			  "Stateflow S-Function uSimLib 5"
+		  Ports			  [1, 2]
+		  Position		  [180, 100, 230, 160]
+		  FunctionName		  "sf_sfun"
+		  Parameters		  "missionsVar"
+		  PortCounts		  "[1 2]"
+		  EnableBusSupport	  off
+		  Port {
+		    PortNumber		    2
+		    Name		    "y"
+		    RTWStorageClass	    "Auto"
+		    DataLoggingNameMode	    "SignalName"
+		  }
+		}
+		Block {
+		  BlockType		  Terminator
+		  Name			  " Terminator "
+		  SID			  "1409::4"
+		  Position		  [460, 171, 480, 189]
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "y"
+		  SID			  "1409::5"
+		  Position		  [460, 101, 480, 119]
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  Name			  "y"
+		  Labels		  [0, 0]
+		  SrcBlock		  " SFunction "
+		  SrcPort		  2
+		  DstBlock		  "y"
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  " Ground "
+		  SrcPort		  1
+		  DstBlock		  " SFunction "
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  " Demux "
+		  SrcPort		  1
+		  DstBlock		  " Terminator "
+		  DstPort		  1
+		}
+		Line {
+		  SrcBlock		  " SFunction "
+		  SrcPort		  1
+		  DstBlock		  " Demux "
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "lla2ltp1"
+	      SrcPort		      1
+	      DstBlock		      "Assignment"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Selector"
+	      SrcPort		      1
+	      DstBlock		      "lla2ltp1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "test_waypoints\ngetter"
+	      SrcPort		      1
+	      Points		      [40, 0]
+	      Branch {
+		DstBlock		"Selector"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 60]
+		DstBlock		"Width"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Width"
+	      SrcPort		      1
+	      Points		      [25, 0]
+	      Branch {
+		DstBlock		"For Iterator"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 45]
+		DstBlock		"Data Type Conversion"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "For Iterator"
+	      SrcPort		      1
+	      Points		      [25, 0]
+	      Branch {
+		DstBlock		"Selector"
+		DstPort			2
+	      }
+	      Branch {
+		Points			[245, 0]
+		DstBlock		"Assignment"
+		DstPort			3
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Assignment"
+	      SrcPort		      1
+	      DstBlock		      "Data Store\nWrite3"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Store\nRead"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nSelector1"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "<missions>"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Bus\nSelector1"
+	      SrcPort		      1
+	      Points		      [20, 0; 0, 45]
+	      DstBlock		      "Assignment"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "autocontinue"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Constant6"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      6
+	    }
+	    Line {
+	      Name		      "parameters"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Constant5"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      5
+	    }
+	    Line {
+	      Name		      "action"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Constant4"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      4
+	    }
+	    Line {
+	      Name		      "refFrame"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Constant3"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      3
+	    }
+	    Line {
+	      Name		      "coordinates"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Constant2"
+	      SrcPort		      1
+	      Points		      [50, 0]
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Bus\nCreator"
+	      SrcPort		      1
+	      DstBlock		      "SetStartingPoint"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "otherCoordinates"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Constant7"
+	      SrcPort		      1
+	      DstBlock		      "Bus\nCreator"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Constant"
+	      SrcPort		      1
+	      DstBlock		      "Data Store\nWrite"
+	      DstPort		      1
+	    }
+	    Line {
+	      Labels		      [0, 0]
+	      SrcBlock		      "Constant1"
+	      SrcPort		      1
+	      DstBlock		      "SetCurrentMission"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion"
+	      SrcPort		      1
+	      DstBlock		      "Data Store\nWrite1"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      Name		      "Initialize the Mission List first"
+	      Position		      [429, 17]
+	    }
+	    Annotation {
+	      Name		      "Then load in all the missions from the given mission array"
+	      Position		      [434, 237]
+	    }
+	    Annotation {
+	      Name		      "Finally, set the current mission to the first one"
+	      Position		      [441, 509]
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
 	  Name			  "MissionListHasUpdate"
 	  SID			  "861"
 	  Ports			  [0, 1]
-	  Position		  [530, 414, 630, 456]
+	  Position		  [525, 454, 625, 496]
 	  ZOrder		  -4
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
@@ -4070,7 +5301,7 @@ Library {
 	  Name			  "SetCurrentMission"
 	  SID			  "80"
 	  Ports			  [1]
-	  Position		  [55, 294, 155, 336]
+	  Position		  [60, 329, 160, 371]
 	  ZOrder		  -5
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
@@ -4247,7 +5478,7 @@ Library {
 	  Name			  "SetStartingPoint"
 	  SID			  "542"
 	  Ports			  [1]
-	  Position		  [55, 354, 155, 396]
+	  Position		  [60, 389, 160, 431]
 	  ZOrder		  -4
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
@@ -4331,11 +5562,11 @@ Library {
 	  HorizontalAlignment	  "left"
 	}
 	Annotation {
-	  Name			  "Usage:\n - Add MissionInit block to your model\n - Copy the Busses from the DOC block into your models wo"
-	  "rkspace. Be sure to set the dimensions of MissionList.missions to whatever value you want.\n - Copy any of these bl"
-	  "ocks to your model. Any functions that you'd like to call from external\nC-code must be included in the Simulink mo"
-	  "del and utilize all inputs and outputs to generate\na complete and proper function declaration.\n - Build/simulate "
-	  "your model"
+	  Name			  "Usage:\n - Add the MissionInit or MissionInitAll block to your model\n - Copy the Busses from the DOC blo"
+	  "ck into your models workspace. Be sure to set the dimensions of MissionList.missions to whatever value you want.\n "
+	  "- Copy any of these blocks to your model. Any functions that you'd like to call from external\nC-code must be inclu"
+	  "ded in the Simulink model and utilize all inputs and outputs to generate\na complete and proper function declaratio"
+	  "n.\n - Build/simulate your model"
 	  Position		  [197, 189]
 	  HorizontalAlignment	  "left"
 	}
@@ -5140,7 +6371,7 @@ Library {
 	      MaskHideContents	      off
 	      System {
 		Name			"Calculate\nnutation"
-		Location		[50, 438, 947, 826]
+		Location		[50, 438, 947, 843]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -8433,7 +9664,7 @@ Stateflow {
     name		    "uSimLib"
     created		    "26-Aug-2010 13:58:30"
     isLibrary		    1
-    firstTarget		    119
+    firstTarget		    126
     sfVersion		    76014001.0002
   }
   chart {
@@ -8952,24 +10183,28 @@ Stateflow {
   }
   chart {
     id			    32
-    name		    "Solar Models/Embedded\nMATLAB Function"
-    windowPosition	    [339.938 155.685 200.25 189.75]
+    name		    "Mission Manager/Mission InitAll/test_waypoints\ngetter"
+    windowPosition	    [435.75 143.25 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1680 1050 1.333333333333333]
+    screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 33 0 0]
     firstTransition	    35
     firstJunction	    34
     viewObj		    32
     machine		    1
-    ssIdHighWaterMark	    7
+    toolbarMode		    LIBRARY_TOOLBAR
+    subviewS {
+    }
+    ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    36
-    chartFileNumber	    10
+    chartFileNumber	    5
     disableImplicitCasting  1
     eml {
-      name		      "sun_position"
+      name		      "get"
     }
+    supportVariableSizing   0
   }
   state {
     id			    33
@@ -8980,6 +10215,127 @@ Stateflow {
     treeNode		    [32 0 0 0]
     superState		    SUBCHART
     subviewer		    32
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function y = get(missionsVar)\n%#codegen\n\ny = missionsVar;"
+      editorLayout	      "100 M4x1[76 260 1080 733]"
+      saturateOnIntegerOverflow	0
+    }
+  }
+  junction {
+    id			    34
+    position		    [23.5747 49.5747 7]
+    chart		    32
+    linkNode		    [32 0 0]
+    subviewer		    32
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    35
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      34
+      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    32
+    linkNode		    [32 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    32
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  data {
+    id			    36
+    ssIdNumber		    5
+    name		    "y"
+    linkNode		    [32 0 37]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_SIMULINK_OBJECT_TYPE
+	primitive		SF_DOUBLE_TYPE
+	busObject		"Mission"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Bus: Mission"
+  }
+  data {
+    id			    37
+    ssIdNumber		    6
+    name		    "missionsVar"
+    linkNode		    [32 36 0]
+    scope		    PARAMETER_DATA
+    isNonTunable	    1
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_SIMULINK_OBJECT_TYPE
+	primitive		SF_DOUBLE_TYPE
+	busObject		"Mission"
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Bus: Mission"
+  }
+  instance {
+    id			    38
+    name		    "Mission Manager/Mission InitAll/test_waypoints\ngetter"
+    machine		    1
+    chart		    32
+  }
+  chart {
+    id			    39
+    name		    "Solar Models/Embedded\nMATLAB Function"
+    windowPosition	    [339.938 155.685 200.25 189.75]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1680 1050 1.333333333333333]
+    treeNode		    [0 40 0 0]
+    firstTransition	    42
+    firstJunction	    41
+    viewObj		    39
+    machine		    1
+    ssIdHighWaterMark	    7
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    43
+    chartFileNumber	    10
+    disableImplicitCasting  1
+    eml {
+      name		      "sun_position"
+    }
+  }
+  state {
+    id			    40
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    39
+    treeNode		    [39 0 0 0]
+    superState		    SUBCHART
+    subviewer		    39
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -9241,16 +10597,16 @@ Stateflow {
     }
   }
   junction {
-    id			    34
+    id			    41
     position		    [23.5747 49.5747 7]
-    chart		    32
-    linkNode		    [32 0 0]
-    subviewer		    32
+    chart		    39
+    linkNode		    [39 0 0]
+    subviewer		    39
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    35
+    id			    42
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -9258,23 +10614,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      34
+      id		      41
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    32
-    linkNode		    [32 0 0]
+    chart		    39
+    linkNode		    [39 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    32
+    subviewer		    39
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    36
+    id			    43
     ssIdNumber		    4
     name		    "time_vec"
-    linkNode		    [32 0 37]
+    linkNode		    [39 0 44]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -9290,10 +10646,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    37
+    id			    44
     ssIdNumber		    5
     name		    "azimuth"
-    linkNode		    [32 36 38]
+    linkNode		    [39 43 45]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -9310,10 +10666,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    38
+    id			    45
     ssIdNumber		    6
     name		    "location_vec"
-    linkNode		    [32 37 39]
+    linkNode		    [39 44 46]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -9332,10 +10688,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    39
+    id			    46
     ssIdNumber		    7
     name		    "zenith"
-    linkNode		    [32 38 0]
+    linkNode		    [39 45 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -9354,27 +10710,27 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    40
+    id			    47
     name		    "Solar Models/Embedded\nMATLAB Function"
     machine		    1
-    chart		    32
+    chart		    39
   }
   chart {
-    id			    41
+    id			    48
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function1"
     windowPosition	    [311.813 299.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 42 0 0]
-    firstTransition	    44
-    firstJunction	    43
-    viewObj		    41
+    treeNode		    [0 49 0 0]
+    firstTransition	    51
+    firstJunction	    50
+    viewObj		    48
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    45
+    firstData		    52
     chartFileNumber	    12
     disableImplicitCasting  1
     eml {
@@ -9382,14 +10738,14 @@ Stateflow {
     }
   }
   state {
-    id			    42
+    id			    49
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    41
-    treeNode		    [41 0 0 0]
+    chart		    48
+    treeNode		    [48 0 0 0]
     superState		    SUBCHART
-    subviewer		    41
+    subviewer		    48
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -9416,16 +10772,16 @@ Stateflow {
     }
   }
   junction {
-    id			    43
+    id			    50
     position		    [23.5747 49.5747 7]
-    chart		    41
-    linkNode		    [41 0 0]
-    subviewer		    41
+    chart		    48
+    linkNode		    [48 0 0]
+    subviewer		    48
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    44
+    id			    51
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -9433,23 +10789,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      43
+      id		      50
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    41
-    linkNode		    [41 0 0]
+    chart		    48
+    linkNode		    [48 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    41
+    subviewer		    48
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    45
+    id			    52
     ssIdNumber		    4
     name		    "time"
-    linkNode		    [41 0 46]
+    linkNode		    [48 0 53]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -9466,10 +10822,10 @@ Stateflow {
     dataType		    "Bus: Time"
   }
   data {
-    id			    46
+    id			    53
     ssIdNumber		    5
     name		    "julian"
-    linkNode		    [41 45 0]
+    linkNode		    [48 52 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -9487,27 +10843,27 @@ Stateflow {
     dataType		    "Bus: JulianDate"
   }
   instance {
-    id			    47
+    id			    54
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function1"
     machine		    1
-    chart		    41
+    chart		    48
   }
   chart {
-    id			    48
+    id			    55
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function2"
     windowPosition	    [326.813 284.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 49 0 0]
-    firstTransition	    51
-    firstJunction	    50
-    viewObj		    48
+    treeNode		    [0 56 0 0]
+    firstTransition	    58
+    firstJunction	    57
+    viewObj		    55
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    52
+    firstData		    59
     chartFileNumber	    14
     disableImplicitCasting  1
     eml {
@@ -9515,14 +10871,14 @@ Stateflow {
     }
   }
   state {
-    id			    49
+    id			    56
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    48
-    treeNode		    [48 0 0 0]
+    chart		    55
+    treeNode		    [55 0 0 0]
     superState		    SUBCHART
-    subviewer		    48
+    subviewer		    55
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -9597,139 +10953,6 @@ Stateflow {
     }
   }
   junction {
-    id			    50
-    position		    [23.5747 49.5747 7]
-    chart		    48
-    linkNode		    [48 0 0]
-    subviewer		    48
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    51
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [32.125 19.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      50
-      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    48
-    linkNode		    [48 0 0]
-    dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    48
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    2
-  }
-  data {
-    id			    52
-    ssIdNumber		    4
-    name		    "julian"
-    linkNode		    [48 0 53]
-    scope		    INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"1"
-      }
-      type {
-	method			SF_SIMULINK_OBJECT_TYPE
-	primitive		SF_DOUBLE_TYPE
-	busObject		"JulianDate"
-      }
-      complexity	      SF_COMPLEX_INHERITED
-    }
-    dataType		    "Bus: JulianDate"
-  }
-  data {
-    id			    53
-    ssIdNumber		    5
-    name		    "earth_heliocentric_position"
-    linkNode		    [48 52 0]
-    scope		    OUTPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"1"
-      }
-      type {
-	method			SF_SIMULINK_OBJECT_TYPE
-	primitive		SF_DOUBLE_TYPE
-	busObject		"EarthHeliocentricPosition"
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
-    }
-    dataType		    "Bus: EarthHeliocentricPosition"
-  }
-  instance {
-    id			    54
-    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function2"
-    machine		    1
-    chart		    48
-  }
-  chart {
-    id			    55
-    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function4"
-    windowPosition	    [326.813 284.45 200.25 189.75]
-    viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 56 0 0]
-    firstTransition	    58
-    firstJunction	    57
-    viewObj		    55
-    machine		    1
-    toolbarMode		    LIBRARY_TOOLBAR
-    ssIdHighWaterMark	    7
-    decomposition	    CLUSTER_CHART
-    type		    EML_CHART
-    firstData		    59
-    chartFileNumber	    16
-    disableImplicitCasting  1
-    eml {
-      name		      "sun_topocentric_zenith_angle_calculate"
-    }
-  }
-  state {
-    id			    56
-    labelString		    "eML_blk_kernel()"
-    position		    [18 64.5 118 66]
-    fontSize		    12
-    chart		    55
-    treeNode		    [55 0 0 0]
-    superState		    SUBCHART
-    subviewer		    55
-    ssIdNumber		    1
-    type		    FUNC_STATE
-    decomposition	    CLUSTER_STATE
-    eml {
-      isEML		      1
-      script		      "function sun = sun_topocentric_zenith_angle_calculate(location, topocentric_sun_position, topocen"
-      "tric_local_hour)\n%#eml\n% This function compute the sun zenith angle, taking into account the\n% atmospheric re"
-      "fraction. A default temperature of 283K and a\n% default pressure of 1010 mbar are used. \n\n% Topocentric eleva"
-      "tion, without atmospheric refraction\nargument = (sin(location.latitude * pi/180) * sin(topocentric_sun_position"
-      ".declination * pi/180)) + ...\n    (cos(location.latitude * pi/180) * cos(topocentric_sun_position.declination *"
-      " pi/180) * cos(topocentric_local_hour * pi/180));\ntrue_elevation = asin(argument) * 180/pi;\n\n% Atmospheric re"
-      "fraction correction (in degrees)\nargument = true_elevation + (10.3/(true_elevation + 5.11));\nrefraction_corr ="
-      " 1.02 / (60 * tan(argument * pi/180));\n\n% For exact pressure and temperature correction, use this, \n% with P "
-      "the pressure in mbar amd T the temperature in Kelvins:\n% refraction_corr = (P/1010) * (283/T) * 1.02 / (60 * ta"
-      "n(argument * pi/180));\n\n% Apparent elevation\nif(true_elevation > -5)\n    apparent_elevation = true_elevation"
-      " + refraction_corr;\nelse\n    apparent_elevation = true_elevation;\nend\n\nsun.zenith = 90 - apparent_elevation"
-      ";\n\n% Topocentric azimuth angle. The +180 conversion is to pass from astronomer\n% notation (westward from sout"
-      "h) to navigation notation (eastward from\n% north);\nnominator = sin(topocentric_local_hour * pi/180);\ndenomina"
-      "tor = (cos(topocentric_local_hour * pi/180) * sin(location.latitude * pi/180)) - ...\n    (tan(topocentric_sun_p"
-      "osition.declination * pi/180) * cos(location.latitude * pi/180));\nsun.azimuth = (atan2(nominator, denominator) "
-      "* 180/pi) + 180;\n% Set the range to [0-360]\nsun.azimuth = sun.azimuth - 360 * floor(sun.azimuth/360);\n\nif (s"
-      "un.azimuth < 0)\n    sun.azimuth = sun.azimuth + 360;\nend\n\nsun.azimuth = pi/180*sun.azimuth;"
-      editorLayout	      "100 M4x1[305 305 720 621]"
-    }
-  }
-  junction {
     id			    57
     position		    [23.5747 49.5747 7]
     chart		    55
@@ -9762,8 +10985,141 @@ Stateflow {
   data {
     id			    59
     ssIdNumber		    4
-    name		    "location"
+    name		    "julian"
     linkNode		    [55 0 60]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"1"
+      }
+      type {
+	method			SF_SIMULINK_OBJECT_TYPE
+	primitive		SF_DOUBLE_TYPE
+	busObject		"JulianDate"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+    }
+    dataType		    "Bus: JulianDate"
+  }
+  data {
+    id			    60
+    ssIdNumber		    5
+    name		    "earth_heliocentric_position"
+    linkNode		    [55 59 0]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"1"
+      }
+      type {
+	method			SF_SIMULINK_OBJECT_TYPE
+	primitive		SF_DOUBLE_TYPE
+	busObject		"EarthHeliocentricPosition"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Bus: EarthHeliocentricPosition"
+  }
+  instance {
+    id			    61
+    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function2"
+    machine		    1
+    chart		    55
+  }
+  chart {
+    id			    62
+    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function4"
+    windowPosition	    [326.813 284.45 200.25 189.75]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1680 1050 1.333333333333333]
+    treeNode		    [0 63 0 0]
+    firstTransition	    65
+    firstJunction	    64
+    viewObj		    62
+    machine		    1
+    toolbarMode		    LIBRARY_TOOLBAR
+    ssIdHighWaterMark	    7
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    66
+    chartFileNumber	    16
+    disableImplicitCasting  1
+    eml {
+      name		      "sun_topocentric_zenith_angle_calculate"
+    }
+  }
+  state {
+    id			    63
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    62
+    treeNode		    [62 0 0 0]
+    superState		    SUBCHART
+    subviewer		    62
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function sun = sun_topocentric_zenith_angle_calculate(location, topocentric_sun_position, topocen"
+      "tric_local_hour)\n%#eml\n% This function compute the sun zenith angle, taking into account the\n% atmospheric re"
+      "fraction. A default temperature of 283K and a\n% default pressure of 1010 mbar are used. \n\n% Topocentric eleva"
+      "tion, without atmospheric refraction\nargument = (sin(location.latitude * pi/180) * sin(topocentric_sun_position"
+      ".declination * pi/180)) + ...\n    (cos(location.latitude * pi/180) * cos(topocentric_sun_position.declination *"
+      " pi/180) * cos(topocentric_local_hour * pi/180));\ntrue_elevation = asin(argument) * 180/pi;\n\n% Atmospheric re"
+      "fraction correction (in degrees)\nargument = true_elevation + (10.3/(true_elevation + 5.11));\nrefraction_corr ="
+      " 1.02 / (60 * tan(argument * pi/180));\n\n% For exact pressure and temperature correction, use this, \n% with P "
+      "the pressure in mbar amd T the temperature in Kelvins:\n% refraction_corr = (P/1010) * (283/T) * 1.02 / (60 * ta"
+      "n(argument * pi/180));\n\n% Apparent elevation\nif(true_elevation > -5)\n    apparent_elevation = true_elevation"
+      " + refraction_corr;\nelse\n    apparent_elevation = true_elevation;\nend\n\nsun.zenith = 90 - apparent_elevation"
+      ";\n\n% Topocentric azimuth angle. The +180 conversion is to pass from astronomer\n% notation (westward from sout"
+      "h) to navigation notation (eastward from\n% north);\nnominator = sin(topocentric_local_hour * pi/180);\ndenomina"
+      "tor = (cos(topocentric_local_hour * pi/180) * sin(location.latitude * pi/180)) - ...\n    (tan(topocentric_sun_p"
+      "osition.declination * pi/180) * cos(location.latitude * pi/180));\nsun.azimuth = (atan2(nominator, denominator) "
+      "* 180/pi) + 180;\n% Set the range to [0-360]\nsun.azimuth = sun.azimuth - 360 * floor(sun.azimuth/360);\n\nif (s"
+      "un.azimuth < 0)\n    sun.azimuth = sun.azimuth + 360;\nend\n\nsun.azimuth = pi/180*sun.azimuth;"
+      editorLayout	      "100 M4x1[305 305 720 621]"
+    }
+  }
+  junction {
+    id			    64
+    position		    [23.5747 49.5747 7]
+    chart		    62
+    linkNode		    [62 0 0]
+    subviewer		    62
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    65
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      64
+      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    62
+    linkNode		    [62 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    62
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  data {
+    id			    66
+    ssIdNumber		    4
+    name		    "location"
+    linkNode		    [62 0 67]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -9779,10 +11135,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    60
+    id			    67
     ssIdNumber		    5
     name		    "sun"
-    linkNode		    [55 59 61]
+    linkNode		    [62 66 68]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -9800,10 +11156,10 @@ Stateflow {
     dataType		    "Bus: SunPosition"
   }
   data {
-    id			    61
+    id			    68
     ssIdNumber		    6
     name		    "topocentric_sun_position"
-    linkNode		    [55 60 62]
+    linkNode		    [62 67 69]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -9823,10 +11179,10 @@ Stateflow {
     dataType		    "Bus: TopocentricSunPosition"
   }
   data {
-    id			    62
+    id			    69
     ssIdNumber		    7
     name		    "topocentric_local_hour"
-    linkNode		    [55 61 0]
+    linkNode		    [62 68 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -9845,27 +11201,27 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    63
+    id			    70
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function4"
     machine		    1
-    chart		    55
+    chart		    62
   }
   chart {
-    id			    64
+    id			    71
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function5"
     windowPosition	    [341.813 269.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 65 0 0]
-    firstTransition	    67
-    firstJunction	    66
-    viewObj		    64
+    treeNode		    [0 72 0 0]
+    firstTransition	    74
+    firstJunction	    73
+    viewObj		    71
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    68
+    firstData		    75
     chartFileNumber	    17
     disableImplicitCasting  1
     eml {
@@ -9873,14 +11229,14 @@ Stateflow {
     }
   }
   state {
-    id			    65
+    id			    72
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    64
-    treeNode		    [64 0 0 0]
+    chart		    71
+    treeNode		    [71 0 0 0]
     superState		    SUBCHART
-    subviewer		    64
+    subviewer		    71
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -9894,16 +11250,16 @@ Stateflow {
     }
   }
   junction {
-    id			    66
+    id			    73
     position		    [23.5747 49.5747 7]
-    chart		    64
-    linkNode		    [64 0 0]
-    subviewer		    64
+    chart		    71
+    linkNode		    [71 0 0]
+    subviewer		    71
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    67
+    id			    74
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -9911,23 +11267,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      66
+      id		      73
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    64
-    linkNode		    [64 0 0]
+    chart		    71
+    linkNode		    [71 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    64
+    subviewer		    71
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    68
+    id			    75
     ssIdNumber		    4
     name		    "apparent_sun_longitude"
-    linkNode		    [64 0 69]
+    linkNode		    [71 0 76]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -9943,10 +11299,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    69
+    id			    76
     ssIdNumber		    5
     name		    "sun_geocentric_declination"
-    linkNode		    [64 68 70]
+    linkNode		    [71 75 77]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -9963,10 +11319,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    70
+    id			    77
     ssIdNumber		    6
     name		    "true_obliquity"
-    linkNode		    [64 69 71]
+    linkNode		    [71 76 78]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -9985,10 +11341,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    71
+    id			    78
     ssIdNumber		    7
     name		    "sun_geocentric_position"
-    linkNode		    [64 70 0]
+    linkNode		    [71 77 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10008,27 +11364,27 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   instance {
-    id			    72
+    id			    79
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function5"
     machine		    1
-    chart		    64
+    chart		    71
   }
   chart {
-    id			    73
+    id			    80
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function6"
     windowPosition	    [356.813 254.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 74 0 0]
-    firstTransition	    76
-    firstJunction	    75
-    viewObj		    73
+    treeNode		    [0 81 0 0]
+    firstTransition	    83
+    firstJunction	    82
+    viewObj		    80
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    77
+    firstData		    84
     chartFileNumber	    18
     disableImplicitCasting  1
     eml {
@@ -10036,14 +11392,14 @@ Stateflow {
     }
   }
   state {
-    id			    74
+    id			    81
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    73
-    treeNode		    [73 0 0 0]
+    chart		    80
+    treeNode		    [80 0 0 0]
     superState		    SUBCHART
-    subviewer		    73
+    subviewer		    80
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -10056,16 +11412,16 @@ Stateflow {
     }
   }
   junction {
-    id			    75
+    id			    82
     position		    [23.5747 49.5747 7]
-    chart		    73
-    linkNode		    [73 0 0]
-    subviewer		    73
+    chart		    80
+    linkNode		    [80 0 0]
+    subviewer		    80
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    76
+    id			    83
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -10073,23 +11429,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      75
+      id		      82
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    73
-    linkNode		    [73 0 0]
+    chart		    80
+    linkNode		    [80 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    73
+    subviewer		    80
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    77
+    id			    84
     ssIdNumber		    4
     name		    "observer_local_hour"
-    linkNode		    [73 0 78]
+    linkNode		    [80 0 85]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10105,10 +11461,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    78
+    id			    85
     ssIdNumber		    5
     name		    "topocentric_local_hour"
-    linkNode		    [73 77 79]
+    linkNode		    [80 84 86]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -10125,10 +11481,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    79
+    id			    86
     ssIdNumber		    6
     name		    "topocentric_sun_position"
-    linkNode		    [73 78 0]
+    linkNode		    [80 85 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10148,27 +11504,27 @@ Stateflow {
     dataType		    "Bus: TopocentricSunPosition"
   }
   instance {
-    id			    80
+    id			    87
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function6"
     machine		    1
-    chart		    73
+    chart		    80
   }
   chart {
-    id			    81
+    id			    88
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function7"
     windowPosition	    [371.813 239.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 82 0 0]
-    firstTransition	    84
-    firstJunction	    83
-    viewObj		    81
+    treeNode		    [0 89 0 0]
+    firstTransition	    91
+    firstJunction	    90
+    viewObj		    88
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    9
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    85
+    firstData		    92
     chartFileNumber	    19
     disableImplicitCasting  1
     eml {
@@ -10176,14 +11532,14 @@ Stateflow {
     }
   }
   state {
-    id			    82
+    id			    89
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    81
-    treeNode		    [81 0 0 0]
+    chart		    88
+    treeNode		    [88 0 0 0]
     superState		    SUBCHART
-    subviewer		    81
+    subviewer		    88
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -10210,16 +11566,16 @@ Stateflow {
     }
   }
   junction {
-    id			    83
+    id			    90
     position		    [23.5747 49.5747 7]
-    chart		    81
-    linkNode		    [81 0 0]
-    subviewer		    81
+    chart		    88
+    linkNode		    [88 0 0]
+    subviewer		    88
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    84
+    id			    91
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -10227,23 +11583,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      83
+      id		      90
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    81
-    linkNode		    [81 0 0]
+    chart		    88
+    linkNode		    [88 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    81
+    subviewer		    88
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    85
+    id			    92
     ssIdNumber		    4
     name		    "earth_heliocentric_position"
-    linkNode		    [81 0 86]
+    linkNode		    [88 0 93]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10260,10 +11616,10 @@ Stateflow {
     dataType		    "Bus: EarthHeliocentricPosition"
   }
   data {
-    id			    86
+    id			    93
     ssIdNumber		    5
     name		    "topocentric_sun_position"
-    linkNode		    [81 85 87]
+    linkNode		    [88 92 94]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -10281,10 +11637,10 @@ Stateflow {
     dataType		    "Bus: TopocentricSunPosition"
   }
   data {
-    id			    87
+    id			    94
     ssIdNumber		    6
     name		    "location"
-    linkNode		    [81 86 88]
+    linkNode		    [88 93 95]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10304,10 +11660,10 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   data {
-    id			    88
+    id			    95
     ssIdNumber		    7
     name		    "observer_local_hour"
-    linkNode		    [81 87 89]
+    linkNode		    [88 94 96]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10326,10 +11682,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    89
+    id			    96
     ssIdNumber		    8
     name		    "sun_rigth_ascension"
-    linkNode		    [81 88 90]
+    linkNode		    [88 95 97]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10348,10 +11704,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    90
+    id			    97
     ssIdNumber		    9
     name		    "sun_geocentric_declination"
-    linkNode		    [81 89 0]
+    linkNode		    [88 96 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10370,27 +11726,27 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    91
+    id			    98
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function7"
     machine		    1
-    chart		    81
+    chart		    88
   }
   chart {
-    id			    92
+    id			    99
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function8"
     windowPosition	    [326.813 284.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 93 0 0]
-    firstTransition	    95
-    firstJunction	    94
-    viewObj		    92
+    treeNode		    [0 100 0 0]
+    firstTransition	    102
+    firstJunction	    101
+    viewObj		    99
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    96
+    firstData		    103
     chartFileNumber	    20
     disableImplicitCasting  1
     eml {
@@ -10398,14 +11754,14 @@ Stateflow {
     }
   }
   state {
-    id			    93
+    id			    100
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    92
-    treeNode		    [92 0 0 0]
+    chart		    99
+    treeNode		    [99 0 0 0]
     superState		    SUBCHART
-    subviewer		    92
+    subviewer		    99
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -10421,16 +11777,16 @@ Stateflow {
     }
   }
   junction {
-    id			    94
+    id			    101
     position		    [23.5747 49.5747 7]
-    chart		    92
-    linkNode		    [92 0 0]
-    subviewer		    92
+    chart		    99
+    linkNode		    [99 0 0]
+    subviewer		    99
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    95
+    id			    102
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -10438,23 +11794,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      94
+      id		      101
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    92
-    linkNode		    [92 0 0]
+    chart		    99
+    linkNode		    [99 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    92
+    subviewer		    99
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    96
+    id			    103
     ssIdNumber		    4
     name		    "apparent_sun_longitude"
-    linkNode		    [92 0 97]
+    linkNode		    [99 0 104]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10470,10 +11826,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    97
+    id			    104
     ssIdNumber		    5
     name		    "sun_rigth_ascension"
-    linkNode		    [92 96 98]
+    linkNode		    [99 103 105]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -10490,10 +11846,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    98
+    id			    105
     ssIdNumber		    6
     name		    "true_obliquity"
-    linkNode		    [92 97 99]
+    linkNode		    [99 104 106]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10512,10 +11868,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    99
+    id			    106
     ssIdNumber		    7
     name		    "sun_geocentric_position"
-    linkNode		    [92 98 0]
+    linkNode		    [99 105 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10535,27 +11891,27 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   instance {
-    id			    100
+    id			    107
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function8"
     machine		    1
-    chart		    92
+    chart		    99
   }
   chart {
-    id			    101
+    id			    108
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function9"
     windowPosition	    [341.813 269.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 102 0 0]
-    firstTransition	    104
-    firstJunction	    103
-    viewObj		    101
+    treeNode		    [0 109 0 0]
+    firstTransition	    111
+    firstJunction	    110
+    viewObj		    108
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    105
+    firstData		    112
     chartFileNumber	    21
     disableImplicitCasting  1
     eml {
@@ -10563,14 +11919,14 @@ Stateflow {
     }
   }
   state {
-    id			    102
+    id			    109
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    101
-    treeNode		    [101 0 0 0]
+    chart		    108
+    treeNode		    [108 0 0 0]
     superState		    SUBCHART
-    subviewer		    101
+    subviewer		    108
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -10583,16 +11939,16 @@ Stateflow {
     }
   }
   junction {
-    id			    103
+    id			    110
     position		    [23.5747 49.5747 7]
-    chart		    101
-    linkNode		    [101 0 0]
-    subviewer		    101
+    chart		    108
+    linkNode		    [108 0 0]
+    subviewer		    108
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    104
+    id			    111
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -10600,23 +11956,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      103
+      id		      110
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    101
-    linkNode		    [101 0 0]
+    chart		    108
+    linkNode		    [108 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    101
+    subviewer		    108
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    105
+    id			    112
     ssIdNumber		    4
     name		    "apparent_stime_at_greenwich"
-    linkNode		    [101 0 106]
+    linkNode		    [108 0 113]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10632,10 +11988,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    106
+    id			    113
     ssIdNumber		    5
     name		    "observer_local_hour"
-    linkNode		    [101 105 107]
+    linkNode		    [108 112 114]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -10652,10 +12008,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    107
+    id			    114
     ssIdNumber		    6
     name		    "location"
-    linkNode		    [101 106 108]
+    linkNode		    [108 113 115]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10675,10 +12031,10 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   data {
-    id			    108
+    id			    115
     ssIdNumber		    7
     name		    "sun_rigth_ascension"
-    linkNode		    [101 107 0]
+    linkNode		    [108 114 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10697,27 +12053,27 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    109
+    id			    116
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function9"
     machine		    1
-    chart		    101
+    chart		    108
   }
   chart {
-    id			    110
+    id			    117
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function12"
     windowPosition	    [326.813 284.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 111 0 0]
-    firstTransition	    113
-    firstJunction	    112
-    viewObj		    110
+    treeNode		    [0 118 0 0]
+    firstTransition	    120
+    firstJunction	    119
+    viewObj		    117
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    114
+    firstData		    121
     chartFileNumber	    24
     disableImplicitCasting  1
     eml {
@@ -10725,14 +12081,14 @@ Stateflow {
     }
   }
   state {
-    id			    111
+    id			    118
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    110
-    treeNode		    [110 0 0 0]
+    chart		    117
+    treeNode		    [117 0 0 0]
     superState		    SUBCHART
-    subviewer		    110
+    subviewer		    117
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -10745,16 +12101,16 @@ Stateflow {
     }
   }
   junction {
-    id			    112
+    id			    119
     position		    [23.5747 49.5747 7]
-    chart		    110
-    linkNode		    [110 0 0]
-    subviewer		    110
+    chart		    117
+    linkNode		    [117 0 0]
+    subviewer		    117
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    113
+    id			    120
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -10762,23 +12118,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      112
+      id		      119
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    110
-    linkNode		    [110 0 0]
+    chart		    117
+    linkNode		    [117 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    110
+    subviewer		    117
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    114
+    id			    121
     ssIdNumber		    4
     name		    "sun_geocentric_position"
-    linkNode		    [110 0 115]
+    linkNode		    [117 0 122]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10795,10 +12151,10 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   data {
-    id			    115
+    id			    122
     ssIdNumber		    5
     name		    "apparent_sun_longitude"
-    linkNode		    [110 114 116]
+    linkNode		    [117 121 123]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -10815,10 +12171,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    116
+    id			    123
     ssIdNumber		    6
     name		    "nutation"
-    linkNode		    [110 115 117]
+    linkNode		    [117 122 124]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10838,10 +12194,10 @@ Stateflow {
     dataType		    "Bus: Nutation"
   }
   data {
-    id			    117
+    id			    124
     ssIdNumber		    7
     name		    "aberration_correction"
-    linkNode		    [110 116 0]
+    linkNode		    [117 123 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10860,22 +12216,22 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    118
+    id			    125
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function12"
     machine		    1
-    chart		    110
+    chart		    117
   }
   target {
-    id			    119
+    id			    126
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1
-    linkNode		    [1 0 120]
+    linkNode		    [1 0 127]
   }
   target {
-    id			    120
+    id			    127
     name		    "rtw"
     machine		    1
-    linkNode		    [1 119 0]
+    linkNode		    [1 126 0]
   }
 }
