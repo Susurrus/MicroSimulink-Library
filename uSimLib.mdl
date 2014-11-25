@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Nov 24 22:03:20 2014"
-  RTWModifiedTimeStamp	  338767388
-  ModelVersionFormat	  "1.%<AutoIncrement:140>"
+  LastModifiedDate	  "Tue Nov 25 15:50:45 2014"
+  RTWModifiedTimeStamp	  338831059
+  ModelVersionFormat	  "1.%<AutoIncrement:143>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -898,8 +898,8 @@ Library {
   }
   System {
     Name		    "uSimLib"
-    Location		    [913, 200, 1855, 823]
-    Open		    off
+    Location		    [763, 192, 1705, 915]
+    Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -912,7 +912,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1657"
+    SIDHighWatermark	    "2155"
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
@@ -1786,7 +1786,7 @@ Library {
       Name		      "Math"
       SID		      "531"
       Ports		      []
-      Position		      [180, 201, 273, 270]
+      Position		      [185, 201, 278, 270]
       ZOrder		      -19
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -1945,8 +1945,8 @@ Library {
       MaskIconUnits	      "normalized"
       System {
 	Name			"Mission Manager"
-	Location		[913, 200, 1838, 823]
-	Open			on
+	Location		[763, 192, 1705, 915]
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2863,9 +2863,9 @@ Library {
 	      Ports		      [1]
 	      Position		      [225, 114, 325, 156]
 	      ZOrder		      -4
-	      LibraryVersion	      "1.136"
+	      LibraryVersion	      "1.141"
 	      SourceBlock	      "uSimLib/Mission Manager/SetStartingPoint"
-	      SourceType	      "Unknown"
+	      SourceType	      ""
 	      sampleTime	      "-1"
 	    }
 	    Line {
@@ -3989,30 +3989,39 @@ Library {
 	  Position		  [55, 224, 156, 267]
 	  ZOrder		  -10
 	  Priority		  "2"
-	  LibraryVersion	  "*1.139"
+	  LibraryVersion	  "1.140"
+	  InitFcn		  "mList = Simulink.Signal;\nmList.RTWInfo.StorageClass = 'ExportedGlobal';\nmList.RTWInfo.Alias = '';\nmL"
+	  "ist.RTWInfo.Alignment = -1;\nmList.RTWInfo.CustomStorageClass = 'Default';\nmList.Description = '';\nmList.DataType"
+	  " = 'Bus: MissionList';\nmList.Min = [];\nmList.Max = [];\nmList.DocUnits = '';\nmList.Dimensions = 1;\nmList.Dimens"
+	  "ionsMode = 'Fixed';\nmList.Complexity = 'real';\nmList.SampleTime = -1;\nmList.SamplingMode = 'Sample based';\nmLis"
+	  "t.InitialValue = '';\nassignin('base', 'mList', mList);"
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
-	  RTWSystemCode		  "Auto"
+	  RTWSystemCode		  "Reusable function"
+	  RTWFcnNameOpts	  "User specified"
+	  RTWFcnName		  "MissionInitAll"
+	  RTWFileNameOpts	  "User specified"
+	  RTWFileName		  "MissionManager"
 	  FunctionWithSeparateData off
 	  Opaque		  off
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
-	  MaskPromptString	  "Sample time|Missions variable"
-	  MaskStyleString	  "edit,edit"
-	  MaskVariables		  "sampleTime=@1;missionsVar=@2;"
-	  MaskTunableValueString  "off,off"
-	  MaskCallbackString	  "|"
-	  MaskEnableString	  "on,on"
-	  MaskVisibilityString	  "on,on"
-	  MaskToolTipString	  "on,on"
+	  MaskPromptString	  "Maximum mission count|Sample time|Missions variable"
+	  MaskStyleString	  "edit,edit,edit"
+	  MaskVariables		  "maxMissions=@1;sampleTime=@2;missionsVar=@3;"
+	  MaskTunableValueString  "off,off,off"
+	  MaskCallbackString	  "||"
+	  MaskEnableString	  "on,on,on"
+	  MaskVisibilityString	  "on,on,on"
+	  MaskToolTipString	  "on,on,on"
 	  MaskDisplay		  "disp('Missions:InitAll()');"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
 	  MaskIconRotate	  "none"
 	  MaskPortRotate	  "default"
 	  MaskIconUnits		  "normalized"
-	  MaskValueString	  "-1|test_waypoints"
+	  MaskValueString	  "16|-1|test_waypoints"
 	  System {
 	    Name		    "Mission InitAll"
 	    Location		    [728, 129, 1820, 984]
@@ -4277,7 +4286,7 @@ Library {
 	      ZOrder		      -5
 	      ForegroundColor	      "cyan"
 	      Priority		      "3"
-	      LibraryVersion	      "1.139"
+	      LibraryVersion	      "1.141"
 	      SourceBlock	      "uSimLib/Mission Manager/SetCurrentMission"
 	      SourceType	      ""
 	      sampleTime	      "-1"
@@ -4289,7 +4298,7 @@ Library {
 	      Ports		      [1]
 	      Position		      [325, 89, 425, 131]
 	      ZOrder		      -4
-	      LibraryVersion	      "1.139"
+	      LibraryVersion	      "1.141"
 	      SourceBlock	      "uSimLib/Mission Manager/SetStartingPoint"
 	      SourceType	      ""
 	      sampleTime	      "-1"
@@ -4337,7 +4346,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "In1"
-		  SID			  "1358:1381"
+		  SID			  "1381"
 		  Position		  [25, 113, 55, 127]
 		  BackgroundColor	  "darkGreen"
 		  IconDisplay		  "Port number"
@@ -4345,7 +4354,7 @@ Library {
 		Block {
 		  BlockType		  BusSelector
 		  Name			  "Bus\nSelector"
-		  SID			  "1358:1382"
+		  SID			  "1382"
 		  Ports			  [1, 1]
 		  Position		  [135, 101, 140, 139]
 		  ZOrder		  -3
@@ -4361,7 +4370,7 @@ Library {
 		Block {
 		  BlockType		  SubSystem
 		  Name			  "Convert global coordinates\nto local as well"
-		  SID			  "1358:1383"
+		  SID			  "1383"
 		  Ports			  [1, 1, 0, 0, 0, 0, 0, 1]
 		  Position		  [360, 37, 430, 73]
 		  ZOrder		  -16
@@ -4392,7 +4401,7 @@ Library {
 		    Block {
 		    BlockType		    Inport
 		    Name		    "In1"
-		    SID			    "1358:1384"
+		    SID			    "1384"
 		    Position		    [15, 78, 45, 92]
 		    ZOrder		    -1
 		    BackgroundColor	    "darkGreen"
@@ -4401,14 +4410,14 @@ Library {
 		    Block {
 		    BlockType		    ActionPort
 		    Name		    "Action Port"
-		    SID			    "1358:1385"
+		    SID			    "1385"
 		    Position		    [170, 15, 229, 43]
 		    ZOrder		    -2
 		    }
 		    Block {
 		    BlockType		    BusAssignment
 		    Name		    "Bus\nAssignment"
-		    SID			    "1358:1386"
+		    SID			    "1386"
 		    Ports		    [4, 1]
 		    Position		    [410, 97, 535, 213]
 		    ZOrder		    -1
@@ -4418,7 +4427,7 @@ Library {
 		    Block {
 		    BlockType		    BusSelector
 		    Name		    "Bus\nSelector"
-		    SID			    "1358:1387"
+		    SID			    "1387"
 		    Ports		    [1, 1]
 		    Position		    [85, 151, 90, 189]
 		    ZOrder		    -3
@@ -4434,7 +4443,7 @@ Library {
 		    Block {
 		    BlockType		    Constant
 		    Name		    "Constant"
-		    SID			    "1358:1388"
+		    SID			    "1388"
 		    Position		    [180, 249, 210, 271]
 		    ZOrder		    -5
 		    BackgroundColor	    "gray"
@@ -4444,7 +4453,7 @@ Library {
 		    Block {
 		    BlockType		    Demux
 		    Name		    "Demux"
-		    SID			    "1358:1389"
+		    SID			    "1389"
 		    Ports		    [1, 3]
 		    Position		    [135, 134, 140, 206]
 		    ZOrder		    -7
@@ -4455,7 +4464,7 @@ Library {
 		    Block {
 		    BlockType		    Gain
 		    Name		    "Gain"
-		    SID			    "1358:1390"
+		    SID			    "1390"
 		    Position		    [170, 130, 200, 160]
 		    ZOrder		    -11
 		    ShowName		    off
@@ -4468,7 +4477,7 @@ Library {
 		    Block {
 		    BlockType		    Gain
 		    Name		    "Gain1"
-		    SID			    "1358:1391"
+		    SID			    "1391"
 		    Position		    [170, 155, 200, 185]
 		    ZOrder		    -11
 		    ShowName		    off
@@ -4481,7 +4490,7 @@ Library {
 		    Block {
 		    BlockType		    Gain
 		    Name		    "Gain2"
-		    SID			    "1358:1392"
+		    SID			    "1392"
 		    Position		    [170, 180, 200, 210]
 		    ZOrder		    -11
 		    ShowName		    off
@@ -4494,7 +4503,7 @@ Library {
 		    Block {
 		    BlockType		    SubSystem
 		    Name		    "LLA2LTP"
-		    SID			    "1358:1393"
+		    SID			    "1393"
 		    Ports		    [1, 1]
 		    Position		    [250, 149, 350, 191]
 		    ZOrder		    -5
@@ -4526,7 +4535,7 @@ Library {
 		    Block {
 		    BlockType		    Inport
 		    Name		    "LLA"
-		    SID			    "1358:1394"
+		    SID			    "1394"
 		    Position		    [65, 158, 95, 172]
 		    ZOrder		    -1
 		    BackgroundColor	    "darkGreen"
@@ -4535,7 +4544,7 @@ Library {
 		    Block {
 		    BlockType		    Sum
 		    Name		    "Add"
-		    SID			    "1358:1395"
+		    SID			    "1395"
 		    Ports		    [2, 1]
 		    Position		    [175, 172, 205, 203]
 		    ZOrder		    -2
@@ -4549,7 +4558,7 @@ Library {
 		    Block {
 		    BlockType		    Constant
 		    Name		    "Constant"
-		    SID			    "1358:1396"
+		    SID			    "1396"
 		    Position		    [30, 195, 130, 225]
 		    ZOrder		    -5
 		    BackgroundColor	    "gray"
@@ -4560,7 +4569,7 @@ Library {
 		    Block {
 		    BlockType		    Constant
 		    Name		    "Constant1"
-		    SID			    "1358:1397"
+		    SID			    "1397"
 		    Position		    [30, 235, 130, 265]
 		    ZOrder		    -5
 		    BackgroundColor	    "gray"
@@ -4571,7 +4580,7 @@ Library {
 		    Block {
 		    BlockType		    Product
 		    Name		    "Product"
-		    SID			    "1358:1398"
+		    SID			    "1398"
 		    Ports		    [2, 1]
 		    Position		    [375, 202, 405, 233]
 		    ZOrder		    -19
@@ -4585,7 +4594,7 @@ Library {
 		    Block {
 		    BlockType		    Outport
 		    Name		    "LTP"
-		    SID			    "1358:1399"
+		    SID			    "1399"
 		    Position		    [450, 213, 480, 227]
 		    ZOrder		    -2
 		    BackgroundColor	    "yellow"
@@ -4632,7 +4641,7 @@ Library {
 		    Block {
 		    BlockType		    Mux
 		    Name		    "Mux"
-		    SID			    "1358:1400"
+		    SID			    "1400"
 		    Ports		    [3, 1]
 		    Position		    [225, 132, 230, 208]
 		    ZOrder		    -16
@@ -4643,7 +4652,7 @@ Library {
 		    Block {
 		    BlockType		    Outport
 		    Name		    "Out1"
-		    SID			    "1358:1401"
+		    SID			    "1401"
 		    Position		    [585, 148, 615, 162]
 		    ZOrder		    -3
 		    BackgroundColor	    "yellow"
@@ -4758,7 +4767,7 @@ Library {
 		Block {
 		  BlockType		  If
 		  Name			  "If"
-		  SID			  "1358:1402"
+		  SID			  "1402"
 		  Ports			  [1, 2]
 		  Position		  [215, 101, 315, 139]
 		  ZOrder		  -15
@@ -4769,7 +4778,7 @@ Library {
 		Block {
 		  BlockType		  Merge
 		  Name			  "Merge"
-		  SID			  "1358:1403"
+		  SID			  "1403"
 		  Ports			  [2, 1]
 		  Position		  [480, 100, 520, 140]
 		  ZOrder		  -14
@@ -4778,7 +4787,7 @@ Library {
 		Block {
 		  BlockType		  SubSystem
 		  Name			  "Pass through local\ncoordinates"
-		  SID			  "1358:1404"
+		  SID			  "1404"
 		  Ports			  [1, 1, 0, 0, 0, 0, 0, 1]
 		  Position		  [360, 167, 430, 203]
 		  ZOrder		  -16
@@ -4808,7 +4817,7 @@ Library {
 		    Block {
 		    BlockType		    Inport
 		    Name		    "In1"
-		    SID			    "1358:1405"
+		    SID			    "1405"
 		    Position		    [75, 78, 105, 92]
 		    ZOrder		    -1
 		    BackgroundColor	    "darkGreen"
@@ -4817,14 +4826,14 @@ Library {
 		    Block {
 		    BlockType		    ActionPort
 		    Name		    "Action Port"
-		    SID			    "1358:1406"
+		    SID			    "1406"
 		    Position		    [170, 15, 229, 43]
 		    ZOrder		    -2
 		    }
 		    Block {
 		    BlockType		    Outport
 		    Name		    "Out1"
-		    SID			    "1358:1407"
+		    SID			    "1407"
 		    Position		    [325, 78, 355, 92]
 		    ZOrder		    -3
 		    BackgroundColor	    "yellow"
@@ -4841,7 +4850,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "Out1"
-		  SID			  "1358:1408"
+		  SID			  "1408"
 		  Position		  [600, 113, 630, 127]
 		  BackgroundColor	  "yellow"
 		  IconDisplay		  "Port number"
@@ -10184,7 +10193,7 @@ Stateflow {
   chart {
     id			    32
     name		    "Mission Manager/Mission InitAll/test_waypoints\ngetter"
-    windowPosition	    [435.75 143.25 200.25 189.75]
+    windowPosition	    [465.75 113.25 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 33 0 0]
@@ -10193,8 +10202,6 @@ Stateflow {
     viewObj		    32
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    subviewS {
-    }
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
