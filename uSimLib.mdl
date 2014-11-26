@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 25 15:50:45 2014"
-  RTWModifiedTimeStamp	  338831059
-  ModelVersionFormat	  "1.%<AutoIncrement:143>"
+  LastModifiedDate	  "Tue Nov 25 17:08:27 2014"
+  RTWModifiedTimeStamp	  338833551
+  ModelVersionFormat	  "1.%<AutoIncrement:145>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -898,7 +898,7 @@ Library {
   }
   System {
     Name		    "uSimLib"
-    Location		    [763, 192, 1705, 915]
+    Location		    [1124, 463, 1622, 763]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -912,7 +912,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "2155"
+    SIDHighWatermark	    "2156"
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
@@ -1803,7 +1803,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"Math"
-	Location		[925, 517, 1423, 817]
+	Location		[1124, 463, 1622, 763]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1918,6 +1918,138 @@ Library {
 	      SrcBlock		      "Sqrt"
 	      SrcPort		      1
 	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Vector rotation"
+	  SID			  "2156"
+	  Ports			  [2, 1]
+	  Position		  [230, 18, 340, 67]
+	  ZOrder		  -4
+	  LibraryVersion	  "1.144"
+	  ErrorFcn		  "Stateflow.Translate.translate"
+	  PermitHierarchicalResolution "ExplicitOnly"
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  SFBlockType		  "MATLAB Function"
+	  MaskType		  "Stateflow"
+	  MaskDescription	  "Embedded MATLAB block"
+	  MaskSelfModifiable	  on
+	  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private/"
+	  "eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'rotvec']);"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  off
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "normalized"
+	  System {
+	    Name		    "Vector rotation"
+	    Location		    [257, 457, 812, 717]
+	    Open		    off
+	    ModelBrowserVisibility  on
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    SIDHighWatermark	    "26"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "vector"
+	      SID		      "2156::1"
+	      Position		      [20, 101, 40, 119]
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "angle"
+	      SID		      "2156::18"
+	      Position		      [20, 136, 40, 154]
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      " Demux "
+	      SID		      "2156::24"
+	      Ports		      [1, 1]
+	      Position		      [270, 160, 320, 200]
+	      Outputs		      "1"
+	    }
+	    Block {
+	      BlockType		      S-Function
+	      Name		      " SFunction "
+	      SID		      "2156::23"
+	      Tag		      "Stateflow S-Function uSimLib 6"
+	      Ports		      [2, 2]
+	      Position		      [180, 100, 230, 160]
+	      FunctionName	      "sf_sfun"
+	      PortCounts	      "[2 2]"
+	      EnableBusSupport	      off
+	      Port {
+		PortNumber		2
+		Name			"y"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      " Terminator "
+	      SID		      "2156::26"
+	      Position		      [460, 171, 480, 189]
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "y"
+	      SID		      "2156::5"
+	      Position		      [460, 101, 480, 119]
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "vector"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "angle"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "y"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      2
+	      DstBlock		      "y"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      " Demux "
+	      SrcPort		      1
+	      DstBlock		      " Terminator "
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      " SFunction "
+	      SrcPort		      1
+	      DstBlock		      " Demux "
 	      DstPort		      1
 	    }
 	  }
@@ -2865,7 +2997,7 @@ Library {
 	      ZOrder		      -4
 	      LibraryVersion	      "1.141"
 	      SourceBlock	      "uSimLib/Mission Manager/SetStartingPoint"
-	      SourceType	      ""
+	      SourceType	      "Unknown"
 	      sampleTime	      "-1"
 	    }
 	    Line {
@@ -4288,7 +4420,7 @@ Library {
 	      Priority		      "3"
 	      LibraryVersion	      "1.141"
 	      SourceBlock	      "uSimLib/Mission Manager/SetCurrentMission"
-	      SourceType	      ""
+	      SourceType	      "Unknown"
 	      sampleTime	      "-1"
 	    }
 	    Block {
@@ -4300,7 +4432,7 @@ Library {
 	      ZOrder		      -4
 	      LibraryVersion	      "1.141"
 	      SourceBlock	      "uSimLib/Mission Manager/SetStartingPoint"
-	      SourceType	      ""
+	      SourceType	      "Unknown"
 	      sampleTime	      "-1"
 	    }
 	    Block {
@@ -9673,7 +9805,7 @@ Stateflow {
     name		    "uSimLib"
     created		    "26-Aug-2010 13:58:30"
     isLibrary		    1
-    firstTarget		    126
+    firstTarget		    134
     sfVersion		    76014001.0002
   }
   chart {
@@ -10315,24 +10447,27 @@ Stateflow {
   }
   chart {
     id			    39
-    name		    "Solar Models/Embedded\nMATLAB Function"
-    windowPosition	    [339.938 155.685 200.25 189.75]
+    name		    "Math/Vector rotation"
+    windowPosition	    [420.75 158.25 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1680 1050 1.333333333333333]
+    screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 40 0 0]
     firstTransition	    42
     firstJunction	    41
     viewObj		    39
     machine		    1
-    ssIdHighWaterMark	    7
+    subviewS {
+    }
+    ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    43
-    chartFileNumber	    10
+    chartFileNumber	    6
     disableImplicitCasting  1
     eml {
-      name		      "sun_position"
+      name		      "rotvec"
     }
+    supportVariableSizing   0
   }
   state {
     id			    40
@@ -10343,6 +10478,141 @@ Stateflow {
     treeNode		    [39 0 0 0]
     superState		    SUBCHART
     subviewer		    39
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function y = rotvec(vector, angle)\n%#codegen\n% vector - a 3-element vector\n% angle - in radian"
+      "s, from 0 to 2*pi\ns = sin(angle);\nc = cos(angle);\ny = [c -s 0; s c 0; 0 0 1] * vector;"
+      editorLayout	      "100 M4x1[223 171 1080 733]"
+      saturateOnIntegerOverflow	0
+    }
+  }
+  junction {
+    id			    41
+    position		    [23.5747 49.5747 7]
+    chart		    39
+    linkNode		    [39 0 0]
+    subviewer		    39
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    42
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      41
+      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    39
+    linkNode		    [39 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    39
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  data {
+    id			    43
+    ssIdNumber		    4
+    name		    "vector"
+    linkNode		    [39 0 44]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"3"
+      }
+      type {
+	primitive		SF_SINGLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+    }
+    dataType		    "single"
+  }
+  data {
+    id			    44
+    ssIdNumber		    5
+    name		    "y"
+    linkNode		    [39 43 45]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"3"
+      }
+      type {
+	primitive		SF_SINGLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "single"
+  }
+  data {
+    id			    45
+    ssIdNumber		    6
+    name		    "angle"
+    linkNode		    [39 44 0]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"1"
+      }
+      type {
+	primitive		SF_SINGLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "single"
+  }
+  instance {
+    id			    46
+    name		    "Math/Vector rotation"
+    machine		    1
+    chart		    39
+  }
+  chart {
+    id			    47
+    name		    "Solar Models/Embedded\nMATLAB Function"
+    windowPosition	    [339.938 155.685 200.25 189.75]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1680 1050 1.333333333333333]
+    treeNode		    [0 48 0 0]
+    firstTransition	    50
+    firstJunction	    49
+    viewObj		    47
+    machine		    1
+    ssIdHighWaterMark	    7
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    51
+    chartFileNumber	    10
+    disableImplicitCasting  1
+    eml {
+      name		      "sun_position"
+    }
+  }
+  state {
+    id			    48
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    47
+    treeNode		    [47 0 0 0]
+    superState		    SUBCHART
+    subviewer		    47
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -10604,16 +10874,16 @@ Stateflow {
     }
   }
   junction {
-    id			    41
+    id			    49
     position		    [23.5747 49.5747 7]
-    chart		    39
-    linkNode		    [39 0 0]
-    subviewer		    39
+    chart		    47
+    linkNode		    [47 0 0]
+    subviewer		    47
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    42
+    id			    50
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -10621,23 +10891,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      41
+      id		      49
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    39
-    linkNode		    [39 0 0]
+    chart		    47
+    linkNode		    [47 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    39
+    subviewer		    47
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    43
+    id			    51
     ssIdNumber		    4
     name		    "time_vec"
-    linkNode		    [39 0 44]
+    linkNode		    [47 0 52]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10653,10 +10923,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    44
+    id			    52
     ssIdNumber		    5
     name		    "azimuth"
-    linkNode		    [39 43 45]
+    linkNode		    [47 51 53]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -10673,10 +10943,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    45
+    id			    53
     ssIdNumber		    6
     name		    "location_vec"
-    linkNode		    [39 44 46]
+    linkNode		    [47 52 54]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10695,10 +10965,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    46
+    id			    54
     ssIdNumber		    7
     name		    "zenith"
-    linkNode		    [39 45 0]
+    linkNode		    [47 53 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -10717,27 +10987,27 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    47
+    id			    55
     name		    "Solar Models/Embedded\nMATLAB Function"
     machine		    1
-    chart		    39
+    chart		    47
   }
   chart {
-    id			    48
+    id			    56
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function1"
     windowPosition	    [311.813 299.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 49 0 0]
-    firstTransition	    51
-    firstJunction	    50
-    viewObj		    48
+    treeNode		    [0 57 0 0]
+    firstTransition	    59
+    firstJunction	    58
+    viewObj		    56
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    52
+    firstData		    60
     chartFileNumber	    12
     disableImplicitCasting  1
     eml {
@@ -10745,14 +11015,14 @@ Stateflow {
     }
   }
   state {
-    id			    49
+    id			    57
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    48
-    treeNode		    [48 0 0 0]
+    chart		    56
+    treeNode		    [56 0 0 0]
     superState		    SUBCHART
-    subviewer		    48
+    subviewer		    56
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -10779,16 +11049,16 @@ Stateflow {
     }
   }
   junction {
-    id			    50
+    id			    58
     position		    [23.5747 49.5747 7]
-    chart		    48
-    linkNode		    [48 0 0]
-    subviewer		    48
+    chart		    56
+    linkNode		    [56 0 0]
+    subviewer		    56
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    51
+    id			    59
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -10796,23 +11066,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      50
+      id		      58
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    48
-    linkNode		    [48 0 0]
+    chart		    56
+    linkNode		    [56 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    48
+    subviewer		    56
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    52
+    id			    60
     ssIdNumber		    4
     name		    "time"
-    linkNode		    [48 0 53]
+    linkNode		    [56 0 61]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -10829,10 +11099,10 @@ Stateflow {
     dataType		    "Bus: Time"
   }
   data {
-    id			    53
+    id			    61
     ssIdNumber		    5
     name		    "julian"
-    linkNode		    [48 52 0]
+    linkNode		    [56 60 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -10850,27 +11120,27 @@ Stateflow {
     dataType		    "Bus: JulianDate"
   }
   instance {
-    id			    54
+    id			    62
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function1"
     machine		    1
-    chart		    48
+    chart		    56
   }
   chart {
-    id			    55
+    id			    63
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function2"
     windowPosition	    [326.813 284.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 56 0 0]
-    firstTransition	    58
-    firstJunction	    57
-    viewObj		    55
+    treeNode		    [0 64 0 0]
+    firstTransition	    66
+    firstJunction	    65
+    viewObj		    63
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    5
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    59
+    firstData		    67
     chartFileNumber	    14
     disableImplicitCasting  1
     eml {
@@ -10878,14 +11148,14 @@ Stateflow {
     }
   }
   state {
-    id			    56
+    id			    64
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    55
-    treeNode		    [55 0 0 0]
+    chart		    63
+    treeNode		    [63 0 0 0]
     superState		    SUBCHART
-    subviewer		    55
+    subviewer		    63
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -10960,16 +11230,16 @@ Stateflow {
     }
   }
   junction {
-    id			    57
+    id			    65
     position		    [23.5747 49.5747 7]
-    chart		    55
-    linkNode		    [55 0 0]
-    subviewer		    55
+    chart		    63
+    linkNode		    [63 0 0]
+    subviewer		    63
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    58
+    id			    66
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -10977,23 +11247,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      57
+      id		      65
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    55
-    linkNode		    [55 0 0]
+    chart		    63
+    linkNode		    [63 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    55
+    subviewer		    63
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    59
+    id			    67
     ssIdNumber		    4
     name		    "julian"
-    linkNode		    [55 0 60]
+    linkNode		    [63 0 68]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11010,10 +11280,10 @@ Stateflow {
     dataType		    "Bus: JulianDate"
   }
   data {
-    id			    60
+    id			    68
     ssIdNumber		    5
     name		    "earth_heliocentric_position"
-    linkNode		    [55 59 0]
+    linkNode		    [63 67 0]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -11031,27 +11301,27 @@ Stateflow {
     dataType		    "Bus: EarthHeliocentricPosition"
   }
   instance {
-    id			    61
+    id			    69
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function2"
     machine		    1
-    chart		    55
+    chart		    63
   }
   chart {
-    id			    62
+    id			    70
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function4"
     windowPosition	    [326.813 284.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 63 0 0]
-    firstTransition	    65
-    firstJunction	    64
-    viewObj		    62
+    treeNode		    [0 71 0 0]
+    firstTransition	    73
+    firstJunction	    72
+    viewObj		    70
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    66
+    firstData		    74
     chartFileNumber	    16
     disableImplicitCasting  1
     eml {
@@ -11059,14 +11329,14 @@ Stateflow {
     }
   }
   state {
-    id			    63
+    id			    71
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    62
-    treeNode		    [62 0 0 0]
+    chart		    70
+    treeNode		    [70 0 0 0]
     superState		    SUBCHART
-    subviewer		    62
+    subviewer		    70
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -11093,16 +11363,16 @@ Stateflow {
     }
   }
   junction {
-    id			    64
+    id			    72
     position		    [23.5747 49.5747 7]
-    chart		    62
-    linkNode		    [62 0 0]
-    subviewer		    62
+    chart		    70
+    linkNode		    [70 0 0]
+    subviewer		    70
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    65
+    id			    73
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -11110,23 +11380,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      64
+      id		      72
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    62
-    linkNode		    [62 0 0]
+    chart		    70
+    linkNode		    [70 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    62
+    subviewer		    70
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    66
+    id			    74
     ssIdNumber		    4
     name		    "location"
-    linkNode		    [62 0 67]
+    linkNode		    [70 0 75]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11142,10 +11412,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    67
+    id			    75
     ssIdNumber		    5
     name		    "sun"
-    linkNode		    [62 66 68]
+    linkNode		    [70 74 76]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -11163,10 +11433,10 @@ Stateflow {
     dataType		    "Bus: SunPosition"
   }
   data {
-    id			    68
+    id			    76
     ssIdNumber		    6
     name		    "topocentric_sun_position"
-    linkNode		    [62 67 69]
+    linkNode		    [70 75 77]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11186,10 +11456,10 @@ Stateflow {
     dataType		    "Bus: TopocentricSunPosition"
   }
   data {
-    id			    69
+    id			    77
     ssIdNumber		    7
     name		    "topocentric_local_hour"
-    linkNode		    [62 68 0]
+    linkNode		    [70 76 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11208,27 +11478,27 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    70
+    id			    78
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function4"
     machine		    1
-    chart		    62
+    chart		    70
   }
   chart {
-    id			    71
+    id			    79
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function5"
     windowPosition	    [341.813 269.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 72 0 0]
-    firstTransition	    74
-    firstJunction	    73
-    viewObj		    71
+    treeNode		    [0 80 0 0]
+    firstTransition	    82
+    firstJunction	    81
+    viewObj		    79
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    75
+    firstData		    83
     chartFileNumber	    17
     disableImplicitCasting  1
     eml {
@@ -11236,14 +11506,14 @@ Stateflow {
     }
   }
   state {
-    id			    72
+    id			    80
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    71
-    treeNode		    [71 0 0 0]
+    chart		    79
+    treeNode		    [79 0 0 0]
     superState		    SUBCHART
-    subviewer		    71
+    subviewer		    79
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -11257,16 +11527,16 @@ Stateflow {
     }
   }
   junction {
-    id			    73
+    id			    81
     position		    [23.5747 49.5747 7]
-    chart		    71
-    linkNode		    [71 0 0]
-    subviewer		    71
+    chart		    79
+    linkNode		    [79 0 0]
+    subviewer		    79
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    74
+    id			    82
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -11274,23 +11544,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      73
+      id		      81
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    71
-    linkNode		    [71 0 0]
+    chart		    79
+    linkNode		    [79 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    71
+    subviewer		    79
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    75
+    id			    83
     ssIdNumber		    4
     name		    "apparent_sun_longitude"
-    linkNode		    [71 0 76]
+    linkNode		    [79 0 84]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11306,10 +11576,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    76
+    id			    84
     ssIdNumber		    5
     name		    "sun_geocentric_declination"
-    linkNode		    [71 75 77]
+    linkNode		    [79 83 85]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -11326,10 +11596,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    77
+    id			    85
     ssIdNumber		    6
     name		    "true_obliquity"
-    linkNode		    [71 76 78]
+    linkNode		    [79 84 86]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11348,10 +11618,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    78
+    id			    86
     ssIdNumber		    7
     name		    "sun_geocentric_position"
-    linkNode		    [71 77 0]
+    linkNode		    [79 85 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11371,155 +11641,15 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   instance {
-    id			    79
+    id			    87
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function5"
     machine		    1
-    chart		    71
-  }
-  chart {
-    id			    80
-    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function6"
-    windowPosition	    [356.813 254.45 200.25 189.75]
-    viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 81 0 0]
-    firstTransition	    83
-    firstJunction	    82
-    viewObj		    80
-    machine		    1
-    toolbarMode		    LIBRARY_TOOLBAR
-    ssIdHighWaterMark	    6
-    decomposition	    CLUSTER_CHART
-    type		    EML_CHART
-    firstData		    84
-    chartFileNumber	    18
-    disableImplicitCasting  1
-    eml {
-      name		      "topocentric_local_hour_calculate"
-    }
-  }
-  state {
-    id			    81
-    labelString		    "eML_blk_kernel()"
-    position		    [18 64.5 118 66]
-    fontSize		    12
-    chart		    80
-    treeNode		    [80 0 0 0]
-    superState		    SUBCHART
-    subviewer		    80
-    ssIdNumber		    1
-    type		    FUNC_STATE
-    decomposition	    CLUSTER_STATE
-    eml {
-      isEML		      1
-      script		      "function topocentric_local_hour = topocentric_local_hour_calculate(observer_local_hour, topocentr"
-      "ic_sun_position)\n%#eml\n% This function compute the topocentric local jour angle in degrees\n\ntopocentric_loca"
-      "l_hour = observer_local_hour - topocentric_sun_position.rigth_ascension_parallax;\n"
-      editorLayout	      "100 M4x1[33 211 1080 733]"
-    }
-  }
-  junction {
-    id			    82
-    position		    [23.5747 49.5747 7]
-    chart		    80
-    linkNode		    [80 0 0]
-    subviewer		    80
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    83
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [32.125 19.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      82
-      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    80
-    linkNode		    [80 0 0]
-    dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    80
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    2
-  }
-  data {
-    id			    84
-    ssIdNumber		    4
-    name		    "observer_local_hour"
-    linkNode		    [80 0 85]
-    scope		    INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_DOUBLE_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  data {
-    id			    85
-    ssIdNumber		    5
-    name		    "topocentric_local_hour"
-    linkNode		    [80 84 86]
-    scope		    OUTPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_DOUBLE_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  data {
-    id			    86
-    ssIdNumber		    6
-    name		    "topocentric_sun_position"
-    linkNode		    [80 85 0]
-    scope		    INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"1"
-      }
-      type {
-	method			SF_SIMULINK_OBJECT_TYPE
-	primitive		SF_DOUBLE_TYPE
-	busObject		"TopocentricSunPosition"
-	isSigned		1
-	wordLength		"16"
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
-    }
-    dataType		    "Bus: TopocentricSunPosition"
-  }
-  instance {
-    id			    87
-    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function6"
-    machine		    1
-    chart		    80
+    chart		    79
   }
   chart {
     id			    88
-    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function7"
-    windowPosition	    [371.813 239.45 200.25 189.75]
+    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function6"
+    windowPosition	    [356.813 254.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
     treeNode		    [0 89 0 0]
@@ -11528,14 +11658,14 @@ Stateflow {
     viewObj		    88
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
-    ssIdHighWaterMark	    9
+    ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    92
-    chartFileNumber	    19
+    chartFileNumber	    18
     disableImplicitCasting  1
     eml {
-      name		      "topocentric_sun_position_calculate"
+      name		      "topocentric_local_hour_calculate"
     }
   }
   state {
@@ -11552,24 +11682,10 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function topocentric_sun_position = topocentric_sun_position_calculate(earth_heliocentric_positio"
-      "n, location, observer_local_hour, sun_rigth_ascension, sun_geocentric_declination)\n%#eml\n% This function compu"
-      "tes the sun position (rigth ascension and declination)\n% with respect to the observer local position at the Ear"
-      "th surface. \n\n% Equatorial horizontal parallax of the sun in degrees\neq_horizontal_parallax = 8.794 / (3600 *"
-      " earth_heliocentric_position.radius);\n\n% Term u, used in the following calculations (in radians)\nu = atan(0.9"
-      "9664719 * tan(location.latitude * pi/180));\n\n% Term x, used in the following calculations\nx = cos(u) + ((loca"
-      "tion.altitude/6378140) * cos(location.latitude * pi/180));\n\n% Term y, used in the following calculations\ny = "
-      "(0.99664719 * sin(u)) + ((location.altitude/6378140) * sin(location.latitude * pi/180));\n\n% Parallax in the su"
-      "n rigth ascension (in radians)\nnominator = -x * sin(eq_horizontal_parallax * pi/180) * sin(observer_local_hour "
-      "* pi/180);\ndenominator = cos(sun_geocentric_declination * pi/180) - (x * sin(eq_horizontal_parallax * pi/180) *"
-      " cos(observer_local_hour * pi/180));\nsun_rigth_ascension_parallax = atan2(nominator, denominator);\n% Conversio"
-      "n to degrees. \ntopocentric_sun_position.rigth_ascension_parallax = sun_rigth_ascension_parallax * 180/pi;\n\n% "
-      "Topocentric sun rigth ascension (in degrees)\ntopocentric_sun_position.rigth_ascension = sun_rigth_ascension + ("
-      "sun_rigth_ascension_parallax * 180/pi);\n\n% Topocentric sun declination (in degrees)\nnominator = (sin(sun_geoc"
-      "entric_declination * pi/180) - (y*sin(eq_horizontal_parallax * pi/180))) * cos(sun_rigth_ascension_parallax);\nd"
-      "enominator = cos(sun_geocentric_declination * pi/180) - (x*sin(eq_horizontal_parallax * pi/180)) * cos(observer_"
-      "local_hour * pi/180);\ntopocentric_sun_position.declination = atan2(nominator, denominator) * 180/pi;"
-      editorLayout	      "100 M4x1[50 174 1080 733]"
+      script		      "function topocentric_local_hour = topocentric_local_hour_calculate(observer_local_hour, topocentr"
+      "ic_sun_position)\n%#eml\n% This function compute the topocentric local jour angle in degrees\n\ntopocentric_loca"
+      "l_hour = observer_local_hour - topocentric_sun_position.rigth_ascension_parallax;\n"
+      editorLayout	      "100 M4x1[33 211 1080 733]"
     }
   }
   junction {
@@ -11605,8 +11721,162 @@ Stateflow {
   data {
     id			    92
     ssIdNumber		    4
-    name		    "earth_heliocentric_position"
+    name		    "observer_local_hour"
     linkNode		    [88 0 93]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    93
+    ssIdNumber		    5
+    name		    "topocentric_local_hour"
+    linkNode		    [88 92 94]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    94
+    ssIdNumber		    6
+    name		    "topocentric_sun_position"
+    linkNode		    [88 93 0]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"1"
+      }
+      type {
+	method			SF_SIMULINK_OBJECT_TYPE
+	primitive		SF_DOUBLE_TYPE
+	busObject		"TopocentricSunPosition"
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Bus: TopocentricSunPosition"
+  }
+  instance {
+    id			    95
+    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function6"
+    machine		    1
+    chart		    88
+  }
+  chart {
+    id			    96
+    name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function7"
+    windowPosition	    [371.813 239.45 200.25 189.75]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1680 1050 1.333333333333333]
+    treeNode		    [0 97 0 0]
+    firstTransition	    99
+    firstJunction	    98
+    viewObj		    96
+    machine		    1
+    toolbarMode		    LIBRARY_TOOLBAR
+    ssIdHighWaterMark	    9
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    100
+    chartFileNumber	    19
+    disableImplicitCasting  1
+    eml {
+      name		      "topocentric_sun_position_calculate"
+    }
+  }
+  state {
+    id			    97
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    96
+    treeNode		    [96 0 0 0]
+    superState		    SUBCHART
+    subviewer		    96
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function topocentric_sun_position = topocentric_sun_position_calculate(earth_heliocentric_positio"
+      "n, location, observer_local_hour, sun_rigth_ascension, sun_geocentric_declination)\n%#eml\n% This function compu"
+      "tes the sun position (rigth ascension and declination)\n% with respect to the observer local position at the Ear"
+      "th surface. \n\n% Equatorial horizontal parallax of the sun in degrees\neq_horizontal_parallax = 8.794 / (3600 *"
+      " earth_heliocentric_position.radius);\n\n% Term u, used in the following calculations (in radians)\nu = atan(0.9"
+      "9664719 * tan(location.latitude * pi/180));\n\n% Term x, used in the following calculations\nx = cos(u) + ((loca"
+      "tion.altitude/6378140) * cos(location.latitude * pi/180));\n\n% Term y, used in the following calculations\ny = "
+      "(0.99664719 * sin(u)) + ((location.altitude/6378140) * sin(location.latitude * pi/180));\n\n% Parallax in the su"
+      "n rigth ascension (in radians)\nnominator = -x * sin(eq_horizontal_parallax * pi/180) * sin(observer_local_hour "
+      "* pi/180);\ndenominator = cos(sun_geocentric_declination * pi/180) - (x * sin(eq_horizontal_parallax * pi/180) *"
+      " cos(observer_local_hour * pi/180));\nsun_rigth_ascension_parallax = atan2(nominator, denominator);\n% Conversio"
+      "n to degrees. \ntopocentric_sun_position.rigth_ascension_parallax = sun_rigth_ascension_parallax * 180/pi;\n\n% "
+      "Topocentric sun rigth ascension (in degrees)\ntopocentric_sun_position.rigth_ascension = sun_rigth_ascension + ("
+      "sun_rigth_ascension_parallax * 180/pi);\n\n% Topocentric sun declination (in degrees)\nnominator = (sin(sun_geoc"
+      "entric_declination * pi/180) - (y*sin(eq_horizontal_parallax * pi/180))) * cos(sun_rigth_ascension_parallax);\nd"
+      "enominator = cos(sun_geocentric_declination * pi/180) - (x*sin(eq_horizontal_parallax * pi/180)) * cos(observer_"
+      "local_hour * pi/180);\ntopocentric_sun_position.declination = atan2(nominator, denominator) * 180/pi;"
+      editorLayout	      "100 M4x1[50 174 1080 733]"
+    }
+  }
+  junction {
+    id			    98
+    position		    [23.5747 49.5747 7]
+    chart		    96
+    linkNode		    [96 0 0]
+    subviewer		    96
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    99
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      98
+      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    96
+    linkNode		    [96 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    96
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  data {
+    id			    100
+    ssIdNumber		    4
+    name		    "earth_heliocentric_position"
+    linkNode		    [96 0 101]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11623,10 +11893,10 @@ Stateflow {
     dataType		    "Bus: EarthHeliocentricPosition"
   }
   data {
-    id			    93
+    id			    101
     ssIdNumber		    5
     name		    "topocentric_sun_position"
-    linkNode		    [88 92 94]
+    linkNode		    [96 100 102]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -11644,10 +11914,10 @@ Stateflow {
     dataType		    "Bus: TopocentricSunPosition"
   }
   data {
-    id			    94
+    id			    102
     ssIdNumber		    6
     name		    "location"
-    linkNode		    [88 93 95]
+    linkNode		    [96 101 103]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11667,10 +11937,10 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   data {
-    id			    95
+    id			    103
     ssIdNumber		    7
     name		    "observer_local_hour"
-    linkNode		    [88 94 96]
+    linkNode		    [96 102 104]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11689,10 +11959,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    96
+    id			    104
     ssIdNumber		    8
     name		    "sun_rigth_ascension"
-    linkNode		    [88 95 97]
+    linkNode		    [96 103 105]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11711,10 +11981,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    97
+    id			    105
     ssIdNumber		    9
     name		    "sun_geocentric_declination"
-    linkNode		    [88 96 0]
+    linkNode		    [96 104 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11733,27 +12003,27 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    98
+    id			    106
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function7"
     machine		    1
-    chart		    88
+    chart		    96
   }
   chart {
-    id			    99
+    id			    107
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function8"
     windowPosition	    [326.813 284.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 100 0 0]
-    firstTransition	    102
-    firstJunction	    101
-    viewObj		    99
+    treeNode		    [0 108 0 0]
+    firstTransition	    110
+    firstJunction	    109
+    viewObj		    107
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    103
+    firstData		    111
     chartFileNumber	    20
     disableImplicitCasting  1
     eml {
@@ -11761,14 +12031,14 @@ Stateflow {
     }
   }
   state {
-    id			    100
+    id			    108
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    99
-    treeNode		    [99 0 0 0]
+    chart		    107
+    treeNode		    [107 0 0 0]
     superState		    SUBCHART
-    subviewer		    99
+    subviewer		    107
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -11784,16 +12054,16 @@ Stateflow {
     }
   }
   junction {
-    id			    101
+    id			    109
     position		    [23.5747 49.5747 7]
-    chart		    99
-    linkNode		    [99 0 0]
-    subviewer		    99
+    chart		    107
+    linkNode		    [107 0 0]
+    subviewer		    107
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    102
+    id			    110
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -11801,23 +12071,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      101
+      id		      109
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    99
-    linkNode		    [99 0 0]
+    chart		    107
+    linkNode		    [107 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    99
+    subviewer		    107
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    103
+    id			    111
     ssIdNumber		    4
     name		    "apparent_sun_longitude"
-    linkNode		    [99 0 104]
+    linkNode		    [107 0 112]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11833,10 +12103,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    104
+    id			    112
     ssIdNumber		    5
     name		    "sun_rigth_ascension"
-    linkNode		    [99 103 105]
+    linkNode		    [107 111 113]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -11853,10 +12123,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    105
+    id			    113
     ssIdNumber		    6
     name		    "true_obliquity"
-    linkNode		    [99 104 106]
+    linkNode		    [107 112 114]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11875,10 +12145,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    106
+    id			    114
     ssIdNumber		    7
     name		    "sun_geocentric_position"
-    linkNode		    [99 105 0]
+    linkNode		    [107 113 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11898,27 +12168,27 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   instance {
-    id			    107
+    id			    115
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function8"
     machine		    1
-    chart		    99
+    chart		    107
   }
   chart {
-    id			    108
+    id			    116
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function9"
     windowPosition	    [341.813 269.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 109 0 0]
-    firstTransition	    111
-    firstJunction	    110
-    viewObj		    108
+    treeNode		    [0 117 0 0]
+    firstTransition	    119
+    firstJunction	    118
+    viewObj		    116
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    112
+    firstData		    120
     chartFileNumber	    21
     disableImplicitCasting  1
     eml {
@@ -11926,14 +12196,14 @@ Stateflow {
     }
   }
   state {
-    id			    109
+    id			    117
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    108
-    treeNode		    [108 0 0 0]
+    chart		    116
+    treeNode		    [116 0 0 0]
     superState		    SUBCHART
-    subviewer		    108
+    subviewer		    116
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -11946,16 +12216,16 @@ Stateflow {
     }
   }
   junction {
-    id			    110
+    id			    118
     position		    [23.5747 49.5747 7]
-    chart		    108
-    linkNode		    [108 0 0]
-    subviewer		    108
+    chart		    116
+    linkNode		    [116 0 0]
+    subviewer		    116
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    111
+    id			    119
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -11963,23 +12233,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      110
+      id		      118
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    108
-    linkNode		    [108 0 0]
+    chart		    116
+    linkNode		    [116 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    108
+    subviewer		    116
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    112
+    id			    120
     ssIdNumber		    4
     name		    "apparent_stime_at_greenwich"
-    linkNode		    [108 0 113]
+    linkNode		    [116 0 121]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -11995,10 +12265,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    113
+    id			    121
     ssIdNumber		    5
     name		    "observer_local_hour"
-    linkNode		    [108 112 114]
+    linkNode		    [116 120 122]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -12015,10 +12285,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    114
+    id			    122
     ssIdNumber		    6
     name		    "location"
-    linkNode		    [108 113 115]
+    linkNode		    [116 121 123]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -12038,10 +12308,10 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   data {
-    id			    115
+    id			    123
     ssIdNumber		    7
     name		    "sun_rigth_ascension"
-    linkNode		    [108 114 0]
+    linkNode		    [116 122 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -12060,27 +12330,27 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    116
+    id			    124
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function9"
     machine		    1
-    chart		    108
+    chart		    116
   }
   chart {
-    id			    117
+    id			    125
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function12"
     windowPosition	    [326.813 284.45 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1680 1050 1.333333333333333]
-    treeNode		    [0 118 0 0]
-    firstTransition	    120
-    firstJunction	    119
-    viewObj		    117
+    treeNode		    [0 126 0 0]
+    firstTransition	    128
+    firstJunction	    127
+    viewObj		    125
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    121
+    firstData		    129
     chartFileNumber	    24
     disableImplicitCasting  1
     eml {
@@ -12088,14 +12358,14 @@ Stateflow {
     }
   }
   state {
-    id			    118
+    id			    126
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    117
-    treeNode		    [117 0 0 0]
+    chart		    125
+    treeNode		    [125 0 0 0]
     superState		    SUBCHART
-    subviewer		    117
+    subviewer		    125
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -12108,16 +12378,16 @@ Stateflow {
     }
   }
   junction {
-    id			    119
+    id			    127
     position		    [23.5747 49.5747 7]
-    chart		    117
-    linkNode		    [117 0 0]
-    subviewer		    117
+    chart		    125
+    linkNode		    [125 0 0]
+    subviewer		    125
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    120
+    id			    128
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -12125,23 +12395,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      119
+      id		      127
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    117
-    linkNode		    [117 0 0]
+    chart		    125
+    linkNode		    [125 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    117
+    subviewer		    125
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    121
+    id			    129
     ssIdNumber		    4
     name		    "sun_geocentric_position"
-    linkNode		    [117 0 122]
+    linkNode		    [125 0 130]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -12158,10 +12428,10 @@ Stateflow {
     dataType		    "Bus: Location"
   }
   data {
-    id			    122
+    id			    130
     ssIdNumber		    5
     name		    "apparent_sun_longitude"
-    linkNode		    [117 121 123]
+    linkNode		    [125 129 131]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -12178,10 +12448,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    123
+    id			    131
     ssIdNumber		    6
     name		    "nutation"
-    linkNode		    [117 122 124]
+    linkNode		    [125 130 132]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -12201,10 +12471,10 @@ Stateflow {
     dataType		    "Bus: Nutation"
   }
   data {
-    id			    124
+    id			    132
     ssIdNumber		    7
     name		    "aberration_correction"
-    linkNode		    [117 123 0]
+    linkNode		    [125 131 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -12223,22 +12493,22 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    125
+    id			    133
     name		    "Solar Models/Solar Position\n(in translation)/Embedded\nMATLAB Function12"
     machine		    1
-    chart		    117
+    chart		    125
   }
   target {
-    id			    126
+    id			    134
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1
-    linkNode		    [1 0 127]
+    linkNode		    [1 0 135]
   }
   target {
-    id			    127
+    id			    135
     name		    "rtw"
     machine		    1
-    linkNode		    [1 126 0]
+    linkNode		    [1 134 0]
   }
 }
