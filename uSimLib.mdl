@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 25 17:08:27 2014"
-  RTWModifiedTimeStamp	  338833551
-  ModelVersionFormat	  "1.%<AutoIncrement:145>"
+  LastModifiedDate	  "Wed Mar 11 19:07:55 2015"
+  RTWModifiedTimeStamp	  347997976
+  ModelVersionFormat	  "1.%<AutoIncrement:146>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -898,7 +898,7 @@ Library {
   }
   System {
     Name		    "uSimLib"
-    Location		    [1124, 463, 1622, 763]
+    Location		    [1195, 340, 1693, 640]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -2077,7 +2077,7 @@ Library {
       MaskIconUnits	      "normalized"
       System {
 	Name			"Mission Manager"
-	Location		[763, 192, 1705, 915]
+	Location		[810, 151, 1752, 874]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -4120,8 +4120,10 @@ Library {
 	  Ports			  []
 	  Position		  [55, 224, 156, 267]
 	  ZOrder		  -10
-	  Priority		  "2"
-	  LibraryVersion	  "1.140"
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  Priority		  "0"
+	  LibraryVersion	  "1.145"
 	  InitFcn		  "mList = Simulink.Signal;\nmList.RTWInfo.StorageClass = 'ExportedGlobal';\nmList.RTWInfo.Alias = '';\nmL"
 	  "ist.RTWInfo.Alignment = -1;\nmList.RTWInfo.CustomStorageClass = 'Default';\nmList.Description = '';\nmList.DataType"
 	  " = 'Bus: MissionList';\nmList.Min = [];\nmList.Max = [];\nmList.DocUnits = '';\nmList.Dimensions = 1;\nmList.Dimens"
@@ -4156,7 +4158,7 @@ Library {
 	  MaskValueString	  "16|-1|test_waypoints"
 	  System {
 	    Name		    "Mission InitAll"
-	    Location		    [728, 129, 1820, 984]
+	    Location		    [438, 189, 1530, 959]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4228,7 +4230,6 @@ Library {
 	      ZOrder		      -5
 	      BackgroundColor	      "gray"
 	      ShowName		      off
-	      Value		      "0"
 	      OutDataTypeStr	      "Inherit: Inherit via back propagation"
 	    }
 	    Block {
@@ -4418,9 +4419,9 @@ Library {
 	      ZOrder		      -5
 	      ForegroundColor	      "cyan"
 	      Priority		      "3"
-	      LibraryVersion	      "1.141"
+	      LibraryVersion	      "1.145"
 	      SourceBlock	      "uSimLib/Mission Manager/SetCurrentMission"
-	      SourceType	      "Unknown"
+	      SourceType	      ""
 	      sampleTime	      "-1"
 	    }
 	    Block {
@@ -4430,9 +4431,9 @@ Library {
 	      Ports		      [1]
 	      Position		      [325, 89, 425, 131]
 	      ZOrder		      -4
-	      LibraryVersion	      "1.141"
+	      LibraryVersion	      "1.145"
 	      SourceBlock	      "uSimLib/Mission Manager/SetStartingPoint"
-	      SourceType	      "Unknown"
+	      SourceType	      ""
 	      sampleTime	      "-1"
 	    }
 	    Block {
@@ -4478,7 +4479,7 @@ Library {
 		Block {
 		  BlockType		  Inport
 		  Name			  "In1"
-		  SID			  "1381"
+		  SID			  "1358:1381"
 		  Position		  [25, 113, 55, 127]
 		  BackgroundColor	  "darkGreen"
 		  IconDisplay		  "Port number"
@@ -4486,7 +4487,7 @@ Library {
 		Block {
 		  BlockType		  BusSelector
 		  Name			  "Bus\nSelector"
-		  SID			  "1382"
+		  SID			  "1358:1382"
 		  Ports			  [1, 1]
 		  Position		  [135, 101, 140, 139]
 		  ZOrder		  -3
@@ -4502,7 +4503,7 @@ Library {
 		Block {
 		  BlockType		  SubSystem
 		  Name			  "Convert global coordinates\nto local as well"
-		  SID			  "1383"
+		  SID			  "1358:1383"
 		  Ports			  [1, 1, 0, 0, 0, 0, 0, 1]
 		  Position		  [360, 37, 430, 73]
 		  ZOrder		  -16
@@ -4533,7 +4534,7 @@ Library {
 		    Block {
 		    BlockType		    Inport
 		    Name		    "In1"
-		    SID			    "1384"
+		    SID			    "1358:1384"
 		    Position		    [15, 78, 45, 92]
 		    ZOrder		    -1
 		    BackgroundColor	    "darkGreen"
@@ -4542,14 +4543,14 @@ Library {
 		    Block {
 		    BlockType		    ActionPort
 		    Name		    "Action Port"
-		    SID			    "1385"
+		    SID			    "1358:1385"
 		    Position		    [170, 15, 229, 43]
 		    ZOrder		    -2
 		    }
 		    Block {
 		    BlockType		    BusAssignment
 		    Name		    "Bus\nAssignment"
-		    SID			    "1386"
+		    SID			    "1358:1386"
 		    Ports		    [4, 1]
 		    Position		    [410, 97, 535, 213]
 		    ZOrder		    -1
@@ -4559,7 +4560,7 @@ Library {
 		    Block {
 		    BlockType		    BusSelector
 		    Name		    "Bus\nSelector"
-		    SID			    "1387"
+		    SID			    "1358:1387"
 		    Ports		    [1, 1]
 		    Position		    [85, 151, 90, 189]
 		    ZOrder		    -3
@@ -4575,7 +4576,7 @@ Library {
 		    Block {
 		    BlockType		    Constant
 		    Name		    "Constant"
-		    SID			    "1388"
+		    SID			    "1358:1388"
 		    Position		    [180, 249, 210, 271]
 		    ZOrder		    -5
 		    BackgroundColor	    "gray"
@@ -4585,7 +4586,7 @@ Library {
 		    Block {
 		    BlockType		    Demux
 		    Name		    "Demux"
-		    SID			    "1389"
+		    SID			    "1358:1389"
 		    Ports		    [1, 3]
 		    Position		    [135, 134, 140, 206]
 		    ZOrder		    -7
@@ -4596,7 +4597,7 @@ Library {
 		    Block {
 		    BlockType		    Gain
 		    Name		    "Gain"
-		    SID			    "1390"
+		    SID			    "1358:1390"
 		    Position		    [170, 130, 200, 160]
 		    ZOrder		    -11
 		    ShowName		    off
@@ -4609,7 +4610,7 @@ Library {
 		    Block {
 		    BlockType		    Gain
 		    Name		    "Gain1"
-		    SID			    "1391"
+		    SID			    "1358:1391"
 		    Position		    [170, 155, 200, 185]
 		    ZOrder		    -11
 		    ShowName		    off
@@ -4622,7 +4623,7 @@ Library {
 		    Block {
 		    BlockType		    Gain
 		    Name		    "Gain2"
-		    SID			    "1392"
+		    SID			    "1358:1392"
 		    Position		    [170, 180, 200, 210]
 		    ZOrder		    -11
 		    ShowName		    off
@@ -4635,7 +4636,7 @@ Library {
 		    Block {
 		    BlockType		    SubSystem
 		    Name		    "LLA2LTP"
-		    SID			    "1393"
+		    SID			    "1358:1393"
 		    Ports		    [1, 1]
 		    Position		    [250, 149, 350, 191]
 		    ZOrder		    -5
@@ -4667,7 +4668,7 @@ Library {
 		    Block {
 		    BlockType		    Inport
 		    Name		    "LLA"
-		    SID			    "1394"
+		    SID			    "1358:1394"
 		    Position		    [65, 158, 95, 172]
 		    ZOrder		    -1
 		    BackgroundColor	    "darkGreen"
@@ -4676,7 +4677,7 @@ Library {
 		    Block {
 		    BlockType		    Sum
 		    Name		    "Add"
-		    SID			    "1395"
+		    SID			    "1358:1395"
 		    Ports		    [2, 1]
 		    Position		    [175, 172, 205, 203]
 		    ZOrder		    -2
@@ -4690,7 +4691,7 @@ Library {
 		    Block {
 		    BlockType		    Constant
 		    Name		    "Constant"
-		    SID			    "1396"
+		    SID			    "1358:1396"
 		    Position		    [30, 195, 130, 225]
 		    ZOrder		    -5
 		    BackgroundColor	    "gray"
@@ -4701,7 +4702,7 @@ Library {
 		    Block {
 		    BlockType		    Constant
 		    Name		    "Constant1"
-		    SID			    "1397"
+		    SID			    "1358:1397"
 		    Position		    [30, 235, 130, 265]
 		    ZOrder		    -5
 		    BackgroundColor	    "gray"
@@ -4712,7 +4713,7 @@ Library {
 		    Block {
 		    BlockType		    Product
 		    Name		    "Product"
-		    SID			    "1398"
+		    SID			    "1358:1398"
 		    Ports		    [2, 1]
 		    Position		    [375, 202, 405, 233]
 		    ZOrder		    -19
@@ -4726,7 +4727,7 @@ Library {
 		    Block {
 		    BlockType		    Outport
 		    Name		    "LTP"
-		    SID			    "1399"
+		    SID			    "1358:1399"
 		    Position		    [450, 213, 480, 227]
 		    ZOrder		    -2
 		    BackgroundColor	    "yellow"
@@ -4773,7 +4774,7 @@ Library {
 		    Block {
 		    BlockType		    Mux
 		    Name		    "Mux"
-		    SID			    "1400"
+		    SID			    "1358:1400"
 		    Ports		    [3, 1]
 		    Position		    [225, 132, 230, 208]
 		    ZOrder		    -16
@@ -4784,7 +4785,7 @@ Library {
 		    Block {
 		    BlockType		    Outport
 		    Name		    "Out1"
-		    SID			    "1401"
+		    SID			    "1358:1401"
 		    Position		    [585, 148, 615, 162]
 		    ZOrder		    -3
 		    BackgroundColor	    "yellow"
@@ -4899,7 +4900,7 @@ Library {
 		Block {
 		  BlockType		  If
 		  Name			  "If"
-		  SID			  "1402"
+		  SID			  "1358:1402"
 		  Ports			  [1, 2]
 		  Position		  [215, 101, 315, 139]
 		  ZOrder		  -15
@@ -4910,7 +4911,7 @@ Library {
 		Block {
 		  BlockType		  Merge
 		  Name			  "Merge"
-		  SID			  "1403"
+		  SID			  "1358:1403"
 		  Ports			  [2, 1]
 		  Position		  [480, 100, 520, 140]
 		  ZOrder		  -14
@@ -4919,7 +4920,7 @@ Library {
 		Block {
 		  BlockType		  SubSystem
 		  Name			  "Pass through local\ncoordinates"
-		  SID			  "1404"
+		  SID			  "1358:1404"
 		  Ports			  [1, 1, 0, 0, 0, 0, 0, 1]
 		  Position		  [360, 167, 430, 203]
 		  ZOrder		  -16
@@ -4949,7 +4950,7 @@ Library {
 		    Block {
 		    BlockType		    Inport
 		    Name		    "In1"
-		    SID			    "1405"
+		    SID			    "1358:1405"
 		    Position		    [75, 78, 105, 92]
 		    ZOrder		    -1
 		    BackgroundColor	    "darkGreen"
@@ -4958,14 +4959,14 @@ Library {
 		    Block {
 		    BlockType		    ActionPort
 		    Name		    "Action Port"
-		    SID			    "1406"
+		    SID			    "1358:1406"
 		    Position		    [170, 15, 229, 43]
 		    ZOrder		    -2
 		    }
 		    Block {
 		    BlockType		    Outport
 		    Name		    "Out1"
-		    SID			    "1407"
+		    SID			    "1358:1407"
 		    Position		    [325, 78, 355, 92]
 		    ZOrder		    -3
 		    BackgroundColor	    "yellow"
@@ -4982,7 +4983,7 @@ Library {
 		Block {
 		  BlockType		  Outport
 		  Name			  "Out1"
-		  SID			  "1408"
+		  SID			  "1358:1408"
 		  Position		  [600, 113, 630, 127]
 		  BackgroundColor	  "yellow"
 		  IconDisplay		  "Port number"
@@ -5113,7 +5114,7 @@ Library {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
 		  SID			  "1409::1"
-		  Tag			  "Stateflow S-Function uSimLib 5"
+		  Tag			  "Stateflow S-Function uSimLib 8"
 		  Ports			  [1, 2]
 		  Position		  [180, 100, 230, 160]
 		  FunctionName		  "sf_sfun"
@@ -10324,8 +10325,8 @@ Stateflow {
   }
   chart {
     id			    32
-    name		    "Mission Manager/Mission InitAll/test_waypoints\ngetter"
-    windowPosition	    [465.75 113.25 200.25 189.75]
+    name		    "Math/Vector rotation"
+    windowPosition	    [420.75 158.25 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 33 0 0]
@@ -10333,15 +10334,14 @@ Stateflow {
     firstJunction	    34
     viewObj		    32
     machine		    1
-    toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    36
-    chartFileNumber	    5
+    chartFileNumber	    6
     disableImplicitCasting  1
     eml {
-      name		      "get"
+      name		      "rotvec"
     }
     supportVariableSizing   0
   }
@@ -10359,8 +10359,9 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function y = get(missionsVar)\n%#codegen\n\ny = missionsVar;"
-      editorLayout	      "100 M4x1[76 260 1080 733]"
+      script		      "function y = rotvec(vector, angle)\n%#codegen\n% vector - a 3-element vector\n% angle - in radian"
+      "s, from 0 to 2*pi\ns = sin(angle);\nc = cos(angle);\ny = [c -s 0; s c 0; 0 0 1] * vector;"
+      editorLayout	      "100 M4x1[223 171 1080 733]"
       saturateOnIntegerOverflow	0
     }
   }
@@ -10396,9 +10397,147 @@ Stateflow {
   }
   data {
     id			    36
+    ssIdNumber		    4
+    name		    "vector"
+    linkNode		    [32 0 37]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"3"
+      }
+      type {
+	primitive		SF_SINGLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+    }
+    dataType		    "single"
+  }
+  data {
+    id			    37
     ssIdNumber		    5
     name		    "y"
-    linkNode		    [32 0 37]
+    linkNode		    [32 36 38]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"3"
+      }
+      type {
+	primitive		SF_SINGLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "single"
+  }
+  data {
+    id			    38
+    ssIdNumber		    6
+    name		    "angle"
+    linkNode		    [32 37 0]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"1"
+      }
+      type {
+	primitive		SF_SINGLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "single"
+  }
+  instance {
+    id			    39
+    name		    "Math/Vector rotation"
+    machine		    1
+    chart		    32
+  }
+  chart {
+    id			    40
+    name		    "Mission Manager/Mission InitAll/test_waypoints\ngetter"
+    windowPosition	    [495.75 83.25 200.25 189.75]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1920 1080 1.333333333333333]
+    treeNode		    [0 41 0 0]
+    firstTransition	    43
+    firstJunction	    42
+    viewObj		    40
+    machine		    1
+    toolbarMode		    LIBRARY_TOOLBAR
+    subviewS {
+    }
+    ssIdHighWaterMark	    6
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    44
+    chartFileNumber	    8
+    disableImplicitCasting  1
+    eml {
+      name		      "get"
+    }
+    supportVariableSizing   0
+  }
+  state {
+    id			    41
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    40
+    treeNode		    [40 0 0 0]
+    superState		    SUBCHART
+    subviewer		    40
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function y = get(missionsVar)\n%#codegen\n\ny = missionsVar;"
+      editorLayout	      "100 M4x1[76 260 1080 733]"
+      saturateOnIntegerOverflow	0
+    }
+  }
+  junction {
+    id			    42
+    position		    [23.5747 49.5747 7]
+    chart		    40
+    linkNode		    [40 0 0]
+    subviewer		    40
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    43
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      42
+      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    40
+    linkNode		    [40 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    40
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  data {
+    id			    44
+    ssIdNumber		    5
+    name		    "y"
+    linkNode		    [40 0 45]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -10416,10 +10555,10 @@ Stateflow {
     dataType		    "Bus: Mission"
   }
   data {
-    id			    37
+    id			    45
     ssIdNumber		    6
     name		    "missionsVar"
-    linkNode		    [32 36 0]
+    linkNode		    [40 44 0]
     scope		    PARAMETER_DATA
     isNonTunable	    1
     machine		    1
@@ -10440,148 +10579,10 @@ Stateflow {
     dataType		    "Bus: Mission"
   }
   instance {
-    id			    38
+    id			    46
     name		    "Mission Manager/Mission InitAll/test_waypoints\ngetter"
     machine		    1
-    chart		    32
-  }
-  chart {
-    id			    39
-    name		    "Math/Vector rotation"
-    windowPosition	    [420.75 158.25 200.25 189.75]
-    viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 1920 1080 1.333333333333333]
-    treeNode		    [0 40 0 0]
-    firstTransition	    42
-    firstJunction	    41
-    viewObj		    39
-    machine		    1
-    subviewS {
-    }
-    ssIdHighWaterMark	    6
-    decomposition	    CLUSTER_CHART
-    type		    EML_CHART
-    firstData		    43
-    chartFileNumber	    6
-    disableImplicitCasting  1
-    eml {
-      name		      "rotvec"
-    }
-    supportVariableSizing   0
-  }
-  state {
-    id			    40
-    labelString		    "eML_blk_kernel()"
-    position		    [18 64.5 118 66]
-    fontSize		    12
-    chart		    39
-    treeNode		    [39 0 0 0]
-    superState		    SUBCHART
-    subviewer		    39
-    ssIdNumber		    1
-    type		    FUNC_STATE
-    decomposition	    CLUSTER_STATE
-    eml {
-      isEML		      1
-      script		      "function y = rotvec(vector, angle)\n%#codegen\n% vector - a 3-element vector\n% angle - in radian"
-      "s, from 0 to 2*pi\ns = sin(angle);\nc = cos(angle);\ny = [c -s 0; s c 0; 0 0 1] * vector;"
-      editorLayout	      "100 M4x1[223 171 1080 733]"
-      saturateOnIntegerOverflow	0
-    }
-  }
-  junction {
-    id			    41
-    position		    [23.5747 49.5747 7]
-    chart		    39
-    linkNode		    [39 0 0]
-    subviewer		    39
-    ssIdNumber		    3
-    type		    CONNECTIVE_JUNCTION
-  }
-  transition {
-    id			    42
-    labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [32.125 19.875 102.544 14.964]
-    fontSize		    12
-    src {
-      intersection	      [0 0 1 0 23.5747 14.625 0 0]
-    }
-    dst {
-      id		      41
-      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
-    }
-    midPoint		    [23.5747 24.9468]
-    chart		    39
-    linkNode		    [39 0 0]
-    dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    39
-    drawStyle		    SMART
-    executionOrder	    1
-    ssIdNumber		    2
-  }
-  data {
-    id			    43
-    ssIdNumber		    4
-    name		    "vector"
-    linkNode		    [39 0 44]
-    scope		    INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"3"
-      }
-      type {
-	primitive		SF_SINGLE_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-    }
-    dataType		    "single"
-  }
-  data {
-    id			    44
-    ssIdNumber		    5
-    name		    "y"
-    linkNode		    [39 43 45]
-    scope		    OUTPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"3"
-      }
-      type {
-	primitive		SF_SINGLE_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
-    }
-    dataType		    "single"
-  }
-  data {
-    id			    45
-    ssIdNumber		    6
-    name		    "angle"
-    linkNode		    [39 44 0]
-    scope		    INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"1"
-      }
-      type {
-	primitive		SF_SINGLE_TYPE
-	isSigned		1
-	wordLength		"16"
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
-    }
-    dataType		    "single"
-  }
-  instance {
-    id			    46
-    name		    "Math/Vector rotation"
-    machine		    1
-    chart		    39
+    chart		    40
   }
   chart {
     id			    47
