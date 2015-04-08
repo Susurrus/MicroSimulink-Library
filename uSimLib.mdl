@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "Bryant"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 11 19:07:55 2015"
-  RTWModifiedTimeStamp	  347997976
-  ModelVersionFormat	  "1.%<AutoIncrement:146>"
+  LastModifiedDate	  "Wed Apr 08 14:51:36 2015"
+  RTWModifiedTimeStamp	  350405464
+  ModelVersionFormat	  "1.%<AutoIncrement:148>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -912,7 +912,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "2156"
+    SIDHighWatermark	    "2470"
     Block {
       BlockType		      SubSystem
       Name		      "Conversions"
@@ -4030,8 +4030,8 @@ Library {
 	  ZOrder		  -4
 	  ForegroundColor	  "blue"
 	  BackgroundColor	  "cyan"
-	  Priority		  "0"
-	  LibraryVersion	  "1.136"
+	  Priority		  "-3"
+	  LibraryVersion	  "*1.146"
 	  InitFcn		  "mList = Simulink.Signal;\nmList.RTWInfo.StorageClass = 'ExportedGlobal';\nmList.RTWInfo.Alias = '';\nmL"
 	  "ist.RTWInfo.Alignment = -1;\nmList.RTWInfo.CustomStorageClass = 'Default';\nmList.Description = '';\nmList.DataType"
 	  " = 'Bus: MissionList';\nmList.Min = [];\nmList.Max = [];\nmList.DocUnits = '';\nmList.Dimensions = 1;\nmList.Dimens"
@@ -4050,26 +4050,23 @@ Library {
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskDescription	  "Initializes the global data store for the mission manager."
-	  MaskPromptString	  "Maximum mission count|Sample time"
-	  MaskStyleString	  "edit,edit"
-	  MaskVariables		  "maxMissions=@1;sampleTime=@2;"
-	  MaskTunableValueString  "off,off"
-	  MaskCallbackString	  "maxMissions = eval(get_param(gcb, 'maxMissions'));\nif maxMissions < 1\n    error('Maximum mi"
-	  "ssion count must be greater than 0.')\nelseif maxMissions > 127\n    error('Maximum mission count must be less than"
-	  " 127.');\nend|"
-	  MaskEnableString	  "on,on"
-	  MaskVisibilityString	  "on,on"
-	  MaskToolTipString	  "on,on"
+	  MaskPromptString	  "Sample time"
+	  MaskStyleString	  "edit"
+	  MaskVariables		  "sampleTime=@1;"
+	  MaskTunableValueString  "off"
+	  MaskEnableString	  "on"
+	  MaskVisibilityString	  "on"
+	  MaskToolTipString	  "on"
 	  MaskDisplay		  "disp('Mission: Init()');"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
 	  MaskIconRotate	  "none"
 	  MaskPortRotate	  "default"
 	  MaskIconUnits		  "autoscale"
-	  MaskValueString	  "16|-1"
+	  MaskValueString	  "-1"
 	  System {
 	    Name		    "Mission Init"
-	    Location		    [238, 273, 736, 573]
+	    Location		    [549, 196, 1641, 966]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4083,32 +4080,47 @@ Library {
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
 	    Block {
-	      BlockType		      Constant
-	      Name		      "Constant"
-	      SID		      "712"
-	      Position		      [75, 40, 105, 70]
+	      BlockType		      DataStoreRead
+	      Name		      "Data Store\nRead"
+	      SID		      "2470"
+	      Ports		      [0, 1]
+	      Position		      [65, 44, 175, 76]
 	      ZOrder		      -5
-	      BackgroundColor	      "gray"
 	      ShowName		      off
-	      Value		      "maxMissions"
-	      OutDataTypeStr	      "uint8"
+	      DataStoreName	      "mList"
+	      DataStoreElements	      "mList.missions(:)"
 	    }
 	    Block {
 	      BlockType		      DataStoreWrite
 	      Name		      "Data Store\nWrite"
 	      SID		      "713"
 	      Ports		      [1]
-	      Position		      [160, 43, 235, 67]
+	      Position		      [300, 48, 375, 72]
 	      ZOrder		      -6
 	      ShowName		      off
 	      DataStoreName	      "mList"
 	      SampleTime	      "sampleTime"
 	      DataStoreElements	      "mList.maxSize"
 	    }
+	    Block {
+	      BlockType		      Width
+	      Name		      "Width"
+	      SID		      "2469"
+	      Position		      [220, 45, 250, 75]
+	      ZOrder		      -14
+	      ShowName		      off
+	      DataType		      "uint8"
+	    }
 	    Line {
-	      SrcBlock		      "Constant"
+	      SrcBlock		      "Width"
 	      SrcPort		      1
 	      DstBlock		      "Data Store\nWrite"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Store\nRead"
+	      SrcPort		      1
+	      DstBlock		      "Width"
 	      DstPort		      1
 	    }
 	  }
@@ -4123,7 +4135,7 @@ Library {
 	  ForegroundColor	  "red"
 	  BackgroundColor	  "yellow"
 	  Priority		  "0"
-	  LibraryVersion	  "1.145"
+	  LibraryVersion	  "*1.146"
 	  InitFcn		  "mList = Simulink.Signal;\nmList.RTWInfo.StorageClass = 'ExportedGlobal';\nmList.RTWInfo.Alias = '';\nmL"
 	  "ist.RTWInfo.Alignment = -1;\nmList.RTWInfo.CustomStorageClass = 'Default';\nmList.Description = '';\nmList.DataType"
 	  " = 'Bus: MissionList';\nmList.Min = [];\nmList.Max = [];\nmList.DocUnits = '';\nmList.Dimensions = 1;\nmList.Dimens"
@@ -4141,24 +4153,24 @@ Library {
 	  Opaque		  off
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
-	  MaskPromptString	  "Maximum mission count|Sample time|Missions variable"
-	  MaskStyleString	  "edit,edit,edit"
-	  MaskVariables		  "maxMissions=@1;sampleTime=@2;missionsVar=@3;"
-	  MaskTunableValueString  "off,off,off"
-	  MaskCallbackString	  "||"
-	  MaskEnableString	  "on,on,on"
-	  MaskVisibilityString	  "on,on,on"
-	  MaskToolTipString	  "on,on,on"
+	  MaskPromptString	  "Sample time|Missions variable"
+	  MaskStyleString	  "edit,edit"
+	  MaskVariables		  "sampleTime=@1;missionsVar=@2;"
+	  MaskTunableValueString  "off,off"
+	  MaskCallbackString	  "|"
+	  MaskEnableString	  "on,on"
+	  MaskVisibilityString	  "on,on"
+	  MaskToolTipString	  "on,on"
 	  MaskDisplay		  "disp('Missions:InitAll()');"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
 	  MaskIconRotate	  "none"
 	  MaskPortRotate	  "default"
 	  MaskIconUnits		  "normalized"
-	  MaskValueString	  "16|-1|test_waypoints"
+	  MaskValueString	  "-1|test_waypoints"
 	  System {
 	    Name		    "Mission InitAll"
-	    Location		    [438, 189, 1530, 959]
+	    Location		    [549, 196, 1641, 966]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -4210,17 +4222,6 @@ Library {
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
-	    }
-	    Block {
-	      BlockType		      Constant
-	      Name		      "Constant"
-	      SID		      "1362"
-	      Position		      [505, 45, 535, 75]
-	      ZOrder		      -5
-	      BackgroundColor	      "gray"
-	      ShowName		      off
-	      Value		      "maxMissions"
-	      OutDataTypeStr	      "uint8"
 	    }
 	    Block {
 	      BlockType		      Constant
@@ -4346,11 +4347,22 @@ Library {
 	      SampleTime	      "sampleTime"
 	    }
 	    Block {
+	      BlockType		      DataStoreRead
+	      Name		      "Data Store\nRead1"
+	      SID		      "2465"
+	      Ports		      [0, 1]
+	      Position		      [490, 44, 600, 76]
+	      ZOrder		      -5
+	      ShowName		      off
+	      DataStoreName	      "mList"
+	      DataStoreElements	      "mList.missions(:)"
+	    }
+	    Block {
 	      BlockType		      DataStoreWrite
 	      Name		      "Data Store\nWrite"
-	      SID		      "1371"
+	      SID		      "2466"
 	      Ports		      [1]
-	      Position		      [590, 48, 665, 72]
+	      Position		      [725, 48, 800, 72]
 	      ZOrder		      -6
 	      ShowName		      off
 	      DataStoreName	      "mList"
@@ -4419,7 +4431,7 @@ Library {
 	      ZOrder		      -5
 	      ForegroundColor	      "cyan"
 	      Priority		      "3"
-	      LibraryVersion	      "1.145"
+	      LibraryVersion	      "1.146"
 	      SourceBlock	      "uSimLib/Mission Manager/SetCurrentMission"
 	      SourceType	      ""
 	      sampleTime	      "-1"
@@ -4431,7 +4443,7 @@ Library {
 	      Ports		      [1]
 	      Position		      [325, 89, 425, 131]
 	      ZOrder		      -4
-	      LibraryVersion	      "1.145"
+	      LibraryVersion	      "1.146"
 	      SourceBlock	      "uSimLib/Mission Manager/SetStartingPoint"
 	      SourceType	      ""
 	      sampleTime	      "-1"
@@ -4443,6 +4455,15 @@ Library {
 	      Position		      [195, 390, 225, 420]
 	      ZOrder		      -14
 	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Width
+	      Name		      "Width1"
+	      SID		      "2467"
+	      Position		      [645, 45, 675, 75]
+	      ZOrder		      -14
+	      ShowName		      off
+	      DataType		      "uint8"
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -5170,6 +5191,18 @@ Library {
 	      }
 	    }
 	    Line {
+	      SrcBlock		      "Width1"
+	      SrcPort		      1
+	      DstBlock		      "Data Store\nWrite"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Store\nRead1"
+	      SrcPort		      1
+	      DstBlock		      "Width1"
+	      DstPort		      1
+	    }
+	    Line {
 	      SrcBlock		      "lla2ltp1"
 	      SrcPort		      1
 	      DstBlock		      "Assignment"
@@ -5298,12 +5331,6 @@ Library {
 	      SrcPort		      1
 	      DstBlock		      "Bus\nCreator"
 	      DstPort		      2
-	    }
-	    Line {
-	      SrcBlock		      "Constant"
-	      SrcPort		      1
-	      DstBlock		      "Data Store\nWrite"
-	      DstPort		      1
 	    }
 	    Line {
 	      Labels		      [0, 0]
@@ -10462,7 +10489,7 @@ Stateflow {
   chart {
     id			    40
     name		    "Mission Manager/Mission InitAll/test_waypoints\ngetter"
-    windowPosition	    [495.75 83.25 200.25 189.75]
+    windowPosition	    [525.75 53.25 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 41 0 0]
@@ -10470,7 +10497,6 @@ Stateflow {
     firstJunction	    42
     viewObj		    40
     machine		    1
-    toolbarMode		    LIBRARY_TOOLBAR
     subviewS {
     }
     ssIdHighWaterMark	    6
